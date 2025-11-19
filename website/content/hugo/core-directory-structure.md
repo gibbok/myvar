@@ -5,8 +5,6 @@ draft = false
 tags = ['hugo', 'go']
 +++
 
-When you first open a Hugo project, the folder structure can feel abstract — lots of conventions, lookup rules, and special filenames. But once you understand the core pieces, the design becomes clean and intuitive.
-
 A Hugo site is powered by five key directories: **content**, **layouts**, **archetypes**, **static**, and **themes**. Here’s a concise guide to what each does and why it matters.
 
 ## 1. Content: Your Site’s Words

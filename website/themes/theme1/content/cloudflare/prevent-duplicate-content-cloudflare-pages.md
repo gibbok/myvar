@@ -5,34 +5,34 @@ draft = false
 tags = ['frontend-development', 'cloudflare', 'seo']
 +++
 
-If you're hosting any website on Cloudflare Pages, you face a common SEO issue: content duplication. Cloudflare Pages automatically serves your site on two domains: your custom domain (e.g., https://mysite.com/) and a default Cloudflare domain (e.g., https://mysite.pages.dev/).
+Cloudflare Pages serves your site on two domains: your custom domain (e.g., **mysite.com**) and a default `mysite.pages.dev` domain. If both get indexed, search engines may treat them as duplicate content, hurting your SEO.
 
-This dual indexing can harm your Search Engine Optimization (SEO). The solution is to use a custom header to apply the X-Robots-Tag HTTP header, which instructs search engine crawlers not to index the default Cloudflare domain.
+To prevent this, add an `X-Robots-Tag` header to the `mysite.pages.dev` version of your site so crawlers don’t index it.
 
-Prevent Content Duplication with the `_headers` File
-To prevent search engines from indexing the `*.pages.dev` domain, you must configure a custom header file.
+## How to set it up
 
-Create the `_headers` File: In the root of your site's build output directory (the folder containing your static files, often dist or public before the build), create a file named `_headers`.
-
-Add the X-Robots-Tag Rule: Add the following content to the `_headers file`. Crucially, replace mysite.pages.dev with your site's actual Cloudflare domain.
+1. In your site’s build output directory (usually `static` or `public`), create a file named `_headers`.
+2. Add the following rule (replace `mysite.pages.dev` with your actual Cloudflare Pages domain):
 
 ```text
 https://mysite.pages.dev/*
   X-Robots-Tag: noindex
 ```
 
-The first line targets all paths on your specific Cloudflare Pages domain.
+The first line matches all paths on your Cloudflare Pages domain.  
+The second line applies the `X-Robots-Tag: noindex` directive.
 
-The second line applies the directive X-Robots-Tag: noindex.
+## How the Header Works
 
-How the Header Works
-When a user or a search engine crawler accesses any page on the specified https://mysite.pages.dev/ domain, Cloudflare Pages will include the following HTTP header in the response:
+When a user or crawler visits any page on `https://mysite.pages.dev/`, Cloudflare Pages returns this header:
 
 ```text
 x-robots-tag: noindex
 ```
 
-This header instructs search engines not to index the page, effectively solving the content duplication issue by funneling search traffic exclusively to your custom domain (https://mysite.com/).
+This tells search engines not to index the page, ensuring that only your custom domain (e.g., https://mysite.com/) is indexed.
 
-Cloudflare Pages Automatic Preview Handling
-Note: Cloudflare Pages automatically applies the noindex tag to all Preview Deployments (e.g., https://myhash.mysite.pages.dev and https://mybranch.mysite.pages.dev). This ensures your development and staging environments are not indexed. The custom `_headers` rule discussed here is only necessary to specifically target and de-index your production Cloudflare Pages domain.
+## Automatic Preview Handling
+
+Cloudflare Pages already adds noindex to all Preview Deployments (e.g., https://myhash.mysite.pages.dev, https://mybranch.mysite.pages.dev).
+The custom `_headers` rule is only needed to de-index the production `mysite.pages.dev` domain.

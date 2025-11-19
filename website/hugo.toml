@@ -1,6 +1,7 @@
 baseURL = 'https://myvar.dev/'
 languageCode = 'en-US'
 title = 'MyVar.dev'
+theme = 'default'
 
 [menus]
   [[menus.main]]

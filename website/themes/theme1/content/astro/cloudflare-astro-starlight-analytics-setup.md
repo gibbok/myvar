@@ -5,7 +5,7 @@ draft = false
 tags = ['frontend-development', 'cloudflare', 'astro', 'web-analytics']
 +++
 
-To integrate Cloudflare Web Analytics into your Astro Starlight documentation site, you must insert the beacon script into the <head> of all pages via the astro.config.mjs file.
+To integrate Cloudflare Web Analytics into your Astro Starlight documentation site, you must insert the beacon script into the `<head>` of all pages via the `astro.config.mjs` file.
 
 1. **Retrieve Token:** Get your unique analytics token (e.g., 9692482312d8a417...) from the Cloudflare Web Analytics dashboard.
 2. **Update Configuration:** Open `astro.config.mjs` and add the following configuration block within the starlight integration. Replace "YOUR_TOKEN_HERE" with your actual token.

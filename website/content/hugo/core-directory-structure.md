@@ -92,5 +92,12 @@ my-hugo-site/
 │   │   └── main.js
 │   └── images/
 │       └── logo.png
+├── themes/
+│   └── my-theme/
+│       ├── layouts/
+│       ├── static/
+│       ├── archetypes/
+│       └── theme.toml
 └── config.toml
+
 ```

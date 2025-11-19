@@ -5,7 +5,7 @@ draft = false
 tags = ['cloudflare', 'seo']
 +++
 
-Cloudflare Pages serves your site on two domains: your custom domain (e.g., **mysite.com**) and a default `mysite.pages.dev` domain. If both get indexed, search engines may treat them as duplicate content, hurting your SEO.
+Cloudflare Pages serves your site on two domains: your custom domain (e.g., mysite.com) and a default mysite.pages.dev domain. If both get indexed, search engines may treat them as duplicate content, hurting your SEO.
 
 To prevent this, add an `X-Robots-Tag` header to the `mysite.pages.dev` version of your site so crawlers don’t index it.
 

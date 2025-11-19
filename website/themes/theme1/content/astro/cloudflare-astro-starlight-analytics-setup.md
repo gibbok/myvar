@@ -12,22 +12,21 @@ To integrate Cloudflare Web Analytics into your Astro Starlight documentation si
 
 ```javascript
 export default defineConfig({
-    ...
-    integrations: [
-        starlight({
-            head: [
-                {
-                    tag: 'script',
-                    attrs: {
-                        defer: true,
-                        src: 'https://static.cloudflareinsights.com/beacon.min.js',
-                        'data-cf-beacon':
-                            '{"token": "YOUR_TOKEN_HERE"}',
-                    },
-                },
-            ]
-        }),
-    ],
+  ...
+  integrations: [
+    starlight({
+      head: [
+        {
+          tag: "script",
+          attrs: {
+            defer: true,
+            src: "https://static.cloudflareinsights.com/beacon.min.js",
+            "data-cf-beacon": '{"token": "YOUR_TOKEN_HERE"}',
+          },
+        },
+      ],
+    }),
+  ],
 });
 ```
 

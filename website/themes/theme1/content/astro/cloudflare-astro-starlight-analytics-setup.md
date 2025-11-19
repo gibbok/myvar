@@ -31,4 +31,4 @@ export default defineConfig({
 });
 ```
 
-3. **Deploy:** Build and deploy your updated site. Data will start appearing in your Cloudflare dashboard shortly after deployment.
+3. **Deploy:** Build and deploy your updated site. Data will start appearing in your Cloudflare dashboard after users begin visiting your site.

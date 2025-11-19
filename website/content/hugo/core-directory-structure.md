@@ -64,3 +64,33 @@ Common contents:
 - Referenced in templates using paths like `/css/styles.css`
 
 Hugo doesn’t enforce an asset pipeline, so you decide how your build process places files here.
+
+Example of Hugo’s Core Directory Structure:
+
+```text
+my-hugo-site/
+├── archetypes/
+│   ├── default.md
+│   └── blog.md
+├── content/
+│   ├── _index.md
+│   ├── about.md
+│   └── blog/
+│       ├── _index.md
+│       └── first-post.md
+├── layouts/
+│   ├── _default/
+│   │   ├── baseof.html
+│   │   ├── list.html
+│   │   └── single.html
+│   └── blog/
+│       └── single.html
+├── static/
+│   ├── css/
+│   │   └── styles.css
+│   ├── js/
+│   │   └── main.js
+│   └── images/
+│       └── logo.png
+└── config.toml
+```

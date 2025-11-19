@@ -5,7 +5,7 @@ draft = false
 tags = ['cloudflare', 'seo']
 +++
 
-Cloudflare Pages serves your site on two domains: your custom domain (e.g., mysite.com) and a default mysite.pages.dev domain. If both get indexed, search engines may treat them as duplicate content, hurting your SEO.
+Cloudflare Pages serves your site on two domains: your custom domain (e.g., `mysite.com`) and a default `mysite.pages.dev` domain. If both get indexed, search engines may treat them as duplicate content, hurting your SEO.
 
 To prevent this, add an `X-Robots-Tag` header to the `mysite.pages.dev` version of your site so crawlers don’t index it.
 
@@ -30,9 +30,9 @@ When a user or crawler visits any page on `https://mysite.pages.dev/`, Cloudflar
 x-robots-tag: noindex
 ```
 
-This tells search engines not to index the page, ensuring that only your custom domain (e.g., https://mysite.com/) is indexed.
+This tells search engines not to index the page, ensuring that only your custom domain (e.g., `https://mysite.com/`) is indexed.
 
 ## Automatic Preview Handling
 
-Cloudflare Pages already adds noindex to all Preview Deployments (e.g., https://myhash.mysite.pages.dev, https://mybranch.mysite.pages.dev).
+Cloudflare Pages already adds noindex to all Preview Deployments (e.g., `https://myhash.mysite.pages.dev`, `https://mybranch.mysite.pages.dev`).
 The custom `_headers` rule is only needed to de-index the production `mysite.pages.dev` domain.

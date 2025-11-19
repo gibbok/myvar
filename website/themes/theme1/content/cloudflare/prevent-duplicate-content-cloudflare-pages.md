@@ -2,7 +2,7 @@
 title = 'Prevent SEO Issues on Cloudflare Pages with `X-Robots-Tag`'
 date = 2025-11-18T09:00:00-08:00
 draft = false
-tags = ['frontend-development', 'cloudflare', 'seo']
+tags = ['cloudflare', 'seo']
 +++
 
 Cloudflare Pages serves your site on two domains: your custom domain (e.g., **mysite.com**) and a default `mysite.pages.dev` domain. If both get indexed, search engines may treat them as duplicate content, hurting your SEO.

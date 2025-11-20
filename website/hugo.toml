@@ -23,3 +23,6 @@ theme = 'default'
   [module.hugoVersion]
     extended = false
     min = '0.146.0'
+
+[params]
+  Description = 'Practical coding tutorials and articles designed for developers who build things'

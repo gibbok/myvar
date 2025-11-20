@@ -3,6 +3,7 @@ title = 'A Quick Guide to Hugo’s Core Directory Structure'
 date = 2025-11-18T09:00:00-11:00
 draft = false
 tags = ['hugo', 'go']
+description = 'Master the Hugo directory structure. Essential guides to organizing files and content for seamless static site generation.'
 +++
 
 A Hugo site is powered by five key directories: **content**, **layouts**, **archetypes**, **static**, and **themes**. Here’s a concise guide to what each does and why it matters.

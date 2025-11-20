@@ -1,8 +1,17 @@
 {{ define "main" }}
 <h1>Sitemap</h1>
+
+<h2>Content</h2>
 <ul>
-  {{- range .Site.AllPages }} {{- if .Permalink }}
+  {{- range .Site.RegularPages }}
   <li><a href="{{ .Permalink }}">{{ .Title }}</a></li>
-  {{- end }} {{- end }}
+  {{- end }}
+</ul>
+
+<h2>Tags</h2>
+<ul>
+  {{- range .Site.Taxonomies.tags }}
+  <li><a href="{{ .Page.Permalink }}">{{ .Page.Title }}</a></li>
+  {{- end }}
 </ul>
 {{ end }}

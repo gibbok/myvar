@@ -3,9 +3,9 @@
 
 <h2>Content</h2>
 <ul>
-  {{- range .Site.RegularPages }}
+  {{- range .Site.RegularPages }} {{- if ne .Type "sitemap" }}
   <li><a href="{{ .Permalink }}">{{ .Title }}</a></li>
-  {{- end }}
+  {{- end }} {{- end }}
 </ul>
 
 <h2>Tags</h2>

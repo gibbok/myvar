@@ -1,9 +1,9 @@
 +++
-title = 'How to Generate an HTML Sitemap in HUGO'
+title = 'How to Generate an HTML Sitemap in Hugo'
 date = 2025-11-20T09:00:00-11:00
 draft = false
 tags = ['hugo', 'go']
-description = 'How to generate an HTML Sitemap in HUGO'
+description = 'Learn how to create a user-friendly HTML sitemap in Hugo and complement the automatically generated sitemap.xml.'
 +++
 
 An HTML sitemap is a simple yet powerful way to help both users and search engines understand the structure of your website. Unlike an XML sitemap—which (Hugo also automatically generates a `sitemap.xml` file for search engines) is mainly designed for search engine crawlers—an HTML sitemap provides a human-readable overview of your pages and taxonomies.

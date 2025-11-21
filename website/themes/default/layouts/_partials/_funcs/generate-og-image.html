@@ -1,0 +1,6 @@
+{{- $title := .Title | plainify -}}
+{{- $baseURL := site.BaseURL | strings.TrimSuffix "/" -}}
+{{- $ogImageURL := printf "%s/og-image.html?title=%s" $baseURL ($title | urlquery) -}}
+
+{{- $image := dict "Permalink" $ogImageURL -}}
+{{- return $image -}}

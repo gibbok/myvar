@@ -35,10 +35,15 @@
   <meta property="og:type" content="website">
 {{- end }}
 
-{{- with partial "_funcs/get-page-images" . }}
-  {{- range . | first 6 }}
-    <meta property="og:image" content="{{ .Permalink }}">
+{{- if .IsPage }}
+  {{- if .File }}
+    {{- $imageName := .File.Path | replaceRE `\.md$` "" | replaceRE `/` "-" }}
+    <meta property="og:image" content="{{ site.BaseURL | strings.TrimSuffix "/" }}/images/{{ $imageName }}.png">
+  {{- else }}
+    <meta property="og:image" content="{{ site.BaseURL | strings.TrimSuffix "/" }}/images/og-default.png">
   {{- end }}
+{{- else }}
+  <meta property="og:image" content="{{ site.BaseURL | strings.TrimSuffix "/" }}/images/og-default.png">
 {{- end }}
 
 {{- with .Params.audio }}

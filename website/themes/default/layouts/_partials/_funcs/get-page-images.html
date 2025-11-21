@@ -1,0 +1,10 @@
+{{- $images := slice -}}
+
+{{- if .IsPage -}}
+  {{- $ogImage := partial "_funcs/generate-og-image" . -}}
+  {{- if $ogImage -}}
+    {{- $images = $images | append $ogImage -}}
+  {{- end -}}
+{{- end -}}
+
+{{- return $images -}}

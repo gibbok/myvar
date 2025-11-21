@@ -93,13 +93,24 @@ func generateImage(title, outputPath string) {
 	c.SetDst(img)
 	c.SetSrc(image.NewUniform(color.Black))
 
-	// Calculate text width for proper centering
-	textWidth := c.PointToFixed(30) * fixed.Int26_6(len(title)) / 2
-	x := (fixed.I(width) - textWidth) / 2
-	y := fixed.I(height/2) + c.PointToFixed(30)/2
+	// Wrap text if too long
+	maxWidth := width - 120 // 60px padding on each side
+	lines := wrapText(title, maxWidth, c)
 	
-	pt := fixed.Point26_6{X: x, Y: y}
-	c.DrawString(title, pt)
+	// Calculate starting Y position for multiple lines
+	lineHeight := c.PointToFixed(40)
+	totalHeight := lineHeight * fixed.Int26_6(len(lines)-1)
+	startY := fixed.I(height/2) - totalHeight/2
+	
+	// Draw each line centered
+	for i, line := range lines {
+		textWidth := c.PointToFixed(30) * fixed.Int26_6(len(line)) / 2
+		x := (fixed.I(width) - textWidth) / 2
+		y := startY + lineHeight*fixed.Int26_6(i)
+		
+		pt := fixed.Point26_6{X: x, Y: y}
+		c.DrawString(line, pt)
+	}
 
 	file, err := os.Create(outputPath)
 	if err != nil {
@@ -109,4 +120,37 @@ func generateImage(title, outputPath string) {
 	defer file.Close()
 
 	png.Encode(file, img)
+}
+
+func wrapText(text string, maxWidth int, c *freetype.Context) []string {
+	words := strings.Fields(text)
+	if len(words) == 0 {
+		return []string{text}
+	}
+	
+	var lines []string
+	currentLine := ""
+	
+	for _, word := range words {
+		testLine := currentLine
+		if testLine != "" {
+			testLine += " "
+		}
+		testLine += word
+		
+		// Rough estimate: 30px font ≈ 18px average character width
+		estimatedWidth := len(testLine) * 18
+		if estimatedWidth > maxWidth && currentLine != "" {
+			lines = append(lines, currentLine)
+			currentLine = word
+		} else {
+			currentLine = testLine
+		}
+	}
+	
+	if currentLine != "" {
+		lines = append(lines, currentLine)
+	}
+	
+	return lines
 }

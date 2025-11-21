@@ -15,6 +15,7 @@ import (
 
 	"github.com/golang/freetype"
 	"github.com/golang/freetype/truetype"
+	"golang.org/x/image/font"
 	"golang.org/x/image/font/gofont/goregular"
 	"golang.org/x/image/math/fixed"
 )
@@ -86,9 +87,9 @@ func generateImage(title, outputPath string) {
 
 	// Create freetype context with antialiasing
 	c := freetype.NewContext()
-	c.SetDPI(72)
+	c.SetDPI(144)
 	c.SetFont(f)
-	c.SetFontSize(40)
+	c.SetFontSize(18)
 	c.SetClip(img.Bounds())
 	c.SetDst(img)
 	c.SetSrc(image.NewUniform(color.Black))
@@ -98,14 +99,20 @@ func generateImage(title, outputPath string) {
 	lines := wrapText(title, maxWidth, c)
 	
 	// Calculate starting Y position for multiple lines
-	lineHeight := c.PointToFixed(40)
+	lineHeight := c.PointToFixed(30)
 	totalHeight := lineHeight * fixed.Int26_6(len(lines)-1)
 	startY := fixed.I(height/2) - totalHeight/2
 	
 	// Draw each line centered
 	for i, line := range lines {
-		textWidth := c.PointToFixed(40) * fixed.Int26_6(len(line)) / 2
-		x := (fixed.I(width) - textWidth) / 2
+		// Dynamic centering: measure actual text width like CSS flexbox
+		face := truetype.NewFace(f, &truetype.Options{
+			Size: 18,
+			DPI:  144,
+		})
+		textWidth := font.MeasureString(face, line)
+		actualWidth := int(textWidth >> 6)
+		x := fixed.I(width/2 - actualWidth/2)
 		y := startY + lineHeight*fixed.Int26_6(i)
 		
 		pt := fixed.Point26_6{X: x, Y: y}
@@ -138,9 +145,8 @@ func wrapText(text string, maxWidth int, c *freetype.Context) []string {
 		}
 		testLine += word
 		
-		// Rough estimate: 40px font ≈ 24px average character width
-		estimatedWidth := len(testLine) * 24
-		if estimatedWidth > maxWidth && currentLine != "" {
+		// Force wrapping at 50 characters per line
+		if len(testLine) > 50 && currentLine != "" {
 			lines = append(lines, currentLine)
 			currentLine = word
 		} else {

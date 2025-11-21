@@ -88,7 +88,7 @@ func generateImage(title, outputPath string) {
 	c := freetype.NewContext()
 	c.SetDPI(72)
 	c.SetFont(f)
-	c.SetFontSize(30)
+	c.SetFontSize(40)
 	c.SetClip(img.Bounds())
 	c.SetDst(img)
 	c.SetSrc(image.NewUniform(color.Black))
@@ -104,7 +104,7 @@ func generateImage(title, outputPath string) {
 	
 	// Draw each line centered
 	for i, line := range lines {
-		textWidth := c.PointToFixed(30) * fixed.Int26_6(len(line)) / 2
+		textWidth := c.PointToFixed(40) * fixed.Int26_6(len(line)) / 2
 		x := (fixed.I(width) - textWidth) / 2
 		y := startY + lineHeight*fixed.Int26_6(i)
 		
@@ -138,8 +138,8 @@ func wrapText(text string, maxWidth int, c *freetype.Context) []string {
 		}
 		testLine += word
 		
-		// Rough estimate: 30px font ≈ 18px average character width
-		estimatedWidth := len(testLine) * 18
+		// Rough estimate: 40px font ≈ 24px average character width
+		estimatedWidth := len(testLine) * 24
 		if estimatedWidth > maxWidth && currentLine != "" {
 			lines = append(lines, currentLine)
 			currentLine = word

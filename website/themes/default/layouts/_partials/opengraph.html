@@ -35,10 +35,9 @@
   <meta property="og:type" content="website">
 {{- end }}
 
-{{- with partial "_funcs/get-page-images" . }}
-  {{- range . | first 6 }}
-    <meta property="og:image" content="{{ .Permalink }}">
-  {{- end }}
+{{- if .IsPage }}
+  {{- $title := .Title | plainify | urlquery }}
+  <meta property="og:image" content="{{ site.BaseURL | strings.TrimSuffix "/" }}/og-image.html?title={{ $title }}">
 {{- end }}
 
 {{- with .Params.audio }}

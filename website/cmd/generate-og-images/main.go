@@ -13,8 +13,9 @@ import (
 	"regexp"
 	"strings"
 
-	"golang.org/x/image/font"
-	"golang.org/x/image/font/basicfont"
+	"github.com/golang/freetype"
+	"github.com/golang/freetype/truetype"
+	"golang.org/x/image/font/gofont/goregular"
 	"golang.org/x/image/math/fixed"
 )
 
@@ -76,19 +77,29 @@ func generateImage(title, outputPath string) {
 
 	draw.Draw(img, img.Bounds(), &image.Uniform{color.White}, image.Point{}, draw.Src)
 
-	face := basicfont.Face7x13
-	drawer := &font.Drawer{
-		Dst:  img,
-		Src:  image.NewUniform(color.Black),
-		Face: face,
+	// Parse font
+	f, err := truetype.Parse(goregular.TTF)
+	if err != nil {
+		fmt.Printf("Error parsing font: %v\n", err)
+		return
 	}
 
-	textWidth := drawer.MeasureString(title)
-	x := (fixed.I(width) - textWidth) / 2
-	y := fixed.I(height / 2)
+	// Create freetype context with antialiasing
+	c := freetype.NewContext()
+	c.SetDPI(72)
+	c.SetFont(f)
+	c.SetFontSize(30)
+	c.SetClip(img.Bounds())
+	c.SetDst(img)
+	c.SetSrc(image.NewUniform(color.Black))
 
-	drawer.Dot = fixed.Point26_6{X: x, Y: y}
-	drawer.DrawString(title)
+	// Calculate text width for proper centering
+	textWidth := c.PointToFixed(30) * fixed.Int26_6(len(title)) / 2
+	x := (fixed.I(width) - textWidth) / 2
+	y := fixed.I(height/2) + c.PointToFixed(30)/2
+	
+	pt := fixed.Point26_6{X: x, Y: y}
+	c.DrawString(title, pt)
 
 	file, err := os.Create(outputPath)
 	if err != nil {

@@ -1,6 +1,6 @@
 +++
 title = 'Handling Node-Specific Modules in Web Bundles using Webpack'
-date = 2025-11-18T09:00:00-11:00
+date = 2025-11-22T09:00:00-11:00
 draft = false
 tags = ['webpack', 'javascript']
 description = 'Learn how to prevent Node-only modules from interfering with your client-side builds. This guide walks through a simple Webpack configuration tweak to ensure smoother, more reliable bundling for web environments.'

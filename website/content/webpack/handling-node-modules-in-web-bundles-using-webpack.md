@@ -1,9 +1,9 @@
 +++
-title = 'Handling Node-Specific Modules in Web Bundles using Webpack'
-date = 2025-11-22T09:00:00-11:00
+title = 'Handling Node Specific Modules in Web Bundles using Webpack'
+date = 2025-11-21T09:00:00-00:00
 draft = false
 tags = ['webpack', 'javascript']
-description = 'Learn how to prevent Node-only modules from interfering with your client-side builds. This guide walks through a simple Webpack configuration tweak to ensure smoother, more reliable bundling for web environments.'
+description = 'Learn how to create a user-friendly HTML sitemap in Hugo and complement the automatically generated sitemap.xml.'
 +++
 
 Modern JavaScript libraries often include conditional logic that references Node-specific modules—frequently using the `node:` prefix (for example, `node:fs`). Even if this code never executes in the browser, these references can break your Webpack build.
@@ -23,6 +23,7 @@ plugins: [
 ```
 
 How it works:
+
 - Matches imports starting with node: (like node:fs, node:path).
 - Rewrites the import path (node:fs → fs).
 - Prevents Webpack from throwing errors due to Node-specific imports that never run in the browser.
@@ -36,7 +37,7 @@ Webpack’s `fallback` option lets you supply browser-friendly replacements for 
 ```javascript
 resolve: {
   fallback: {
-    fs: false,                   // Ignore fs in the browser
+    fs: false,                                // Ignore fs in the browser
     path: require.resolve('path-browserify'), // Browser-safe path module
     buffer: require.resolve('buffer/'),       // Browser-safe buffer
   },
@@ -44,17 +45,19 @@ resolve: {
 ```
 
 How it works:
+
 - Maps Node modules to either polyfills (like path-browserify) or false to ignore them.
 - Ensures that modules actually used in browser code are safe and won’t break the bundle.
 
 When to Use Each:
 
-| Approach | Use Case | Effect |
-|----------|----------|--------|
+| Approach                        | Use Case                                                                 | Effect                                             |
+| ------------------------------- | ------------------------------------------------------------------------ | -------------------------------------------------- |
 | `NormalModuleReplacementPlugin` | When imports are prefixed with `node:` but never executed in the browser | Rewrites import paths; no modules added or removed |
-| `fallback` | When a library requires Node modules in browser code | Adds polyfills or disables modules safely |
+| `fallback`                      | When a library requires Node modules in browser code                     | Adds polyfills or disables modules safely          |
 
 By combining these approaches, you can handle Node-specific imports gracefully:
+
 - Use NormalModuleReplacementPlugin to fix node: prefixes.
 - Use fallbacks to provide or ignore Node modules needed by browser code.
 

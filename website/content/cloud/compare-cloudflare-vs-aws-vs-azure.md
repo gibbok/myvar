@@ -1,23 +1,25 @@
 +++
-title = 'Prevent SEO Issues on Cloudflare Pages with X-Robots-Tag'
-date = 2025-11-18T09:00:00-08:00
+title = 'Cloudflare vs AWS vs Azure — Feature Comparison Table'
+date = 2025-11-22T09:00:00-08:00
 draft = false
-tags = ['cloudflare', 'seo']
-descritpion = 'Learn to use the X-Robots-Tag header on Cloudflare Pages to precisely manage search engine indexing, solving common SEO issues and ensuring accurate content visibility.'
+tags = ['cloudflare', 'aws', 'azure', 'comparison']
+description = 'A full feature-by-feature comparison of Cloudflare, AWS, and Azure across compute, storage, databases, AI, networking, and more.'
 +++
 
-| Feature or Capability          | Cloudflare                                                                             | AWS (Amazon Web Services)                                                           | Azure                                                                                         |
-| ------------------------------ | -------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------- |
-| **Edge Compute or Serverless** | **Workers** — Run JS/Wasm at 300+ edge POPs worldwide.                                 | **Lambda** — Tight integration with AWS services, triggers, IAM.                    | **Azure Functions** — Integrates with Azure ecosystem and Event Grid.                         |
-| **Object/Blob Storage**        | **R2** — S3-compatible, zero egress fees, edge-integrated with Workers.                | **S3** — Highly durable, vast tooling ecosystem.                                    | **Blob Storage** — Reliable and integrated with Azure services.                               |
-| **Relational Databases**       | **D1** — Serverless SQLite-based DB at the edge.                                       | **RDS** — Highly scalable, mature, many engine choices.                             | **Azure Cosmos DB** — Mature managed databases with strong enterprise adoption.               |
-| **Containers**                 | **Workers** — Enhance the workers with serverless containers.                          | **ECS** — Container orchestration service with deep integration.                    | **AKS** — K8s container options with deep Azure integration.                                  |
-| **Sandboxes**                  | **Sandbox SDK** — Framework to execute untrusted code in secure, isolated environment. | **Fargate** — Strong isolation with Fargate; no first-class “edge-sandbox” product. | **Container Instances** — Isolated containers; edge-sandbox is not first class product.       |
-| **Workflows**                  | **Workflows** — Durable execution/orchestration built on Workers.                      | **Step Functions** — Highly scalable, mature, many engine choices.                  | **Logic Apps** — Code-first and low-code orchestration.                                       |
-| **AI Agents SDK**              | **Cloudflare Agents** — Build deployable AI agents on the edge.                        | **Agents for Bedrock** — Managed agents, tool use, retrieval.                       | **Azure AI Agent Service** — Build agentic experiences with tool usage, retrieval, grounding. |
-| **Vector and AI Search**       | **Vectorize** — Native vector index for embeddings at the edge.                        | **Bedrock** — Vector search + foundation models.                                    | **Cognitive Search** — Supports semantic search and vector.                                   |
-| **Data Connectivity**          | **Hyperdrive** — Connect Workers to existing external DBs.                             | **Direct Connect** — Private network links to on-premises.                          | **ExpressRoute** — Deep integration with OpenAI models.                                       |
-| **AI Infrastructure**          | **Cloudflare AI** — Secure AI infra and global GPU access. Model hosting at edge.      | **Sagemaker** — Robust training and inference ecosystem.                            | **Azure OpenAI** — Deep integration with OpenAI models.                                       |
-| **Content Delivery Network**   | **Global CDN** — Global CDN with automatic caching.                                    | **CloudFront** — Mature and flexible; can be costly at scale.                       | **Azure CDN** — Deep integration with Microsoft stack.                                        |
-| **DNS**                        | **Cloudflare DNS** — Secure AI infra and global GPU access. Model hosting at edge.     | **Route 53** — Reliable, feature-rich DNS with geo-routing and failover.            | **Azure DNS** — Integrates well with Azure resources and policies.                            |
-| **Load Balancing**             | **Argo Smart Routing** — Load balancing at edge for performance & failover.            | **AWS ELB** — Elastic Load Balancer for scalable load balancing.                    | **Traffic Manager** — Deep integration with OpenAI models.                                    |
+Cloudflare, AWS, and Azure offer different strengths across compute, storage, AI, and networking. This table provides a quick side-by-side comparison to help you understand how each platform stacks up.
+
+| Feature / Capability          | Cloudflare                                                     | AWS (Amazon Web Services)                                        | Azure                                                            |
+| ----------------------------- | -------------------------------------------------------------- | ---------------------------------------------------------------- | ---------------------------------------------------------------- |
+| **Edge Compute / Serverless** | **Workers** — JS/Wasm at 300+ global edge locations.           | **Lambda** — Deep AWS integration, triggers, IAM.                | **Functions** — Integrates with Azure + Event Grid.              |
+| **Object / Blob Storage**     | **R2** — S3-compatible, no egress fees, edge-optimized.        | **S3** — Highly durable with broad tooling.                      | **Blob Storage** — Reliable, integrated with Azure services.     |
+| **Relational Databases**      | **D1** — Serverless SQLite at the edge.                        | **RDS** — Scalable, mature, multiple engines.                    | **Cosmos DB** — Mature managed database options.                 |
+| **Containers**                | **Workers** — Supports serverless container-style workloads.   | **ECS** — Deep AWS-integrated container orchestration.           | **AKS** — Kubernetes with strong Azure integration.              |
+| **Sandboxes**                 | **Sandbox SDK** — Runs untrusted code securely and isolated.   | **Fargate** — Strong isolation; no edge-focused sandbox product. | **Container Instances** — Isolated containers; no edge sandbox.  |
+| **Workflows**                 | **Workflows** — Durable orchestration on Workers.              | **Step Functions** — Scalable, mature orchestration.             | **Logic Apps** — Code-first or low-code workflow tooling.        |
+| **AI Agents SDK**             | **Cloudflare Agents** — Deploy AI agents at the edge.          | **Agents for Bedrock** — Managed agents with tools + retrieval.  | **Azure AI Agent Service** — Agentic apps with tools, retrieval. |
+| **Vector / AI Search**        | **Vectorize** — Native edge vector index.                      | **Bedrock** — Vector search + foundation models.                 | **Cognitive Search** — Semantic + vector capabilities.           |
+| **Data Connectivity**         | **Hyperdrive** — Connect Workers to external DBs.              | **Direct Connect** — Private on-prem networking.                 | **ExpressRoute** — Private links for Azure workloads.            |
+| **AI Infrastructure**         | **Cloudflare AI** — Global GPU access; edge model hosting.     | **SageMaker** — Full ML training + inference suite.              | **Azure OpenAI** — Deep OpenAI model integration.                |
+| **Content Delivery Network**  | **Global CDN** — Automatic global caching.                     | **CloudFront** — Flexible, mature; higher cost at scale.         | **Azure CDN** — Integrated with Microsoft ecosystem.             |
+| **DNS**                       | **Cloudflare DNS** — Fast, secure, globally distributed.       | **Route 53** — Reliable DNS with geo-routing + failover.         | **Azure DNS** — Integrated with Azure policies and resources.    |
+| **Load Balancing**            | **Argo Smart Routing** — Edge-level performance + failover LB. | **ELB** — Scalable AWS load balancer.                            | **Traffic Manager** — Global DNS-based load balancing.           |

@@ -37,7 +37,7 @@ Webpack’s `fallback` option lets you supply browser-friendly replacements for 
 ```javascript
 resolve: {
   fallback: {
-    fs: false,                                // Ignore fs in the browser
+    fs: false,                               // Ignore fs in the browser
     path: require.resolve('path-browserify') // Browser-safe path module
   },
 }

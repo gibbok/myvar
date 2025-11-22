@@ -1,6 +1,6 @@
 +++
 title = 'Handling Node Specific Modules in Web Bundles using Webpack'
-date = 2025-11-20T09:00:00-11:00
+date = 2025-11-21T09:00:00-00:00
 draft = false
 tags = ['webpack', 'javascript']
 description = 'Learn how to create a user-friendly HTML sitemap in Hugo and complement the automatically generated sitemap.xml.'

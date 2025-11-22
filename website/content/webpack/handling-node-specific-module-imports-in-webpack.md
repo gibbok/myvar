@@ -22,6 +22,7 @@ module.exports = {
     }),
   ],
 };
+```
 
 What this code does:
 
@@ -37,7 +38,7 @@ The regular expression `/^node:/` matches module requests like:
 
 These prefixes were introduced in Node.js to clearly distinguish built-in core modules.
 
-3. It rewrites those imports by removing the node: prefix.
+3. It rewrites those imports by removing the `node:` prefix.
 
 The callback modifies resource.request so that:
 
@@ -60,5 +61,5 @@ By stripping the node: prefix, Webpack resolves the plain module name (e.g., fs)
 - or handled according to your existing Webpack configuration.
 
 In short:
-This plugin prevents bundling errors by rewriting node:-prefixed imports, making your web build more compatible with packages written for Node.js.
 
+This plugin prevents bundling errors by rewriting node:-prefixed imports, making your web build more compatible with packages written for Node.js.

@@ -49,14 +49,10 @@ How it works:
 
 When to Use Each:
 
-NormalModuleReplacementPlugin:
-
-- When imports are prefixed with node: but never executed in the browser
-- Rewrites import paths; no modules added or removed
-
-fallback:
-- When a library requires Node modules in browser code
-- Adds polyfills or disables modules safely
+| Approach | Use Case | Effect |
+|----------|----------|--------|
+| `NormalModuleReplacementPlugin` | When imports are prefixed with `node:` but never executed in the browser | Rewrites import paths; no modules added or removed |
+| `fallback` | When a library requires Node modules in browser code | Adds polyfills or disables modules safely |
 
 By combining these approaches, you can handle Node-specific imports gracefully:
 - Use NormalModuleReplacementPlugin to fix node: prefixes.

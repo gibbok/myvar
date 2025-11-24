@@ -62,8 +62,6 @@ th, td {
 
 thead th {
   background-color: rgb(240, 245, 240);
-  font-weight: 600;
-  color: rgb(40, 39, 40);
   border-bottom: 2px solid rgb(220, 230, 220);
   text-transform: uppercase;
 }
@@ -76,6 +74,3 @@ tr:hover {
   background-color: rgb(245, 248, 245);
 }
 
-td {
-  color: rgb(40, 39, 40);
-}

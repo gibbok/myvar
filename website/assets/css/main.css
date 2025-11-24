@@ -1,7 +1,7 @@
 body {
   color: #222;
   line-height: 1.5;
-  margin: 1rem;
+  margin: 1rem auto;
   max-width: 768px;
   font-family: "Roboto", sans-serif;
   font-optical-sizing: auto;
@@ -26,6 +26,10 @@ footer {
 a {
   color: rgb(203, 42, 66);
   text-decoration: none;
+}
+
+a:hover {
+  text-decoration: underline;
 }
 
 .header_title {

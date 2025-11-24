@@ -10,6 +10,7 @@ body {
   font-variation-settings:
     "wdth" 100;
   background-color: rgb(251, 254, 251);
+  color: rgb(40, 39, 40);
 }
 
 header {
@@ -23,10 +24,22 @@ footer {
 }
 
 a {
-  color: #00e;
+  color: rgb(203, 42, 66);
   text-decoration: none;
 }
 
 .header_title {
   text-transform: uppercase;
+}
+
+.page_time {
+  display: flex;
+  align-items: center;
+  opacity: 0.8;
+  font-style: italic;
+}
+
+.page_time > img {
+  margin-right: 0.5rem;
+  opacity: 0.8;
 }

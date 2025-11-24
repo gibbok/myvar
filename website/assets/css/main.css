@@ -9,6 +9,7 @@ body {
   font-style: normal;
   font-variation-settings:
     "wdth" 100;
+  background-color: rgb(251, 254, 251);
 }
 
 header {
@@ -24,4 +25,8 @@ footer {
 a {
   color: #00e;
   text-decoration: none;
+}
+
+.header_title {
+  text-transform: uppercase;
 }

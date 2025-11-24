@@ -32,16 +32,16 @@ a:hover {
   text-decoration: underline;
 }
 
-.header_title {
+.header__title {
   text-transform: uppercase;
 }
 
-.page_time {
+.page__time {
   display: flex;
   align-items: center;
   font-style: italic;
 }
 
-.page_time > img {
+.page__time-icon {
   margin-right: 0.5rem;
 }

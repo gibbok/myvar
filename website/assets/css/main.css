@@ -37,7 +37,7 @@ a:hover {
 }
 
 .header__title--accent {
-  color: rgb(203, 42, 66);
+  color: hsl(120, 4%, 79%);
 }
 
 .page__time {

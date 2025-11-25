@@ -2,7 +2,7 @@ body {
   color: #222;
   line-height: 1.5;
   margin: 1rem auto;
-  max-width: 768px;
+  max-width: 48rem;
   font-family: "Roboto", sans-serif;
   font-optical-sizing: auto;
   font-weight: 400;
@@ -15,7 +15,7 @@ body {
 }
 
 .header {
-  border-bottom: 1px solid hsl(220, 13%, 91%);
+  border-bottom: 0.0625rem solid hsl(220, 13%, 91%);
   margin-bottom: 1rem;
   display: flex;
   align-items: center;
@@ -24,7 +24,7 @@ body {
 }
 
 .footer {
-  border-top: 1px solid  hsl(220, 13%, 91%);
+  border-top: 0.0625rem solid  hsl(220, 13%, 91%);
   margin-top: 1rem;
 }
 
@@ -97,18 +97,18 @@ table {
   border-collapse: collapse;
   margin: 1rem 0;
   background-color: rgb(251, 254, 251);
-  border: 1px solid rgb(230, 230, 230);
+  border: 0.0625rem solid rgb(230, 230, 230);
 }
 
 th, td {
   padding: 0.75rem;
   text-align: left;
-  border-bottom: 1px solid rgb(240, 240, 240);
+  border-bottom: 0.0625rem solid rgb(240, 240, 240);
 }
 
 thead th {
   background-color: rgb(240, 245, 240);
-  border-bottom: 2px solid rgb(220, 230, 220);
+  border-bottom: 0.125rem solid rgb(220, 230, 220);
   text-transform: uppercase;
 }
 

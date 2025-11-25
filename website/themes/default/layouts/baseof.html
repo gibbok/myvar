@@ -2,16 +2,17 @@
 <html lang="{{ site.Language.LanguageCode }}" dir="{{ or site.Language.LanguageDirection `ltr` }}">
 <head>
   {{ partial "head.html" . }}
+  {{ partial "typography.html" . }}
   {{ partial "opengraph.html" . }}
 </head>
 <body>
-  <header>
+  <header class="header">
     {{ partial "header.html" . }}
   </header>
   <main>
     {{ block "main" . }}{{ end }}
   </main>
-  <footer>
+  <footer class="footer">
     {{ partial "footer.html" . }}
   </footer>
 </body>

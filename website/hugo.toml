@@ -26,3 +26,46 @@ theme = 'default'
 
 [params]
   Description = 'Practical coding tutorials and articles designed for developers who build things'
+
+[markup]
+  [markup.highlight]
+    style = 'dracula'
+    wrapperClass = 'highlight'
+
+[minify]
+  disableCSS = false
+  disableHTML = false
+  disableJS = false
+  disableJSON = false
+  disableSVG = false
+  disableXML = false
+  minifyOutput = false
+  [minify.tdewolff]
+    [minify.tdewolff.css]
+      inline = false
+      keepCSS2 = false
+      precision = 0
+      version = 0
+    [minify.tdewolff.html]
+      keepComments = false
+      keepConditionalComments = false
+      keepDefaultAttrVals = true
+      keepDocumentTags = true
+      keepEndTags = true
+      keepQuotes = false
+      keepSpecialComments = true
+      keepWhitespace = false
+      templateDelims = ['', '']
+    [minify.tdewolff.js]
+      keepVarNames = false
+      precision = 0
+      version = 2022
+    [minify.tdewolff.json]
+      keepNumbers = false
+      precision = 0
+    [minify.tdewolff.svg]
+      inline = false
+      keepComments = false
+      precision = 0
+    [minify.tdewolff.xml]
+      keepWhitespace = false

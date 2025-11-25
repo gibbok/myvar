@@ -26,3 +26,8 @@ theme = 'default'
 
 [params]
   Description = 'Practical coding tutorials and articles designed for developers who build things'
+
+[markup]
+  [markup.highlight]
+    style = 'dracula'
+    wrapperClass = 'highlight'

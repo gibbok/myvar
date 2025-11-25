@@ -2,4 +2,6 @@
   <h1 class="header__title">MyVar<span class="header__title--accent">.dev</span></h1>
   <div class="header__subtitle">Technologies and Software Engineering</div>
 </div>
-{{ partial "menu.html" (dict "menuID" "main" "page" .) }}
+<nav class="header__nav">
+  {{ partial "menu.html" (dict "menuID" "main" "page" .) }}
+</nav>

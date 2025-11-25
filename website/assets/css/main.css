@@ -14,15 +14,16 @@ body {
   -webkit-font-smoothing: antialiased;
 }
 
-header {
+.header {
   border-bottom: 1px solid #222;
   margin-bottom: 1rem;
   display: flex;
   align-items: center;
   justify-content: space-between;
+  padding-bottom: 1rem;
 }
 
-footer {
+.footer {
   border-top: 1px solid #222;
   margin-top: 1rem;
 }
@@ -36,14 +37,15 @@ a:hover {
   text-decoration: underline;
 }
 
-nav ul {
+.header__nav {
+}
+
+.header__nav-list {
   display: flex;
   list-style: none;
   padding: 0;
   margin: 0;
   gap: 2rem;
-  justify-content: flex-end;
-  align-items: center;
 }
 
 .header__brand {

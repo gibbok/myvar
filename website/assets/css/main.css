@@ -46,12 +46,24 @@ nav ul {
   align-items: center;
 }
 
+.header__brand {
+  display: flex;
+  flex-direction: column;
+}
+
 .header__title {
   text-transform: uppercase;
+  margin: 0;
 }
 
 .header__title--accent {
   color: hsl(120, 4%, 79%);
+}
+
+.header__subtitle {
+  font-size: 0.9rem;
+  color: #666;
+  margin-top: -0.5rem;
 }
 
 .page__time {

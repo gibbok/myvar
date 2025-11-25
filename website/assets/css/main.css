@@ -127,3 +127,8 @@ tr:nth-child(even) {
 tr:hover {
   background-color: hsl(120, 20%, 96%);
 }
+
+code {
+  background: hsl(0, 0%, 91%);
+  padding: 0.10rem;
+}

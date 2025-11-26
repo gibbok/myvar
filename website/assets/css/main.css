@@ -176,9 +176,9 @@ code {
   position: relative;
   background: white;
   border-radius: 0.5rem;
-  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+  box-shadow: 0 0.625rem 1.5625rem rgba(0, 0, 0, 0.2);
   width: 90%;
-  max-width: 800px;
+  max-width: 50rem;
   max-height: 80vh;
   overflow: hidden;
 }
@@ -189,7 +189,7 @@ code {
   align-items: center;
   padding: 1rem;
   font-size: 2rem;
-  border-bottom: 1px solid hsl(0, 0%, 90%);
+  border-bottom: 0.0625rem solid hsl(0, 0%, 90%);
 }
 
 .search-modal__header h2 {
@@ -226,7 +226,7 @@ code {
   justify-content: center !important;
   background: hsl(0, 0%, 95%) !important;
   color: hsl(0, 1%, 16%) !important;
-  border: 1px solid hsl(0, 0%, 90%) !important;
+  border: 0.0625rem solid hsl(0, 0%, 90%) !important;
   border-radius: 0.25rem !important;
   font-size: 0.875rem !important;
   line-height: 1 !important;
@@ -246,7 +246,7 @@ code {
   line-height: 1.5 !important;
 }
 
-@media (max-width: 768px) {
+@media (max-width: 48rem) {
   .header {
     flex-direction: column;
     align-items: flex-start;
@@ -269,7 +269,7 @@ code {
 
 .pagefind-ui__result {
   font-family: "Roboto", sans-serif !important;
-  border-bottom: 1px solid hsl(0, 0%, 94%) !important;
+  border-bottom: 0.0625rem solid hsl(0, 0%, 94%) !important;
   padding: 0.75rem 0 !important;
 }
 
@@ -301,7 +301,7 @@ code {
   justify-content: center !important;
   background: hsl(0, 0%, 95%) !important;
   color: hsl(0, 1%, 16%) !important;
-  border: 1px solid hsl(0, 0%, 90%) !important;
+  border: 0.0625rem solid hsl(0, 0%, 90%) !important;
   border-radius: 0.25rem !important;
   font-size: 0.875rem !important;
   line-height: 1 !important;

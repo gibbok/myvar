@@ -292,3 +292,6 @@ code {
   padding: 1rem 1.25rem !important;
   min-height: 3rem !important;
 }
+.pagefind-ui__filter-panel {
+  border: 0.0625rem solid hsl(0, 0%, 93%) !important;
+}

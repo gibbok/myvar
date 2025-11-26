@@ -19,6 +19,11 @@ theme = 'default'
     pageRef = '/tags'
     weight = 30
 
+  [[menus.main]]
+    name = 'Search'
+    url = '#'
+    weight = 40
+
 [module]
   [module.hugoVersion]
     extended = false

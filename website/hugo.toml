@@ -30,7 +30,6 @@ theme = 'default'
 [markup]
   [markup.highlight]
     style = 'dracula'
-    wrapperClass = 'highlight'
 
 [minify]
   disableCSS = false

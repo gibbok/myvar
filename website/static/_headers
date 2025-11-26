@@ -1,14 +1,14 @@
 https://myvar.pages.dev/*
   X-Robots-Tag: noindex
 
-/pagefind/*.css
+https://myvar.pages.dev/pagefind/*.css
   Content-Type: text/css
 
-/pagefind/*.js
+https://myvar.pages.dev/pagefind/*.js
   Content-Type: application/javascript
 
-/pagefind/*.wasm
+https://myvar.pages.dev/pagefind/*.wasm
   Content-Type: application/wasm
 
-/pagefind/*.json
+https://myvar.pages.dev/pagefind/*.json
   Content-Type: application/json

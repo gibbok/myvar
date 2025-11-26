@@ -9,8 +9,13 @@
   </div>
 </div>
 
+{{ if fileExists "static/pagefind/pagefind-ui.js" }}
 <link href="/pagefind/pagefind-ui.css" rel="stylesheet">
 <script src="/pagefind/pagefind-ui.js"></script>
+{{ else }}
+<script src="https://unpkg.com/pagefind@latest/pagefind-ui.js"></script>
+<link href="https://unpkg.com/pagefind@latest/pagefind-ui.css" rel="stylesheet">
+{{ end }}
 <script>
   let searchUI;
   

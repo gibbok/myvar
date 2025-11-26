@@ -1,42 +1,33 @@
 body {
-  color: #222;
-  line-height: 1.5;
-  margin: 1rem auto;
-  max-width: 48rem;
   font-family: "Roboto", sans-serif;
   font-optical-sizing: auto;
   font-weight: 400;
   font-style: normal;
-  font-variation-settings:
-    "wdth" 100;
+  font-variation-settings: "wdth" 100;
   background-color: hsl(120, 30%, 99%);
   color: hsl(0, 1%, 16%);
+  line-height: 1.5;
+  margin: 1rem auto;
+  max-width: 48rem;
   -webkit-font-smoothing: antialiased;
 }
 
 main {
-  margin-left: 1rem;
-  margin-right: 1rem; 
+  margin: 0 1rem;
 }
 
 .header {
-  border-bottom: 0.0625rem solid hsl(220, 13%, 91%);
-  margin-bottom: 1rem;
   display: flex;
   align-items: center;
   justify-content: space-between;
+  border-bottom: 0.0625rem solid hsl(220, 13%, 91%);
+  margin: 1rem 1rem 1rem;
   padding-bottom: 1rem;
-  margin-top: 1rem;
-  margin-left: 1rem;
-  margin-right: 1rem;
 }
 
 .footer {
-  border-top: 0.0625rem solid  hsl(220, 13%, 91%);
-  margin-top: 1rem;
-  margin-left: 1rem;
-  margin-right: 1rem;
-  margin-bottom: 1rem;
+  border-top: 0.0625rem solid hsl(220, 13%, 91%);
+  margin: 1rem;
 }
 
 a {
@@ -49,16 +40,14 @@ a:hover {
 }
 
 h1 {
-  margin-bottom: 0.25rem;
   font-size: 2rem;
+  margin-bottom: 0.25rem;
 }
 
 h2 {
   font-size: 1.5rem;
-  margin-bottom: 0.20rem;
+  margin-bottom: 0.2rem;
 }
-
-
 
 .header__nav-list {
   display: flex;
@@ -74,15 +63,8 @@ h2 {
 }
 
 .header__title {
-  color: #222;
-  line-height: 1.5;
-  margin: 1rem auto;
-  max-width: 48rem;
-  font-family: "Roboto", sans-serif;
-  font-optical-sizing: auto;
-  font-weight: 700;
-  font-style: normal;
   font-size: 2rem;
+  font-weight: 700;
   text-transform: uppercase;
   margin: 0;
 }
@@ -197,6 +179,9 @@ code {
 }
 
 .search-modal__close {
+  display: flex;
+  align-items: center;
+  justify-content: center;
   background: none;
   border: none;
   font-size: 1.5rem;
@@ -204,9 +189,6 @@ code {
   padding: 0;
   width: 2rem;
   height: 2rem;
-  display: flex;
-  align-items: center;
-  justify-content: center;
 }
 
 .search-modal__close:hover {
@@ -220,7 +202,8 @@ code {
   overflow-y: auto;
 }
 
-.pagefind-ui__search-clear {
+.pagefind-ui__search-clear,
+.pagefind-ui__button {
   display: flex !important;
   align-items: center !important;
   justify-content: center !important;
@@ -228,14 +211,24 @@ code {
   color: hsl(0, 1%, 16%) !important;
   border: 0.0625rem solid hsl(0, 0%, 90%) !important;
   border-radius: 0.25rem !important;
-  font-size: 0.875rem !important;
-  line-height: 1 !important;
-  padding: 0.5rem 0.75rem !important;
   font-family: "Roboto", sans-serif !important;
   font-weight: 400 !important;
 }
 
-.pagefind-ui__search-clear:hover {
+.pagefind-ui__search-clear {
+  font-size: 0.875rem !important;
+  line-height: 1 !important;
+  padding: 0.5rem 0.75rem !important;
+}
+
+.pagefind-ui__button {
+  font-size: 0.875rem !important;
+  line-height: 1 !important;
+  padding: 0.75rem 0.5rem !important;
+}
+
+.pagefind-ui__search-clear:hover,
+.pagefind-ui__button:hover {
   background: hsl(0, 0%, 90%) !important;
   color: hsl(0, 1%, 16%) !important;
 }
@@ -293,26 +286,6 @@ code {
 
 .pagefind-ui__result-link:hover .pagefind-ui__result-title {
   text-decoration: underline !important;
-}
-
-.pagefind-ui__button {
-  display: flex !important;
-  align-items: center !important;
-  justify-content: center !important;
-  background: hsl(0, 0%, 95%) !important;
-  color: hsl(0, 1%, 16%) !important;
-  border: 0.0625rem solid hsl(0, 0%, 90%) !important;
-  border-radius: 0.25rem !important;
-  font-size: 0.875rem !important;
-  line-height: 1 !important;
-  padding: 0.75rem 0.5rem !important;
-  font-family: "Roboto", sans-serif !important;
-  font-weight: 400 !important;
-}
-
-.pagefind-ui__button:hover {
-  background: hsl(0, 0%, 90%) !important;
-  color: hsl(0, 1%, 16%) !important;
 }
 
 .pagefind-ui__button button {

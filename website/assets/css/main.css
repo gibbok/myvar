@@ -220,6 +220,24 @@ code {
   overflow-y: auto;
 }
 
+.pagefind-ui__search-clear {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: hsl(0, 0%, 95%) !important;
+  color: hsl(0, 1%, 16%) !important;
+  border: 1px solid hsl(0, 0%, 90%) !important;
+  border-radius: 0.25rem !important;
+  font-size: 0.875rem !important;
+  line-height: 1 !important;
+  padding: 0.25rem 0.5rem !important;
+}
+
+.pagefind-ui__search-clear:hover {
+  background: hsl(0, 0%, 90%) !important;
+  color: hsl(0, 1%, 16%) !important;
+}
+
 @media (max-width: 768px) {
   .header {
     flex-direction: column;

@@ -295,3 +295,13 @@ code {
 .pagefind-ui__filter-panel {
   border: 0.0625rem solid hsl(0, 0%, 93%) !important;
 }
+.pagefind-ui__filter-value {
+  overflow-wrap: anywhere;
+}
+.pagefind-ui__filter-checkbox {
+  width: 1rem !important;
+  height: 1rem !important;
+  min-width: 1rem !important;
+  min-height: 1rem !important;
+  flex-shrink: 0 !important;
+}

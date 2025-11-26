@@ -264,3 +264,31 @@ code {
     padding-top: 2rem;
   }
 }
+
+.pagefind-ui__result {
+  font-family: "Roboto", sans-serif !important;
+  border-bottom: 1px solid hsl(0, 0%, 94%) !important;
+  padding: 0.75rem 0 !important;
+}
+
+.pagefind-ui__result-title {
+  font-size: 1.125rem !important;
+  font-weight: 600 !important;
+  color: hsl(351, 66%, 48%) !important;
+  line-height: 1.4 !important;
+  margin-bottom: 0.25rem !important;
+}
+
+.pagefind-ui__result-excerpt {
+  font-size: 0.9rem !important;
+  color: hsl(0, 1%, 16%) !important;
+  line-height: 1.5 !important;
+}
+
+.pagefind-ui__result-link {
+  text-decoration: none !important;
+}
+
+.pagefind-ui__result-link:hover .pagefind-ui__result-title {
+  text-decoration: underline !important;
+}

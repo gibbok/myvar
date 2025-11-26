@@ -272,15 +272,15 @@ code {
 }
 
 .pagefind-ui__result-title {
-  font-size: 1.125rem !important;
+  font-size: 1rem !important;
   font-weight: 600 !important;
   color: hsl(351, 66%, 48%) !important;
-  line-height: 1.4 !important;
+  line-height: 1.5 !important;
   margin-bottom: 0.25rem !important;
 }
 
 .pagefind-ui__result-excerpt {
-  font-size: 0.9rem !important;
+  font-size: 1rem !important;
   color: hsl(0, 1%, 16%) !important;
   line-height: 1.5 !important;
 }
@@ -291,4 +291,19 @@ code {
 
 .pagefind-ui__result-link:hover .pagefind-ui__result-title {
   text-decoration: underline !important;
+}
+
+.pagefind-ui__button {
+  font-size: 1rem !important;
+  line-height: 1.5 !important;
+  font-family: "Roboto", sans-serif !important;
+  background: hsl(0, 0%, 95%) !important;
+  color: hsl(0, 1%, 16%) !important;
+  border: 1px solid hsl(0, 0%, 90%) !important;
+  border-radius: 0.25rem !important;
+}
+
+.pagefind-ui__button:hover {
+  background: hsl(0, 0%, 90%) !important;
+  color: hsl(0, 1%, 16%) !important;
 }

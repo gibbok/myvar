@@ -3,6 +3,7 @@
 
 # Hugo
 public/
+static/pagefind/
 
 # Binaries for programs and plugins
 *.exe

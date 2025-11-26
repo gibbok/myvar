@@ -5,6 +5,10 @@
 public/
 static/pagefind/
 
+# Images - exclude all except og-default.png
+static/images/*
+!static/images/og-default.png
+
 # Binaries for programs and plugins
 *.exe
 *.exe~

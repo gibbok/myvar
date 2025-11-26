@@ -51,6 +51,13 @@
     closeBtn.addEventListener('click', closeModal);
     backdrop.addEventListener('click', closeModal);
     
+    // Close modal when clicking search results
+    document.addEventListener('click', (e) => {
+      if (e.target.closest('.pagefind-ui__result-link') && modal.style.display === 'flex') {
+        closeModal();
+      }
+    });
+    
     // Close on Escape key
     document.addEventListener('keydown', (e) => {
       if (e.key === 'Escape' && modal.style.display === 'flex') {

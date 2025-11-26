@@ -20,3 +20,5 @@ hugo && npx pagefind --site public --output-path public/pagefind
 
 This command first generates your site with Hugo, placing the output in the public directory.
 Pagefind then scans that directory, builds the search index, and writes its files into public/pagefind, making the search functionality available on your deployed site.
+
+If your build process requires more complex logic, you can instead create a build.sh script and set that file as your build command.

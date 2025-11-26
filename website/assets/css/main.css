@@ -178,7 +178,7 @@ code {
   border-radius: 0.5rem;
   box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
   width: 90%;
-  max-width: 600px;
+  max-width: 800px;
   max-height: 80vh;
   overflow: hidden;
 }
@@ -221,16 +221,18 @@ code {
 }
 
 .pagefind-ui__search-clear {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  background: hsl(0, 0%, 95%) ;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  background: hsl(0, 0%, 95%) !important;
   color: hsl(0, 1%, 16%) !important;
   border: 1px solid hsl(0, 0%, 90%) !important;
   border-radius: 0.25rem !important;
   font-size: 0.875rem !important;
   line-height: 1 !important;
   padding: 0.25rem 0.5rem !important;
+  font-family: "Roboto", sans-serif !important;
+  font-weight: 400 !important;
 }
 
 .pagefind-ui__search-clear:hover {
@@ -305,6 +307,7 @@ code {
   line-height: 1 !important;
   padding: 0.25rem 0.5rem !important;
   font-family: "Roboto", sans-serif !important;
+  font-weight: 400 !important;
 }
 
 .pagefind-ui__button:hover {

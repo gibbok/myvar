@@ -9,15 +9,19 @@
   </div>
 </div>
 
-{{ if fileExists "static/pagefind/pagefind-ui.js" }}
 <link href="/pagefind/pagefind-ui.css" rel="stylesheet">
-<script src="/pagefind/pagefind-ui.js"></script>
-{{ else }}
-<script src="https://unpkg.com/pagefind@latest/pagefind-ui.js"></script>
-<link href="https://unpkg.com/pagefind@latest/pagefind-ui.css" rel="stylesheet">
-{{ end }}
+<script src="/pagefind/pagefind-ui.js" onerror="this.onerror=null;this.src='https://unpkg.com/pagefind@latest/pagefind-ui.js'"></script>
 <script>
   let searchUI;
+  
+  function initializeSearch() {
+    if (typeof PagefindUI === 'undefined') {
+      setTimeout(initializeSearch, 100);
+      return;
+    }
+    
+    initializeSearch();
+  }
   
   window.addEventListener('DOMContentLoaded', (event) => {
     const modal = document.getElementById('search-modal');

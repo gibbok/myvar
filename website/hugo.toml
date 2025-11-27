@@ -3,7 +3,6 @@ languageCode = 'en-US'
 title = 'MyVar.dev'
 theme = 'default'
 enableRobotsTXT = true
-enableGitInfo = false
 
 [menus]
   [[menus.main]]
@@ -33,43 +32,12 @@ enableGitInfo = false
   [markup.highlight]
     style = 'dracula'
     noClasses = false
-  [markup.goldmark]
-    [markup.goldmark.renderer]
-      unsafe = false
 
 [minify]
-  disableCSS = false
-  disableHTML = false
-  disableJS = false
-  disableJSON = false
-  disableSVG = false
-  disableXML = false
   minifyOutput = true
   [minify.tdewolff]
-    [minify.tdewolff.css]
-      inline = false
-      keepCSS2 = false
-      precision = 0
-      version = 0
     [minify.tdewolff.html]
-      keepComments = false
-      keepConditionalComments = false
       keepDefaultAttrVals = false
-      keepDocumentTags = true
-      keepEndTags = true
-      keepQuotes = false
       keepSpecialComments = false
-      keepWhitespace = false
     [minify.tdewolff.js]
-      keepVarNames = false
-      precision = 0
       version = 2024
-    [minify.tdewolff.json]
-      keepNumbers = false
-      precision = 0
-    [minify.tdewolff.svg]
-      inline = false
-      keepComments = false
-      precision = 0
-    [minify.tdewolff.xml]
-      keepWhitespace = false

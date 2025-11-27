@@ -2,6 +2,8 @@ baseURL = 'https://myvar.dev/'
 languageCode = 'en-US'
 title = 'MyVar.dev'
 theme = 'default'
+enableRobotsTXT = true
+enableGitInfo = false
 
 [menus]
   [[menus.main]]
@@ -30,6 +32,10 @@ theme = 'default'
 [markup]
   [markup.highlight]
     style = 'dracula'
+    noClasses = false
+  [markup.goldmark]
+    [markup.goldmark.renderer]
+      unsafe = false
 
 [minify]
   disableCSS = false
@@ -48,17 +54,16 @@ theme = 'default'
     [minify.tdewolff.html]
       keepComments = false
       keepConditionalComments = false
-      keepDefaultAttrVals = true
+      keepDefaultAttrVals = false
       keepDocumentTags = true
       keepEndTags = true
       keepQuotes = false
-      keepSpecialComments = true
+      keepSpecialComments = false
       keepWhitespace = false
-      templateDelims = ['', '']
     [minify.tdewolff.js]
       keepVarNames = false
       precision = 0
-      version = 2022
+      version = 2024
     [minify.tdewolff.json]
       keepNumbers = false
       precision = 0

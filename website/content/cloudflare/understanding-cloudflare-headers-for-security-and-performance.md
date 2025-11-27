@@ -8,6 +8,8 @@ description = 'A quick overview of common Cloudflare headers that improve securi
 
 This article explains a set of Cloudflare Rules that apply security, privacy, and performance-related headers across different paths of your site.
 
+Note: This configuration example includes commonly used tools like Google Fonts and Pagefind (WebAssembly-based search). Adjust the CSP directives based on your actual dependencies.
+
 Create a file named `_headers` in your Hugo `static/` folder with the following content:
 
 ```bash
@@ -19,7 +21,7 @@ https://yoursite.pages.dev/*
   X-Content-Type-Options: nosniff
   Referrer-Policy: strict-origin-when-cross-origin
   Permissions-Policy: geolocation=(), microphone=(), camera=()
-  Content-Security-Policy: default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline'; img-src 'self' data:; font-src 'self' data:
+  Content-Security-Policy: default-src 'self'; script-src 'self' 'wasm-unsafe-eval' https://static.cloudflareinsights.com; style-src 'self' https://fonts.googleapis.com; img-src 'self' data:; font-src 'self' data: https://fonts.gstatic.com; connect-src 'self' https://cloudflareinsights.com; base-uri 'self'; form-action 'self'; frame-ancestors 'none'
 
 /css/*
   Cache-Control: public, max-age=31536000, immutable
@@ -60,11 +62,15 @@ In this case, geolocation, microphone, and camera APIs are fully disabled:
 
 A strong defense layer to restrict what resources the browser can load.
 
-- default-src 'self' — Everything must come from your own domain unless otherwise allowed.
-- script-src 'self' 'unsafe-inline' — Scripts must come from your domain; inline scripts allowed (useful for Hugo/Cloudflare Pages but reduces strictness).
-- style-src 'self' 'unsafe-inline' — Same idea for stylesheets.
-- img-src 'self' data: — Images must come from your site or embedded as data URIs.
-- font-src 'self' data: — Fonts from your domain or data URIs.
+- **default-src 'self'** — Everything must come from your own domain unless otherwise allowed.
+- **script-src 'self' 'wasm-unsafe-eval' https://static.cloudflareinsights.com** — Scripts from your domain, WebAssembly compilation allowed, and Cloudflare Insights analytics. Note: `'wasm-unsafe-eval'` is only needed if you use WebAssembly-based tools like Pagefind for search functionality. If you don't use WebAssembly, remove it for better security.
+- **style-src 'self' https://fonts.googleapis.com** — Stylesheets from your domain and Google Fonts CSS. Note: Remove `https://fonts.googleapis.com` if you're not using Google Fonts.
+- **img-src 'self' data:** — Images from your site or embedded as data URIs.
+- **font-src 'self' data: https://fonts.gstatic.com** — Fonts from your domain, data URIs, or Google Fonts CDN. Note: Remove `https://fonts.gstatic.com` if you're not using Google Fonts.
+- **connect-src 'self' https://cloudflareinsights.com** — Network requests to your domain and Cloudflare analytics endpoints.
+- **base-uri 'self'** — Prevents base tag hijacking attacks.
+- **form-action 'self'** — Forms can only submit to your own domain.
+- **frame-ancestors 'none'** — Prevents your site from being embedded in iframes (modern alternative to X-Frame-Options).
 
 ## Asset Caching for /css/\*
 

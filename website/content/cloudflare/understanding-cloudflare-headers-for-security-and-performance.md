@@ -8,8 +8,10 @@ description = 'A quick overview of common Cloudflare headers that improve securi
 
 This article explains a set of Cloudflare Rules that apply security, privacy, and performance-related headers across different paths of your site.
 
+Create a file named `_headers` in your Hugo `static/` folder with the following content:
+
 ```bash
-https://myvar.pages.dev/*
+https://yoursite.pages.dev/*
   X-Robots-Tag: noindex
 
 /*

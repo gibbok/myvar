@@ -11,5 +11,12 @@
 
 <link href="/pagefind/pagefind-ui.css" rel="stylesheet" />
 <script src="/pagefind/pagefind-ui.js"></script>
-{{ $js := resources.Get "js/search.js" | minify | fingerprint }}
-<script src="{{ $js.RelPermalink }}"></script>
+{{- with resources.Get "js/search.js" }}
+  {{- if hugo.IsDevelopment }}
+    <script src="{{ .RelPermalink }}"></script>
+  {{- else }}
+    {{- with . | minify | fingerprint }}
+      <script src="{{ .RelPermalink }}"></script>
+    {{- end }}
+  {{- end }}
+{{- end }}

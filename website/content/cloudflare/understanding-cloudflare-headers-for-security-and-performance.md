@@ -35,7 +35,7 @@ https://yoursite.pages.dev/*
 
 ## X-Robots-Tag: noindex
 
-Prevents search engines from indexing your site. Useful for staging domains, previews, or private environments where you don’t want content appearing in search results.
+Prevents search engines from indexing your site. This rule applies to the `*.pages.dev` domain, which is the default preview domain where Cloudflare Pages deployments are accessible. This ensures your preview and staging environments don't appear in search results, while your production custom domain remains indexable.
 
 ## X-Frame-Options: DENY
 

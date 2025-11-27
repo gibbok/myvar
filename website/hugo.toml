@@ -31,7 +31,6 @@ enableRobotsTXT = true
 [markup]
   [markup.highlight]
     style = 'dracula'
-    noClasses = false
 
 [minify]
   minifyOutput = true

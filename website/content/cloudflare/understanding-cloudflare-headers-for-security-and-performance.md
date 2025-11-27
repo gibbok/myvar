@@ -1,14 +1,14 @@
 +++
-title = 'Understanding Cloudflare Headers for Security and Performance'
+title = 'Understanding Cloudflare Pages Headers for Security and Performance'
 date = 2025-11-26T09:00:00-08:00
 draft = false
 tags = ['cloudflare', 'hugo', 'security']
-description = 'A quick overview of common Cloudflare headers that improve security, privacy, and caching.'
+description = 'A quick overview of common Cloudflare Pages headers that improve security, privacy, and caching.'
 +++
 
-This article explains how to configure security, privacy, and performance-related headers for Cloudflare Pages using the `_headers` file.
+This article explains how to configure security, privacy, and performance-related headers specifically for Cloudflare Pages using the `_headers` file.
 
-Note: This configuration example includes commonly used tools like Google Fonts and Pagefind (WebAssembly-based search). Adjust the CSP directives based on your actual dependencies. Test your site thoroughly after applying these headers to ensure nothing breaks.
+Note: This configuration is for Cloudflare Pages deployments. The example includes commonly used tools like Google Fonts and Pagefind (WebAssembly-based search). Adjust the CSP directives based on your actual dependencies. Test your site thoroughly after applying these headers to ensure nothing breaks.
 
 Create a file named `_headers` in your Hugo `static/` folder with the following content:
 

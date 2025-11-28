@@ -28,8 +28,6 @@ const (
 	fontDPI = 1200
 	topMargin = 15
 	leftMargin = 35
-	leftColorHex = 0xcb2a42
-	rightColorHex = 0xa03535
 )
 
 func main() {
@@ -122,7 +120,7 @@ func generateImage(title, outputPath string) {
 
 	// Wrap text
 	maxWidth := imageWidth - (leftMargin * 2)
-	lines := wrapText(title, maxWidth, c)
+	lines := wrapText(title, maxWidth, f)
 	
 	// Calculate starting Y position
 	lineHeight := c.PointToFixed(fontSize * 1.2)
@@ -146,16 +144,12 @@ func generateImage(title, outputPath string) {
 	png.Encode(file, img)
 }
 
-func wrapText(text string, maxWidth int, c *freetype.Context) []string {
+func wrapText(text string, maxWidth int, f *truetype.Font) []string {
 	words := strings.Fields(text)
 	if len(words) == 0 {
 		return []string{text}
 	}
 	
-	f, err := truetype.Parse(gobold.TTF)
-	if err != nil {
-		return []string{text}
-	}
 	face := truetype.NewFace(f, &truetype.Options{
 		Size: fontSize,
 		DPI:  fontDPI,

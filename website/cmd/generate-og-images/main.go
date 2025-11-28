@@ -129,8 +129,20 @@ func generateImage(title, outputPath string) {
 		x := fixed.I(width/2 - actualWidth/2)
 		y := startY + lineHeight*fixed.Int26_6(i)
 		
-		pt := fixed.Point26_6{X: x, Y: y}
-		c.DrawString(line, pt)
+		// Draw text multiple times with offsets for extra bold effect
+		boldOffset := fixed.Int26_6(64)
+		offsets := []fixed.Point26_6{
+			{X: x, Y: y},
+			{X: x + boldOffset, Y: y},
+			{X: x, Y: y + boldOffset},
+			{X: x + boldOffset, Y: y + boldOffset},
+		}
+		// Adjust x to center the bold effect: shift left by half the offset
+		xCentered := x - boldOffset/2
+		for _, offset := range offsets {
+			pt := fixed.Point26_6{X: xCentered + offset.X - x, Y: offset.Y}
+			c.DrawString(line, pt)
+		}
 	}
 
 	file, err := os.Create(outputPath)

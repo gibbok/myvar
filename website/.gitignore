@@ -8,6 +8,7 @@ static/pagefind/
 # Images - exclude all except og-default.png
 static/images/*
 !static/images/og-default.png
+!static/images/og-background.png
 
 # Binaries for programs and plugins
 *.exe

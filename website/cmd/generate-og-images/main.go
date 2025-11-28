@@ -19,11 +19,23 @@ import (
 	"golang.org/x/image/math/fixed"
 )
 
-func main() {
-	contentDir := "content"
-	outputDir := "static/images"
+const (
+	contentDir = "content"
+	outputDir  = "static/images"
+	imageWidth = 1200
+	imageHeight = 630
+	fontSize = 6.0
+	fontDPI = 1200
+	margin = 40
+	leftColorHex = 0xcb2a42
+	rightColorHex = 0xa03535
+)
 
-	os.MkdirAll(outputDir, 0755)
+func main() {
+	if err := os.MkdirAll(outputDir, 0755); err != nil {
+		fmt.Printf("Error creating output directory: %v\n", err)
+		return
+	}
 
 	generateImage("MyVar.dev", filepath.Join(outputDir, "og-default.png"))
 
@@ -72,16 +84,13 @@ func extractTitle(filename string) string {
 }
 
 func generateImage(title, outputPath string) {
-	width, height := 1200, 630
-	
-	// Create horizontal gradient background from #cb2a42 to #a03535
-	img := image.NewRGBA(image.Rect(0, 0, width, height))
+	// Create horizontal gradient background
+	img := image.NewRGBA(image.Rect(0, 0, imageWidth, imageHeight))
 	leftColor := color.RGBA{0xcb, 0x2a, 0x42, 0xff}
 	rightColor := color.RGBA{0xa0, 0x35, 0x35, 0xff}
 	
-	for x := 0; x < width; x++ {
-		// Calculate interpolation factor (0.0 to 1.0)
-		t := float64(x) / float64(width-1)
+	for x := 0; x < imageWidth; x++ {
+		t := float64(x) / float64(imageWidth-1)
 		
 		// Interpolate RGB values
 		r := uint8(float64(leftColor.R)*(1-t) + float64(rightColor.R)*t)
@@ -89,7 +98,7 @@ func generateImage(title, outputPath string) {
 		b := uint8(float64(leftColor.B)*(1-t) + float64(rightColor.B)*t)
 		
 		c := color.RGBA{r, g, b, 0xff}
-		for y := 0; y < height; y++ {
+		for y := 0; y < imageHeight; y++ {
 			img.Set(x, y, c)
 		}
 	}
@@ -101,23 +110,21 @@ func generateImage(title, outputPath string) {
 		return
 	}
 
-	// Create freetype context with antialiasing
+	// Create freetype context
 	c := freetype.NewContext()
-	c.SetDPI(1200)
+	c.SetDPI(fontDPI)
 	c.SetFont(f)
-	c.SetFontSize(6)
+	c.SetFontSize(fontSize)
 	c.SetClip(img.Bounds())
 	c.SetDst(img)
 	c.SetSrc(image.NewUniform(color.White))
 
-	// Wrap text if too long
-	maxWidth := width - 80 // 40px padding on each side
+	// Wrap text
+	maxWidth := imageWidth - (margin * 2)
 	lines := wrapText(title, maxWidth, c)
 	
-	// Calculate starting Y position for multiple lines
-	fontSize := 6.0
-	lineHeight := c.PointToFixed(fontSize * 1.2) // 1.2x font size for line height
-	margin := 40
+	// Calculate starting Y position
+	lineHeight := c.PointToFixed(fontSize * 1.2)
 	startY := fixed.I(margin) + lineHeight
 	
 	// Draw each line aligned to top-left
@@ -144,10 +151,13 @@ func wrapText(text string, maxWidth int, c *freetype.Context) []string {
 		return []string{text}
 	}
 	
-	f, _ := truetype.Parse(gobold.TTF)
+	f, err := truetype.Parse(gobold.TTF)
+	if err != nil {
+		return []string{text}
+	}
 	face := truetype.NewFace(f, &truetype.Options{
-		Size: 6,
-		DPI:  1200,
+		Size: fontSize,
+		DPI:  fontDPI,
 	})
 	
 	var lines []string

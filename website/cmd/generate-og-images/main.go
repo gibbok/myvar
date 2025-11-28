@@ -26,7 +26,8 @@ const (
 	imageHeight = 630
 	fontSize = 6.0
 	fontDPI = 1200
-	margin = 40
+	topMargin = 15
+	leftMargin = 40
 	leftColorHex = 0xcb2a42
 	rightColorHex = 0xa03535
 )
@@ -120,16 +121,16 @@ func generateImage(title, outputPath string) {
 	c.SetSrc(image.NewUniform(color.White))
 
 	// Wrap text
-	maxWidth := imageWidth - (margin * 2)
+	maxWidth := imageWidth - (leftMargin * 2)
 	lines := wrapText(title, maxWidth, c)
 	
 	// Calculate starting Y position
 	lineHeight := c.PointToFixed(fontSize * 1.2)
-	startY := fixed.I(margin) + lineHeight
+	startY := fixed.I(topMargin) + lineHeight
 	
 	// Draw each line aligned to top-left
 	for i, line := range lines {
-		x := fixed.I(margin)
+		x := fixed.I(leftMargin)
 		y := startY + lineHeight*fixed.Int26_6(i)
 		pt := fixed.Point26_6{X: x, Y: y}
 		c.DrawString(line, pt)

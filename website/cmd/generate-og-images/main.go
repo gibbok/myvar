@@ -16,7 +16,7 @@ import (
 	"github.com/golang/freetype"
 	"github.com/golang/freetype/truetype"
 	"golang.org/x/image/font"
-	"golang.org/x/image/font/gofont/goregular"
+	"golang.org/x/image/font/gofont/gobold"
 	"golang.org/x/image/math/fixed"
 )
 
@@ -93,7 +93,7 @@ func generateImage(title, outputPath string) {
 	draw.Draw(img, img.Bounds(), bgImg, image.Point{}, draw.Src)
 
 	// Parse font
-	f, err := truetype.Parse(goregular.TTF)
+	f, err := truetype.Parse(gobold.TTF)
 	if err != nil {
 		fmt.Printf("Error parsing font: %v\n", err)
 		return

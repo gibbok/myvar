@@ -5,7 +5,6 @@ import (
 	"fmt"
 	"image"
 	"image/color"
-	"image/draw"
 	"image/png"
 	"io/fs"
 	"os"
@@ -16,15 +15,26 @@ import (
 	"github.com/golang/freetype"
 	"github.com/golang/freetype/truetype"
 	"golang.org/x/image/font"
-	"golang.org/x/image/font/gofont/goregular"
+	"golang.org/x/image/font/gofont/gomedium"
 	"golang.org/x/image/math/fixed"
 )
 
-func main() {
-	contentDir := "content"
-	outputDir := "static/images"
+const (
+	contentDir = "content"
+	outputDir  = "static/images"
+	imageWidth = 1200
+	imageHeight = 630
+	fontSize = 6.0
+	fontDPI = 1200
+	topMargin = 15
+	leftMargin = 35
+)
 
-	os.MkdirAll(outputDir, 0755)
+func main() {
+	if err := os.MkdirAll(outputDir, 0755); err != nil {
+		fmt.Printf("Error creating output directory: %v\n", err)
+		return
+	}
 
 	generateImage("MyVar.dev", filepath.Join(outputDir, "og-default.png"))
 
@@ -73,48 +83,53 @@ func extractTitle(filename string) string {
 }
 
 func generateImage(title, outputPath string) {
-	width, height := 1200, 630
-	img := image.NewRGBA(image.Rect(0, 0, width, height))
-
-	draw.Draw(img, img.Bounds(), &image.Uniform{color.White}, image.Point{}, draw.Src)
+	// Create horizontal gradient background
+	img := image.NewRGBA(image.Rect(0, 0, imageWidth, imageHeight))
+	leftColor := color.RGBA{0xcb, 0x2a, 0x42, 0xff}
+	rightColor := color.RGBA{0xa0, 0x35, 0x35, 0xff}
+	
+	for x := 0; x < imageWidth; x++ {
+		t := float64(x) / float64(imageWidth-1)
+		
+		// Interpolate RGB values
+		r := uint8(float64(leftColor.R)*(1-t) + float64(rightColor.R)*t)
+		g := uint8(float64(leftColor.G)*(1-t) + float64(rightColor.G)*t)
+		b := uint8(float64(leftColor.B)*(1-t) + float64(rightColor.B)*t)
+		
+		c := color.RGBA{r, g, b, 0xff}
+		for y := 0; y < imageHeight; y++ {
+			img.Set(x, y, c)
+		}
+	}
 
 	// Parse font
-	f, err := truetype.Parse(goregular.TTF)
+	f, err := truetype.Parse(gomedium.TTF)
 	if err != nil {
 		fmt.Printf("Error parsing font: %v\n", err)
 		return
 	}
 
-	// Create freetype context with antialiasing
+	// Create freetype context
 	c := freetype.NewContext()
-	c.SetDPI(144)
+	c.SetDPI(fontDPI)
 	c.SetFont(f)
-	c.SetFontSize(18)
+	c.SetFontSize(fontSize)
 	c.SetClip(img.Bounds())
 	c.SetDst(img)
-	c.SetSrc(image.NewUniform(color.Black))
+	c.SetSrc(image.NewUniform(color.White))
 
-	// Wrap text if too long
-	maxWidth := width - 120 // 60px padding on each side
-	lines := wrapText(title, maxWidth, c)
+	// Wrap text
+	maxWidth := imageWidth - (leftMargin * 2)
+	lines := wrapText(title, maxWidth, f)
 	
-	// Calculate starting Y position for multiple lines
-	lineHeight := c.PointToFixed(30)
-	totalHeight := lineHeight * fixed.Int26_6(len(lines)-1)
-	startY := fixed.I(height/2) - totalHeight/2
+	// Calculate starting Y position
+	lineHeight := c.PointToFixed(fontSize * 1.2)
+	startY := fixed.I(topMargin) + lineHeight
 	
-	// Draw each line centered
+	// Draw each line aligned to top-left
 	for i, line := range lines {
-		// Dynamic centering: measure actual text width like CSS flexbox
-		face := truetype.NewFace(f, &truetype.Options{
-			Size: 18,
-			DPI:  144,
-		})
-		textWidth := font.MeasureString(face, line)
-		actualWidth := int(textWidth >> 6)
-		x := fixed.I(width/2 - actualWidth/2)
+		x := fixed.I(leftMargin)
 		y := startY + lineHeight*fixed.Int26_6(i)
-		
 		pt := fixed.Point26_6{X: x, Y: y}
 		c.DrawString(line, pt)
 	}
@@ -129,11 +144,16 @@ func generateImage(title, outputPath string) {
 	png.Encode(file, img)
 }
 
-func wrapText(text string, maxWidth int, c *freetype.Context) []string {
+func wrapText(text string, maxWidth int, f *truetype.Font) []string {
 	words := strings.Fields(text)
 	if len(words) == 0 {
 		return []string{text}
 	}
+	
+	face := truetype.NewFace(f, &truetype.Options{
+		Size: fontSize,
+		DPI:  fontDPI,
+	})
 	
 	var lines []string
 	currentLine := ""
@@ -145,8 +165,10 @@ func wrapText(text string, maxWidth int, c *freetype.Context) []string {
 		}
 		testLine += word
 		
-		// Force wrapping at 50 characters per line
-		if len(testLine) > 50 && currentLine != "" {
+		textWidth := font.MeasureString(face, testLine)
+		actualWidth := int(textWidth >> 6)
+		
+		if actualWidth > maxWidth && currentLine != "" {
 			lines = append(lines, currentLine)
 			currentLine = word
 		} else {

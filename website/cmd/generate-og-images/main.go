@@ -74,9 +74,23 @@ func extractTitle(filename string) string {
 
 func generateImage(title, outputPath string) {
 	width, height := 1200, 630
+	
+	// Load background image
+	bgFile, err := os.Open("static/images/og-background.png")
+	if err != nil {
+		fmt.Printf("Error loading background: %v\n", err)
+		return
+	}
+	defer bgFile.Close()
+	
+	bgImg, err := png.Decode(bgFile)
+	if err != nil {
+		fmt.Printf("Error decoding background: %v\n", err)
+		return
+	}
+	
 	img := image.NewRGBA(image.Rect(0, 0, width, height))
-
-	draw.Draw(img, img.Bounds(), &image.Uniform{color.White}, image.Point{}, draw.Src)
+	draw.Draw(img, img.Bounds(), bgImg, image.Point{}, draw.Src)
 
 	// Parse font
 	f, err := truetype.Parse(goregular.TTF)

@@ -27,7 +27,7 @@ const (
 	fontSize = 6.0
 	fontDPI = 1200
 	topMargin = 15
-	leftMargin = 40
+	leftMargin = 35
 	leftColorHex = 0xcb2a42
 	rightColorHex = 0xa03535
 )

@@ -103,9 +103,9 @@ func generateImage(title, outputPath string) {
 
 	// Create freetype context with antialiasing
 	c := freetype.NewContext()
-	c.SetDPI(600)
+	c.SetDPI(1200)
 	c.SetFont(f)
-	c.SetFontSize(12)
+	c.SetFontSize(6)
 	c.SetClip(img.Bounds())
 	c.SetDst(img)
 	c.SetSrc(image.NewUniform(color.White))
@@ -115,7 +115,7 @@ func generateImage(title, outputPath string) {
 	lines := wrapText(title, maxWidth, c)
 	
 	// Calculate starting Y position for multiple lines
-	fontSize := 12.0
+	fontSize := 6.0
 	lineHeight := c.PointToFixed(fontSize * 1.2) // 1.2x font size for line height
 	margin := 40
 	startY := fixed.I(margin) + lineHeight
@@ -146,8 +146,8 @@ func wrapText(text string, maxWidth int, c *freetype.Context) []string {
 	
 	f, _ := truetype.Parse(gobold.TTF)
 	face := truetype.NewFace(f, &truetype.Options{
-		Size: 12,
-		DPI:  600,
+		Size: 6,
+		DPI:  1200,
 	})
 	
 	var lines []string

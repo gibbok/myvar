@@ -74,10 +74,10 @@ func extractTitle(filename string) string {
 func generateImage(title, outputPath string) {
 	width, height := 1200, 630
 	
-	// Create horizontal gradient background from #cb2a42 to #adadad
+	// Create horizontal gradient background from #cb2a42 to #a03535
 	img := image.NewRGBA(image.Rect(0, 0, width, height))
 	leftColor := color.RGBA{0xcb, 0x2a, 0x42, 0xff}
-	rightColor := color.RGBA{0xad, 0xad, 0xad, 0xff}
+	rightColor := color.RGBA{0xa0, 0x35, 0x35, 0xff}
 	
 	for x := 0; x < width; x++ {
 		// Calculate interpolation factor (0.0 to 1.0)

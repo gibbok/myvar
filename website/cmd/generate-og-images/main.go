@@ -106,7 +106,7 @@ func generateImage(title, outputPath string) {
 	c.SetFontSize(18)
 	c.SetClip(img.Bounds())
 	c.SetDst(img)
-	c.SetSrc(image.NewUniform(color.Black))
+	c.SetSrc(image.NewUniform(color.White))
 
 	// Wrap text if too long
 	maxWidth := width - 120 // 60px padding on each side

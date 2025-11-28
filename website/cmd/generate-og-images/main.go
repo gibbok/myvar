@@ -109,40 +109,27 @@ func generateImage(title, outputPath string) {
 	c.SetSrc(image.NewUniform(color.White))
 
 	// Wrap text if too long
-	maxWidth := width - 120 // 60px padding on each side
+	maxWidth := width - 80 // 40px padding on each side
 	lines := wrapText(title, maxWidth, c)
 	
 	// Calculate starting Y position for multiple lines
 	fontSize := 24.0
-	lineHeight := c.PointToFixed(fontSize * 1.5) // 1.5x font size for line height
-	totalHeight := lineHeight * fixed.Int26_6(len(lines)-1)
-	startY := fixed.I(height/2) - totalHeight/2 + lineHeight/2
+	lineHeight := c.PointToFixed(fontSize * 1.2) // 1.2x font size for line height
+	margin := 40
+	startY := fixed.I(margin) + lineHeight
 	
-	// Draw each line centered
+	// Draw each line aligned to top-left
+	boldOffset := fixed.Int26_6(32)
 	for i, line := range lines {
-		// Dynamic centering: measure actual text width like CSS flexbox
-		face := truetype.NewFace(f, &truetype.Options{
-			Size: 24,
-			DPI:  300,
-		})
-		textWidth := font.MeasureString(face, line)
-		actualWidth := int(textWidth >> 6)
-		x := fixed.I(width/2 - actualWidth/2)
+		x := fixed.I(margin)
 		y := startY + lineHeight*fixed.Int26_6(i)
 		
 		// Draw text multiple times with offsets for extra bold effect
-		boldOffset := fixed.Int26_6(64)
-		offsets := []fixed.Point26_6{
-			{X: x, Y: y},
-			{X: x + boldOffset, Y: y},
-			{X: x, Y: y + boldOffset},
-			{X: x + boldOffset, Y: y + boldOffset},
-		}
-		// Adjust x to center the bold effect: shift left by half the offset
-		xCentered := x - boldOffset/2
-		for _, offset := range offsets {
-			pt := fixed.Point26_6{X: xCentered + offset.X - x, Y: offset.Y}
-			c.DrawString(line, pt)
+		for dx := fixed.Int26_6(0); dx <= boldOffset; dx += 32 {
+			for dy := fixed.Int26_6(0); dy <= boldOffset; dy += 32 {
+				pt := fixed.Point26_6{X: x + dx, Y: y + dy}
+				c.DrawString(line, pt)
+			}
 		}
 	}
 

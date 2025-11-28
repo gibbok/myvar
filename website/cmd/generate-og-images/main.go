@@ -101,9 +101,9 @@ func generateImage(title, outputPath string) {
 
 	// Create freetype context with antialiasing
 	c := freetype.NewContext()
-	c.SetDPI(144)
+	c.SetDPI(300)
 	c.SetFont(f)
-	c.SetFontSize(18)
+	c.SetFontSize(24)
 	c.SetClip(img.Bounds())
 	c.SetDst(img)
 	c.SetSrc(image.NewUniform(color.White))
@@ -113,16 +113,17 @@ func generateImage(title, outputPath string) {
 	lines := wrapText(title, maxWidth, c)
 	
 	// Calculate starting Y position for multiple lines
-	lineHeight := c.PointToFixed(30)
+	fontSize := 24.0
+	lineHeight := c.PointToFixed(fontSize * 1.5) // 1.5x font size for line height
 	totalHeight := lineHeight * fixed.Int26_6(len(lines)-1)
-	startY := fixed.I(height/2) - totalHeight/2
+	startY := fixed.I(height/2) - totalHeight/2 + lineHeight/2
 	
 	// Draw each line centered
 	for i, line := range lines {
 		// Dynamic centering: measure actual text width like CSS flexbox
 		face := truetype.NewFace(f, &truetype.Options{
-			Size: 18,
-			DPI:  144,
+			Size: 24,
+			DPI:  300,
 		})
 		textWidth := font.MeasureString(face, line)
 		actualWidth := int(textWidth >> 6)
@@ -161,6 +162,12 @@ func wrapText(text string, maxWidth int, c *freetype.Context) []string {
 		return []string{text}
 	}
 	
+	f, _ := truetype.Parse(gobold.TTF)
+	face := truetype.NewFace(f, &truetype.Options{
+		Size: 24,
+		DPI:  300,
+	})
+	
 	var lines []string
 	currentLine := ""
 	
@@ -171,8 +178,10 @@ func wrapText(text string, maxWidth int, c *freetype.Context) []string {
 		}
 		testLine += word
 		
-		// Force wrapping at 50 characters per line
-		if len(testLine) > 50 && currentLine != "" {
+		textWidth := font.MeasureString(face, testLine)
+		actualWidth := int(textWidth >> 6)
+		
+		if actualWidth > maxWidth && currentLine != "" {
 			lines = append(lines, currentLine)
 			currentLine = word
 		} else {

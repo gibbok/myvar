@@ -1,6 +1,6 @@
 +++
 title = 'Incremental TypeScript Builds for Faster Compilation'
-date = 2025-12-09T09:00:00-11:00
+date = 2025-12-08T09:00:00-11:00
 draft = false
 tags = ['typescript', 'build']
 description = 'Understand how TypeScript incremental compilation and project references speed up rebuilds, reduce CI/CD overhead, and improve development workflows.'

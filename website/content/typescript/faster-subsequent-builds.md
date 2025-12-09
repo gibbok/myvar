@@ -6,8 +6,33 @@ tags = ['hugo', 'go']
 description = 'Learn how to create a user-friendly HTML sitemap in Hugo and complement the automatically generated sitemap.xml.'
 +++
 
-Incremental compilation is a fundamental TypeScript build mode that significantly speeds up development by avoiding the need to rebuild an entire project from scratch during every compilation. This process tracks which files have changed since the last build and only recompiles the modified files and their dependencies. The key mechanism involves storing build information, typically in a file defined by "tsBuildInfoFile" (e.g., .tsbuildinfo), which dramatically reduces build times and offers a significant speed  and enhancing efficiency in Continuous Integration/Continuous Deployment (CI/CD) pipelines.
+Incremental compilation is a TypeScript build mode designed to speed up development by avoiding full project rebuilds on every compile. Instead, the compiler tracks which files have changed since the previous build and recompiles only those files and their affected dependencies.
+To support this, TypeScript stores build metadata in a .tsbuildinfo file, or in a custom file defined by the tsBuildInfoFile option. Reusing this information dramatically reduces rebuild times and can improve CI/CD performance when the build info file is cached between runs.
 
-Basic usage requires setting the `"incremental": true` flag in the `tsconfig.json` file, and developers can use commands like `tsc` for subsequent fast builds or `tsc --build --clean` to start fresh if build info becomes stale.
 
-For complex, multi-package monorepos, advanced usage mandates the use of Project References by enabling `"composite":` true and defining explicit "references" to ensure proper dependency management between sub-projects.
+## Basic Usage
+
+To enable incremental compilation in a single TypeScript project, include the following in your `tsconfig.json`:
+
+```json
+{
+  "incremental": true
+}
+```
+
+Running tsc will then perform fast incremental rebuilds. If the build information ever becomes outdated or corrupted, removing the generated `.tsbuildinfo` file will force a full rebuild.
+
+## Incremental Compilation in Project References
+
+For larger, multi-package monorepos, TypeScript offers Project References, which create explicit build boundaries between sub-projects. When using project references:
+
+- Each referenced project must set `"composite": true` in its `tsconfig.json`.
+- Incremental compilation is enabled automatically for those projects.
+- You can use build mode commands such as:
+
+```shell
+tsc --build
+tsc --build --clean
+```
+
+These commands work only when using project references and provide efficient, dependency-aware builds across multiple projects.

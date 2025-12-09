@@ -1,9 +1,9 @@
 +++
-title = 'Faster subsequent builds'
+title = 'Incremental TypeScript Builds for Faster Compilation'
 date = 2025-12-09T09:00:00-11:00
 draft = false
-tags = ['hugo', 'go']
-description = 'Learn how to create a user-friendly HTML sitemap in Hugo and complement the automatically generated sitemap.xml.'
+tags = ['typescript', 'build']
+description = 'Understand how TypeScript incremental compilation and project references speed up rebuilds, reduce CI/CD overhead, and improve development workflows.'
 +++
 
 Incremental compilation is a TypeScript build mode designed to speed up development by avoiding full project rebuilds on every compile. Instead, the compiler tracks which files have changed since the previous build and recompiles only those files and their affected dependencies.

@@ -1,9 +1,9 @@
 +++
-title = 'Cloudflare Web Analytics on Astro Starlight'
+title = 'Understanding AI Bots: Scrapers, RAG Bots, and AI Agents'
 date = 2025-11-18T09:00:00-07:00
 draft = false
-tags = ['frontend-development', 'cloudflare', 'astro', 'web-analytics']
-description = 'Integrate Cloudflare Web Analytics into your Astro Starlight documentation site. Get simple, privacy-first performance metrics without impacting your sites speed or using cookies.'
+tags = ['ai-bots', 'automation', 'detection', 'web-security', 'llm', 'ai']
+description = 'Explore the different types of AI bots—LLM scrapers, RAG/search bots, and AI agents—and learn how each impacts detection strategies.'  
 +++
 
 As AI automation accelerates, traditional detection strategies—built around static fingerprints, IP reputation, or simple bot heuristics—are becoming less reliable. Scrapers and RAG bots already require more policy-aware handling, but AI agents represent a deeper paradigm shift: they behave like humans, operate across diverse environments, and deliberately avoid detection. Below is a concise classification of the major AI bot categories:

@@ -1,9 +1,9 @@
 +++
-title = 'Handling Node Specific Modules in Web Bundles using Webpack'
-date = 2025-11-21T09:00:00-00:00
+title = 'Effective JavaScript Bundle Optimization: Reducing the No-Interactivity Gap'
+date = 2025-12-09T09:00:00-00:00
 draft = false
-tags = ['webpack', 'javascript']
-description = 'Learn how to create a user-friendly HTML sitemap in Hugo and complement the automatically generated sitemap.xml.'
+tags = ['javascript', 'performance', 'bundling', 'tree-shaking']
+description = 'A practical guide to reducing JavaScript bundle size by analyzing bundle contents, fixing tree-shaking issues, removing duplicates, and eliminating heavy transitive dependencies to improve page interactivity.'
 +++
 
 - **Goal of Bundle Optimization:**  

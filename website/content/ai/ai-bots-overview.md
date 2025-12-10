@@ -6,6 +6,8 @@ tags = ['frontend-development', 'cloudflare', 'astro', 'web-analytics']
 description = 'Integrate Cloudflare Web Analytics into your Astro Starlight documentation site. Get simple, privacy-first performance metrics without impacting your sites speed or using cookies.'
 +++
 
+As AI automation accelerates, traditional detection strategies—built around static fingerprints, IP reputation, or simple bot heuristics—are becoming less reliable. Scrapers and RAG bots already require more policy-aware handling, but AI agents represent a deeper paradigm shift: they behave like humans, operate across diverse environments, and deliberately avoid detection. Below is a concise classification of the major AI bot categories:
+
 ## Definition and Categories
 
 The term **“AI bot”** refers to three distinct use cases, which differ significantly in purpose, architecture, and impact for detection teams:
@@ -50,4 +52,15 @@ Automation is no longer inherently suspicious, pushing detection pipelines to sh
 ### Authentication Issues
 
 Cloud-based agents often share the same IP infrastructure, making IP reputation ineffective, while local agents mimic legitimate user behavior, making them difficult to isolate or verify.
+
+
+
+
+
+
+
+
+
+
+
 

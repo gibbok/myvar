@@ -1,9 +1,9 @@
 +++
-title = 'Effective JavaScript Bundle Optimization: Reducing the No-Interactivity Gap'
+title = "React Fiber Explained: A Concise Guide to Its Core Architecture"
 date = 2025-12-09T09:00:00-00:00
 draft = false
-tags = ['javascript', 'performance', 'bundling', 'tree-shaking']
-description = 'A practical guide to reducing JavaScript bundle size by analyzing bundle contents, fixing tree-shaking issues, removing duplicates, and eliminating heavy transitive dependencies to improve page interactivity.'
+tags = ['reactjs', 'javascript']
+description = "A short, focused guide to React Fiber—how its custom stack, scheduling, and double-tree system enable interruptible rendering and smoother, more responsive UIs."
 +++
 
 • Old React utilized a recursive tree walker that locked the main thread of the browser because recursion in JavaScript is not interruptible, causing performance issues and jank when dealing with large UI trees.

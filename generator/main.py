@@ -1,7 +1,7 @@
 """
-Multi-Agent Content Generation System
+Multi-Agent Content Generation System with Gemini AI
 This system orchestrates three agents: Generator, Reviewer, and Publisher
-to create, refine, and publish technical documentation content.
+to create, refine, and publish technical documentation content using Gemini LLM.
 """
 
 import os
@@ -10,6 +10,22 @@ from datetime import datetime
 from pathlib import Path
 from typing import TypedDict, Literal
 from langgraph.graph import StateGraph, END
+from langchain_google_genai import ChatGoogleGenerativeAI
+
+
+# Configure Gemini API
+# Set your API key as an environment variable: export GEMINI_API_KEY="your-api-key"
+# Or replace the placeholder below with your actual key
+GEMINI_API_KEY = os.getenv("GEMINI_API_KEY", "YOUR_GEMINI_API_KEY_HERE")
+
+
+def get_llm(temperature: float = 0.7) -> ChatGoogleGenerativeAI:
+    """Initialize and return a Gemini LLM instance."""
+    return ChatGoogleGenerativeAI(
+        model="gemini-2.0-flash-exp",
+        api_key=GEMINI_API_KEY,
+        temperature=temperature
+    )
 
 
 # Define the state structure for the multi-agent workflow
@@ -24,30 +40,46 @@ class AgentState(TypedDict):
     summary: str
     title: str
     folder_name: str
+    tags: list[str]
+    description: str
 
 
-# Technical Documentation Guidelines (scaffolded)
+# Technical Documentation Guidelines
 TECHNICAL_GUIDELINES = """
+You are a technical documentation expert. Your task is to synthesize high-quality technical content.
+
 Guidelines for Technical Documentation:
-1. Use clear, concise language
+1. Use clear, concise language appropriate for technical audiences
 2. Structure content with proper headings and sections
-3. Include technical details where relevant
+3. Include relevant technical details and data
 4. Maintain consistent professional tone
 5. Ensure logical flow and organization
-6. Use examples and data to support points
+6. Use examples and evidence to support points
 7. Keep paragraphs focused and coherent
+8. Format using Markdown where appropriate
+9. Ensure accuracy and credibility
+
+You should create engaging, well-structured technical content that is both informative and accessible.
 """
 
-# Review Criteria (scaffolded)
+# Review Criteria
 REVIEW_CRITERIA = """
-Content Review Criteria:
-1. Technical accuracy and credibility
-2. Clear structure and organization
-3. Appropriate depth for target audience
-4. Proper formatting and readability
-5. No major grammatical errors
-6. Logical flow of ideas
-7. Adequate supporting evidence
+You are a content reviewer evaluating technical documentation.
+
+Evaluation Criteria:
+1. **Technical Accuracy**: Content is factually correct and credible
+2. **Structure**: Clear organization with proper headings and sections
+3. **Depth**: Appropriate detail level for the target audience
+4. **Clarity**: Easy to understand, well-written prose
+5. **Completeness**: All important aspects are covered
+6. **Formatting**: Proper Markdown formatting and readability
+7. **Flow**: Logical progression of ideas
+
+Scoring:
+- APPROVE: Content meets all criteria and is publication-ready
+- REVISE: Content needs improvement in specific areas
+
+When suggesting revisions, be specific about what needs improvement and why.
 """
 
 
@@ -93,46 +125,70 @@ def slugify(text: str) -> str:
 def generator_node(state: AgentState) -> AgentState:
     """
     Agent 1: Generator
-    Reads raw content and synthesizes it based on technical guidelines.
+    Uses Gemini to read raw content and synthesize it based on technical guidelines.
     Incorporates feedback from Reviewer if available.
     """
     print(f"\n{'='*60}")
     print(f"🤖 GENERATOR AGENT - Iteration {state['iteration_count']}")
     print(f"{'='*60}")
     
-    # On first iteration, read the raw content
+    llm = get_llm(temperature=0.7)
+    
+    # On first iteration, process raw content
     if state['iteration_count'] == 1:
-        print("📖 Reading raw content from file...")
+        print("📖 Processing raw content with Gemini AI...")
         raw_content = state['raw_content']
-        print(f"   Content length: {len(raw_content)} characters")
-    
-    # If there's feedback, show it
-    if state['review_feedback']:
-        print(f"\n📝 Incorporating reviewer feedback:")
-        print(f"   {state['review_feedback']}")
-    
-    # In a real implementation, this would use an LLM to generate/refine content
-    # For this scaffold, we'll do basic processing
-    if state['iteration_count'] == 1:
-        # First pass: extract a meaningful section
-        lines = state['raw_content'].split('\n')
-        # Take first few meaningful paragraphs
-        content_lines = []
-        for line in lines[:50]:  # Limit to first 50 lines for demo
-            if line.strip():
-                content_lines.append(line)
+        print(f"   Raw content length: {len(raw_content)} characters")
         
-        generated = '\n'.join(content_lines)
+        # Limit input to avoid token limits (take first portion)
+        content_sample = raw_content[:8000] if len(raw_content) > 8000 else raw_content
         
-        # Extract title
+        prompt = f"""{TECHNICAL_GUIDELINES}
+
+Based on the following raw content, create a well-structured technical article:
+
+{content_sample}
+
+Requirements:
+- Extract the key insights and information
+- Create clear sections with proper headings
+- Maintain technical accuracy
+- Use Markdown formatting
+- Create an engaging, professional article
+
+Generate the article now:"""
+        
+        print("🔄 Calling Gemini API for content generation...")
+        response = llm.invoke(prompt)
+        generated = response.content
+        
+        # Extract title from generated content
         title = extract_title_from_content(generated)
         state['title'] = title
-        print(f"\n📌 Extracted title: {title}")
+        print(f"\n📌 Generated title: {title}")
+        
     else:
-        # Subsequent iterations: simulate refinement
-        generated = state['generated_content']
-        # Add improvement marker (in real implementation, LLM would refine)
-        generated = f"{generated}\n\n[Refined based on feedback: {state['review_feedback']}]"
+        # Subsequent iterations: refine based on feedback
+        print(f"\n📝 Refining content based on reviewer feedback...")
+        print(f"   Feedback: {state['review_feedback']}")
+        
+        prompt = f"""{TECHNICAL_GUIDELINES}
+
+You previously generated this content:
+
+{state['generated_content']}
+
+The reviewer provided this feedback:
+
+{state['review_feedback']}
+
+Please revise the content to address all the feedback points. Maintain the overall structure but improve based on the specific suggestions.
+
+Generate the revised article now:"""
+        
+        print("🔄 Calling Gemini API for content refinement...")
+        response = llm.invoke(prompt)
+        generated = response.content
     
     state['generated_content'] = generated
     print(f"\n✅ Generated content length: {len(generated)} characters")
@@ -143,7 +199,7 @@ def generator_node(state: AgentState) -> AgentState:
 def reviewer_node(state: AgentState) -> AgentState:
     """
     Agent 2: Reviewer/Critic
-    Evaluates content against criteria and provides feedback.
+    Uses Gemini to evaluate content against criteria and provide feedback.
     Routes content back to Generator if not approved (max 4 iterations).
     """
     print(f"\n{'='*60}")
@@ -151,54 +207,70 @@ def reviewer_node(state: AgentState) -> AgentState:
     print(f"{'='*60}")
     
     content = state['generated_content']
-    print(f"📊 Reviewing content ({len(content)} characters)...")
+    print(f"📊 Reviewing content with Gemini AI ({len(content)} characters)...")
     
-    # In a real implementation, this would use an LLM to evaluate content
-    # For this scaffold, we'll use simple heuristics
+    llm = get_llm(temperature=0.3)  # Lower temperature for more consistent evaluation
     
-    # Criteria checks (simplified)
-    has_adequate_length = len(content) > 200
-    has_structure = '\n' in content
-    has_title = bool(state.get('title'))
+    prompt = f"""{REVIEW_CRITERIA}
+
+Please review the following technical content:
+
+{content}
+
+Provide your evaluation in the following format:
+
+DECISION: [APPROVE or REVISE]
+REASONING: [Brief explanation of your decision]
+FEEDBACK: [If REVISE, provide specific suggestions for improvement. If APPROVE, leave empty]
+
+Your evaluation:"""
     
-    # Simple scoring
-    score = sum([has_adequate_length, has_structure, has_title])
-    passing_score = 3
+    print("🔄 Calling Gemini API for content review...")
+    response = llm.invoke(prompt)
+    evaluation = response.content
     
-    print(f"\n📋 Review Checklist:")
-    print(f"   ✓ Adequate length: {has_adequate_length}")
-    print(f"   ✓ Has structure: {has_structure}")
-    print(f"   ✓ Has title: {has_title}")
-    print(f"   Score: {score}/{passing_score}")
+    print(f"\n📋 Review Result:")
+    print(f"   {evaluation[:200]}...")
+    
+    # Parse the evaluation
+    decision_match = re.search(r'DECISION:\s*(APPROVE|REVISE)', evaluation, re.IGNORECASE)
+    feedback_match = re.search(r'FEEDBACK:\s*(.+?)(?:\n\n|\Z)', evaluation, re.DOTALL | re.IGNORECASE)
+    
+    if decision_match:
+        decision = decision_match.group(1).upper()
+    else:
+        # Fallback: look for keywords in the response
+        if 'APPROVE' in evaluation.upper():
+            decision = 'APPROVE'
+        else:
+            decision = 'REVISE'
     
     # Check if we've hit max iterations
-    if state['iteration_count'] >= 4 and score < passing_score:
+    if state['iteration_count'] >= 4 and decision == 'REVISE':
         raise RuntimeError(
-            f"❌ Maximum iterations (4) reached without approval. "
-            f"Final score: {score}/{passing_score}"
+            f"❌ Maximum iterations (4) reached without approval.\n"
+            f"Latest feedback: {evaluation}"
         )
     
     # Determine approval
-    if score >= passing_score:
+    if decision == 'APPROVE':
         state['approved'] = True
         state['review_feedback'] = ""
         state['final_content'] = content
         print(f"\n✅ Content APPROVED after {state['iteration_count']} iteration(s)")
     else:
         state['approved'] = False
-        # Provide feedback based on what's missing
-        feedback_items = []
-        if not has_adequate_length:
-            feedback_items.append("Content needs more depth and detail")
-        if not has_structure:
-            feedback_items.append("Improve content structure with sections")
-        if not has_title:
-            feedback_items.append("Add a clear title")
+        # Extract feedback
+        if feedback_match:
+            feedback = feedback_match.group(1).strip()
+        else:
+            # Fallback: use the entire evaluation as feedback
+            feedback = evaluation
         
-        state['review_feedback'] = "; ".join(feedback_items)
+        state['review_feedback'] = feedback
         state['iteration_count'] += 1
         print(f"\n⚠️  Content NEEDS REVISION")
-        print(f"   Feedback: {state['review_feedback']}")
+        print(f"   Feedback: {feedback[:200]}...")
     
     return state
 
@@ -206,15 +278,64 @@ def reviewer_node(state: AgentState) -> AgentState:
 def publisher_node(state: AgentState) -> AgentState:
     """
     Agent 3: Publisher/Formatter
-    Formats approved content with TOML front-matter and saves to file.
+    Uses Gemini to extract metadata and format approved content with TOML front-matter.
     """
     print(f"\n{'='*60}")
     print(f"📤 PUBLISHER AGENT")
     print(f"{'='*60}")
     
-    # Extract metadata
-    title = state['title']
     content = state['final_content']
+    
+    # Use Gemini to extract metadata
+    llm = get_llm(temperature=0.3)
+    
+    prompt = f"""Analyze this technical article and extract metadata:
+
+{content[:2000]}
+
+Provide the following in this exact format:
+
+TITLE: [A clear, concise title for the article]
+TAGS: [3-5 relevant tags, comma-separated]
+DESCRIPTION: [A one-sentence description, max 150 characters]
+
+Your metadata:"""
+    
+    print("🔄 Calling Gemini API for metadata extraction...")
+    response = llm.invoke(prompt)
+    metadata = response.content
+    
+    # Parse metadata
+    title_match = re.search(r'TITLE:\s*(.+?)(?:\n|$)', metadata)
+    tags_match = re.search(r'TAGS:\s*(.+?)(?:\n|$)', metadata)
+    desc_match = re.search(r'DESCRIPTION:\s*(.+?)(?:\n|$)', metadata)
+    
+    # Extract or use defaults
+    if title_match:
+        title = title_match.group(1).strip()
+        state['title'] = title
+    else:
+        title = state.get('title', extract_title_from_content(content))
+    
+    if tags_match:
+        tags_str = tags_match.group(1).strip()
+        tags = [tag.strip() for tag in tags_str.split(',')]
+        state['tags'] = tags
+    else:
+        tags = ['technical', 'documentation']
+        state['tags'] = tags
+    
+    if desc_match:
+        description = desc_match.group(1).strip()
+        state['description'] = description
+    else:
+        description = content.replace('\n', ' ').strip()[:150] + '...'
+        state['description'] = description
+    
+    print(f"\n📊 Extracted Metadata:")
+    print(f"   Title: {title}")
+    print(f"   Tags: {tags}")
+    print(f"   Description: {description[:80]}...")
     
     # Generate folder name
     folder_name = slugify(' '.join(title.split()[0:3]))  # First 3 words
@@ -225,21 +346,8 @@ def publisher_node(state: AgentState) -> AgentState:
     # Generate filename
     filename = slugify(title) + '.md'
     
-    # Generate tags (simplified - in real implementation, use LLM)
-    tags = ['technical', 'documentation', 'generated']
-    
-    # Extract description (first sentence or first 150 chars)
-    description_text = content.replace('\n', ' ').strip()
-    if '.' in description_text:
-        description = description_text.split('.')[0] + '.'
-    else:
-        description = description_text[:150] + '...'
-    
     # Create TOML front-matter
-    current_date = datetime.now().strftime('%Y-%m-%dT%H:%M:%S%z')
-    if not current_date.endswith(('Z', '+00:00', '-07:00')):
-        # Add timezone offset format
-        current_date = datetime.now().strftime('%Y-%m-%dT%H:%M:%S-07:00')
+    current_date = datetime.now().strftime('%Y-%m-%dT%H:%M:%S-07:00')
     
     toml_frontmatter = f"""+++
 title = '{title}'
@@ -267,8 +375,6 @@ description = '{description}'
     
     print(f"\n📁 Created directory: {output_dir}")
     print(f"💾 Saved file: {output_path}")
-    print(f"📊 Title: {title}")
-    print(f"🏷️  Tags: {tags}")
     print(f"✅ Publishing complete!")
     
     return state
@@ -314,12 +420,19 @@ def main():
     """Main function to run the multi-agent content generation system."""
     print("="*60)
     print("🚀 MULTI-AGENT CONTENT GENERATION SYSTEM")
+    print("   Powered by Gemini AI")
     print("="*60)
     print("\nSystem Components:")
-    print("  🤖 Agent 1: Generator - Synthesizes content")
-    print("  🔍 Agent 2: Reviewer - Evaluates and provides feedback")
-    print("  📤 Agent 3: Publisher - Formats and saves content")
+    print("  🤖 Agent 1: Generator - Synthesizes content with Gemini")
+    print("  🔍 Agent 2: Reviewer - Evaluates with Gemini")
+    print("  📤 Agent 3: Publisher - Extracts metadata and publishes")
     print("="*60)
+    
+    # Check API key
+    if GEMINI_API_KEY == "YOUR_GEMINI_API_KEY_HERE":
+        print("\n⚠️  WARNING: Using placeholder API key!")
+        print("   Set GEMINI_API_KEY environment variable or update the code.")
+        print("   Example: export GEMINI_API_KEY='your-actual-key'\n")
     
     # Input file path
     input_file = "/Users/gibbok/Documents/repos/myvar/generator/drafts/content.md"
@@ -339,7 +452,9 @@ def main():
         'output_path': '',
         'summary': '',
         'title': '',
-        'folder_name': ''
+        'folder_name': '',
+        'tags': [],
+        'description': ''
     }
     
     # Create and compile workflow
@@ -348,7 +463,7 @@ def main():
     app = workflow.compile()
     
     # Execute the workflow
-    print("\n▶️  Executing workflow...\n")
+    print("\n▶️  Executing workflow with Gemini AI...\n")
     
     try:
         result = app.invoke(initial_state)
@@ -361,6 +476,7 @@ def main():
         print(f"🔄 Iterations: {result['iteration_count']}")
         print(f"📝 Title: {result['title']}")
         print(f"📁 Folder: {result['folder_name']}")
+        print(f"🏷️  Tags: {result['tags']}")
         print(f"💾 Output Path: {result['output_path']}")
         print(f"📄 Content Length: {len(result['final_content'])} characters")
         print(f"{'='*60}")

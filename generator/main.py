@@ -81,7 +81,8 @@ def publisher_node(state: AgentState):
     desc = re.search(r'DESC:\s*(.*)', res, re.I).group(1).strip() if 'DESC:' in res else "No description."
     
     folder = slugify(' '.join(title.split()[:3])) or "content"
-    path = OUTPUT_CONTENT_DIR / folder / (slugify(title) + ".md")
+    filename = slugify(title)[:80] + ".md"
+    path = OUTPUT_CONTENT_DIR / folder / filename
     path.parent.mkdir(parents=True, exist_ok=True)
     
     frontmatter = f"+++\ntitle = '{title}'\ndate = {datetime.now().isoformat()}\ndraft = false\ntags = {tags}\ndescription = '{desc}'\n+++\n\n"

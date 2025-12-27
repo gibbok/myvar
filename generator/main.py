@@ -18,6 +18,7 @@ GEMINI_API_KEY = os.getenv("GEMINI_API_KEY", "YOUR_GEMINI_API_KEY_HERE")
 GEMINI_MODEL = os.getenv("GEMINI_MODEL", "gemini-2.5-flash")
 BASE_DIR = Path(__file__).parent.parent.absolute()
 OUTPUT_CONTENT_DIR = BASE_DIR / "website/content"
+INPUT_CONTENT_DRAFT= BASE_DIR / "generator/drafts/content.md"
 
 # Helpers
 def get_llm(temp=0.7):
@@ -111,7 +112,7 @@ def publisher_node(state: AgentState):
 
 def main():
     """Builds and executes the LangGraph workflow."""
-    input_path = BASE_DIR / "generator/drafts/content.md"
+    input_path = INPUT_CONTENT_DRAFT
     if not input_path.exists():
         print(f"Error: {input_path} not found.")
         return

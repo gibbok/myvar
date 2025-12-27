@@ -16,6 +16,7 @@ Synthesize the provided {content} into a structured Markdown article that is eas
     - **Technical Details:** The core synthesis of the {content}.
 5. **Tone:** Professional, objective, and authoritative. Use active voice.
 6. **Feedback Integration:** Explicitly resolve the points mentioned in {feedback}.
+7. **No Meta-Talk:** NEVER include internal thinking, "Note on Feedback Integration", or any meta-comments about the refinement process in the output. The output MUST contain ONLY the article itself.
 
 **Input Content:** {content}
 

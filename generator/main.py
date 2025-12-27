@@ -76,13 +76,13 @@ def publisher_node(state: AgentState):
     
     # Simple extraction
     title_raw = re.search(r'TITLE:\s*(.*)', res, re.I).group(1).strip() if 'TITLE:' in res else state['title']
-    title = re.split(r'\s*[|]\s*|TOPIC:|TAGS:', title_raw, flags=re.I)[0].strip()[:100]
+    title = re.split(r'\s*[|]\s*|TOPIC:|TAGS:', title_raw, flags=re.I)[0].strip()
     
     topic = re.search(r'TOPIC:\s*(.*)', res, re.I).group(1).strip() if 'TOPIC:' in res else "content"
     tags_raw = re.search(r'TAGS:\s*(.*)', res, re.I).group(1).strip() if 'TAGS:' in res else 'tech'
     tags_clean = re.split(r'\s*[|]\s*|DESC:', tags_raw, flags=re.I)[0].strip()
     tags = [t.strip().replace(' ', '-') for t in tags_clean.split(',') if t.strip()][:3]
-    desc = (re.search(r'DESC:\s*(.*)', res, re.I).group(1).strip() if 'DESC:' in res else "No description.")[:120]
+    desc = re.search(r'DESC:\s*(.*)', res, re.I).group(1).strip() if 'DESC:' in res else "No description."
     
     folder = slugify(topic.split()[0]) or "content"
     filename = slugify(title)[:80] + ".md"

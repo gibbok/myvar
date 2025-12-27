@@ -6,8 +6,6 @@ tags = ['html5-canvas', 'web-graphics', 'blending-modes']
 description = 'A technical overview of the CanvasRenderingContext2D globalCompositeOperation property.'
 +++
 
-# CanvasRenderingContext2D: `globalCompositeOperation`
-
 ## Overview
 
 The `globalCompositeOperation` property determines how new shapes and images (**source**) are drawn relative to existing canvas content (**destination**). It manages both alpha compositing and color blending to enable complex visual effects like masking, erasing, and lighting.

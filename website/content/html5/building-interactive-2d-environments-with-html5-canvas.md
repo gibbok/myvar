@@ -6,8 +6,6 @@ tags = ['canvas-api', 'javascript', 'web-development']
 description = 'A technical guide on architecting 2D simulations using HTML5 Canvas.'
 +++
 
-# Building Interactive 2D Environments with HTML5 Canvas
-
 ## Overview
 
 The HTML5 `<canvas>` element provides a scriptable surface for rendering high-performance 2D graphics. This guide outlines the architectural patterns for object encapsulation, input buffering, and frame-rate-independent animation required for real-time simulations.

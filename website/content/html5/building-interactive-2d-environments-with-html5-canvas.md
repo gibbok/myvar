@@ -2,7 +2,7 @@
 title = 'Building Interactive 2D Environments with HTML5 Canvas'
 date = 2025-12-26T10:02:13.583249
 draft = false
-tags = ['canvas-api', 'javascript', 'web-development']
+tags = ['canvas-api', 'javascript', 'html5']
 description = 'A technical guide on architecting 2D simulations using HTML5 Canvas.'
 +++
 

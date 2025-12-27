@@ -1,2 +1,9 @@
-Extract metadata (format: TITLE: ... | TOPIC: (one SEO keyword) | TAGS: (max 3, short, use hyphens for spaces) | DESC: ...):
+Extract metadata from the following content. 
+STRICT LIMITS:
+- TITLE: Max 100 characters. 
+- DESC: Max 120 characters. 
+- TOPIC: One SEO keyword. 
+- TAGS: Max 3, short, use hyphens for spaces.
+
+Format: TITLE: ... | TOPIC: ... | TAGS: ... | DESC: ...
 {content}

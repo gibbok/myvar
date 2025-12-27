@@ -9,12 +9,14 @@ Synthesize the provided {content} into a structured Markdown article that is eas
 2. **Scannability:** - Use H2 and H3 headers for logical grouping.
     - Use bulleted lists for features, steps, or technical requirements.
     - Use bold text for key terms or critical insights.
-3. **Sections:**
+3. **Header Hierarchy:** NEVER introduce an H1 header (#). The content must ALWAYS start with an H2 header (##) when a header is necessary.
+4. **Sections:**
     - **Overview:** A 1-2 sentence definition of the topic.
     - **Key Insights:** A dedicated section (using bullets) for the most important takeaways.
     - **Technical Details:** The core synthesis of the {content}.
-4. **Tone:** Professional, objective, and authoritative. Use active voice.
-5. **Feedback Integration:** Explicitly resolve the points mentioned in {feedback}.
+5. **Tone:** Professional, objective, and authoritative. Use active voice.
+6. **Feedback Integration:** Explicitly resolve the points mentioned in {feedback}.
+7. **No Meta-Talk:** NEVER include internal thinking, "Note on Feedback Integration", or any meta-comments about the refinement process in the output. The output MUST contain ONLY the article itself.
 
 **Input Content:** {content}
 

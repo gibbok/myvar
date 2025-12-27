@@ -15,18 +15,23 @@ GEMINI_API_KEY = os.getenv("GEMINI_API_KEY", "YOUR_GEMINI_API_KEY_HERE")
 BASE_DIR = Path("/Users/gibbok/Documents/repos/myvar")
 OUTPUT_CONTENT_DIR = BASE_DIR / "website/content"
 
+# Helpers
 def get_llm(temp=0.7):
+    """Initialize the Gemini LLM with a specific temperature."""
     return ChatGoogleGenerativeAI(model='gemini-3-flash-preview', api_key=GEMINI_API_KEY, temperature=temp)
 
 def ensure_str(content) -> str:
+    """Safely convert LLM response content to a flat string."""
     if isinstance(content, list):
         return "".join(part.get("text", "") if isinstance(part, dict) else str(part) for part in content)
     return str(content)
 
 def read_prompt(name: str) -> str:
+    """Read a prompt template from an external text file."""
     return (Path(__file__).parent / f"prompt_{name}.txt").read_text()
 
 class AgentState(TypedDict):
+    """The shared state passed between agents in the graph."""
     content: str
     feedback: str
     count: int
@@ -35,9 +40,12 @@ class AgentState(TypedDict):
     meta: dict
 
 def slugify(text: str) -> str:
+    """Convert text to an SEO-friendly URL slug."""
     return re.sub(r'-+', '-', re.sub(r'[^a-z0-9\s-]', '', text.lower()).replace(' ', '-')).strip('-')
 
+# Agent Nodes
 def generator_node(state: AgentState):
+    """Generates or refines the technical article based on input or feedback."""
     print(f"🤖 Generator - Iteration {state['count']}")
     llm = get_llm(0.7)
     
@@ -53,6 +61,7 @@ def generator_node(state: AgentState):
     return state
 
 def reviewer_node(state: AgentState):
+    """Reviews the content and decides whether to approve or request revisions."""
     print(f"🔍 Reviewer - Iteration {state['count']}")
     llm = get_llm(0.1)
     
@@ -69,6 +78,7 @@ def reviewer_node(state: AgentState):
     return state
 
 def publisher_node(state: AgentState):
+    """Extracts metadata, formats the article with front-matter, and saves it to disk."""
     print("📤 Publisher - Finalizing...")
     llm = get_llm(0.1)
     prompt = read_prompt("publisher").format(content=state['content'][:2000])
@@ -76,13 +86,13 @@ def publisher_node(state: AgentState):
     
     # Simple extraction
     title_raw = re.search(r'TITLE:\s*(.*)', res, re.I).group(1).strip() if 'TITLE:' in res else state['title']
-    title = re.split(r'\s*[|]\s*|TOPIC:|TAGS:', title_raw, flags=re.I)[0].strip()[:100]
+    title = re.split(r'\s*[|]\s*|TOPIC:|TAGS:', title_raw, flags=re.I)[0].strip()
     
     topic = re.search(r'TOPIC:\s*(.*)', res, re.I).group(1).strip() if 'TOPIC:' in res else "content"
     tags_raw = re.search(r'TAGS:\s*(.*)', res, re.I).group(1).strip() if 'TAGS:' in res else 'tech'
     tags_clean = re.split(r'\s*[|]\s*|DESC:', tags_raw, flags=re.I)[0].strip()
     tags = [t.strip().replace(' ', '-') for t in tags_clean.split(',') if t.strip()][:3]
-    desc = (re.search(r'DESC:\s*(.*)', res, re.I).group(1).strip() if 'DESC:' in res else "No description.")[:120]
+    desc = re.search(r'DESC:\s*(.*)', res, re.I).group(1).strip() if 'DESC:' in res else "No description."
     
     folder = slugify(topic.split()[0]) or "content"
     filename = slugify(title)[:80] + ".md"
@@ -96,6 +106,7 @@ def publisher_node(state: AgentState):
     return state
 
 def main():
+    """Builds and executes the LangGraph workflow."""
     input_path = BASE_DIR / "generator/drafts/content.md"
     if not input_path.exists():
         print(f"Error: {input_path} not found.")

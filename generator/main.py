@@ -9,11 +9,14 @@ from pathlib import Path
 from typing import TypedDict, Literal
 from langgraph.graph import StateGraph, END
 from langchain_google_genai import ChatGoogleGenerativeAI
+from dotenv import load_dotenv
+
+load_dotenv()
 
 # Config
 GEMINI_API_KEY = os.getenv("GEMINI_API_KEY", "YOUR_GEMINI_API_KEY_HERE")
 GEMINI_MODEL = os.getenv("GEMINI_MODEL", "gemini-2.5-flash")
-BASE_DIR = Path("/Users/gibbok/Documents/repos/myvar")
+BASE_DIR = Path(__file__).parent.parent.absolute()
 OUTPUT_CONTENT_DIR = BASE_DIR / "website/content"
 
 # Helpers

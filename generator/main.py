@@ -72,13 +72,14 @@ FEEDBACK: [Details if REVISE]"""
 def publisher_node(state: AgentState):
     print("📤 Publisher - Finalizing...")
     llm = get_llm(0.1)
-    prompt = f"Extract metadata from this article (format: TITLE: ... | TOPIC: (one SEO keyword) | TAGS: ... | DESC: ...):\n{state['content'][:2000]}"
+    prompt = f"Extract metadata (format: TITLE: ... | TOPIC: (one SEO keyword) | TAGS: (max 3, short, use hyphens for spaces) | DESC: ...):\n{state['content'][:2000]}"
     res = ensure_str(llm.invoke(prompt).content)
     
     # Simple extraction
     title = (re.search(r'TITLE:\s*(.*)', res, re.I).group(1).strip() if 'TITLE:' in res else state['title'])[:100]
     topic = re.search(r'TOPIC:\s*(.*)', res, re.I).group(1).strip() if 'TOPIC:' in res else "content"
-    tags = re.search(r'TAGS:\s*(.*)', res, re.I).group(1).strip().split(',') if 'TAGS:' in res else ['tech']
+    raw_tags = re.search(r'TAGS:\s*(.*)', res, re.I).group(1).strip().split(',') if 'TAGS:' in res else ['tech']
+    tags = [t.strip().replace(' ', '-') for t in raw_tags][:3]
     desc = (re.search(r'DESC:\s*(.*)', res, re.I).group(1).strip() if 'DESC:' in res else "No description.")[:120]
     
     folder = slugify(topic.split()[0]) or "content"

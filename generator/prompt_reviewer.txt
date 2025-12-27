@@ -1,0 +1,5 @@
+Review this content. Decision must be 'APPROVE' or 'REVISE'.
+Content: {content}
+Format: 
+DECISION: [APPROVE|REVISE]
+FEEDBACK: [Details if REVISE]

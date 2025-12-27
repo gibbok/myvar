@@ -23,6 +23,9 @@ def ensure_str(content) -> str:
         return "".join(part.get("text", "") if isinstance(part, dict) else str(part) for part in content)
     return str(content)
 
+def read_prompt(name: str) -> str:
+    return (Path(__file__).parent / f"prompt_{name}.txt").read_text()
+
 class AgentState(TypedDict):
     content: str
     feedback: str
@@ -38,10 +41,10 @@ def generator_node(state: AgentState):
     print(f"🤖 Generator - Iteration {state['count']}")
     llm = get_llm(0.7)
     
-    prompt = f"""Synthesize this content into a professional technical article with Markdown:
-{state['content'] if state['count'] == 1 else state['content']}
-Feedback to address: {state['feedback'] if state['feedback'] else 'None (First run)'}
-Requirements: Key insights, clear headings, professional tone."""
+    prompt = read_prompt("generator").format(
+        content=state['content'],
+        feedback=state['feedback'] if state['feedback'] else 'None (First run)'
+    )
     
     res = ensure_str(llm.invoke(prompt).content)
     state['content'] = res
@@ -53,11 +56,7 @@ def reviewer_node(state: AgentState):
     print(f"🔍 Reviewer - Iteration {state['count']}")
     llm = get_llm(0.1)
     
-    prompt = f"""Review this content. Decision must be 'APPROVE' or 'REVISE'.
-Content: {state['content']}
-Format: 
-DECISION: [APPROVE|REVISE]
-FEEDBACK: [Details if REVISE]"""
+    prompt = read_prompt("reviewer").format(content=state['content'])
     
     res = ensure_str(llm.invoke(prompt).content)
     decision = 'APPROVE' if 'DECISION: APPROVE' in res.upper() else 'REVISE'
@@ -72,7 +71,7 @@ FEEDBACK: [Details if REVISE]"""
 def publisher_node(state: AgentState):
     print("📤 Publisher - Finalizing...")
     llm = get_llm(0.1)
-    prompt = f"Extract metadata (format: TITLE: ... | TOPIC: (one SEO keyword) | TAGS: (max 3, short, use hyphens for spaces) | DESC: ...):\n{state['content'][:2000]}"
+    prompt = read_prompt("publisher").format(content=state['content'][:2000])
     res = ensure_str(llm.invoke(prompt).content)
     
     # Simple extraction

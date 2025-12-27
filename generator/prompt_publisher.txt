@@ -1,0 +1,2 @@
+Extract metadata (format: TITLE: ... | TOPIC: (one SEO keyword) | TAGS: (max 3, short, use hyphens for spaces) | DESC: ...):
+{content}

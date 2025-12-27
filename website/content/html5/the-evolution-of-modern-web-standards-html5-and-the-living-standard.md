@@ -2,7 +2,7 @@
 title = 'The Evolution of Modern Web Standards: HTML5 and the Living Standard'
 date = 2025-12-26T09:16:10.848663
 draft = false
-tags = ['web-standards', 'whatwg', 'html-living-standard']
+tags = ['web-standards', 'whatwg', 'html5']
 description = 'An analysis of HTML5’s transition from a static recommendation to the WHATWG Living Standard.'
 +++
 

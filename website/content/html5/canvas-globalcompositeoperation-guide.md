@@ -2,7 +2,7 @@
 title = 'Canvas globalCompositeOperation Guide'
 date = 2025-12-26T10:09:15.663655
 draft = false
-tags = ['html5-canvas', 'web-graphics', 'blending-modes']
+tags = ['html5', 'web-graphics']
 description = 'A technical overview of the CanvasRenderingContext2D globalCompositeOperation property.'
 +++
 

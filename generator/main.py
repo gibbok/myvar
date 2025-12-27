@@ -72,15 +72,16 @@ FEEDBACK: [Details if REVISE]"""
 def publisher_node(state: AgentState):
     print("📤 Publisher - Finalizing...")
     llm = get_llm(0.1)
-    prompt = f"Extract metadata from this article (format: TITLE: ... | TAGS: ... | DESC: ...):\n{state['content'][:2000]}"
+    prompt = f"Extract metadata from this article (format: TITLE: ... | TOPIC: (one SEO keyword) | TAGS: ... | DESC: ...):\n{state['content'][:2000]}"
     res = ensure_str(llm.invoke(prompt).content)
     
     # Simple extraction
-    title = re.search(r'TITLE:\s*(.*)', res, re.I).group(1).strip() if 'TITLE:' in res else state['title']
+    title = (re.search(r'TITLE:\s*(.*)', res, re.I).group(1).strip() if 'TITLE:' in res else state['title'])[:100]
+    topic = re.search(r'TOPIC:\s*(.*)', res, re.I).group(1).strip() if 'TOPIC:' in res else "content"
     tags = re.search(r'TAGS:\s*(.*)', res, re.I).group(1).strip().split(',') if 'TAGS:' in res else ['tech']
-    desc = re.search(r'DESC:\s*(.*)', res, re.I).group(1).strip() if 'DESC:' in res else "No description."
+    desc = (re.search(r'DESC:\s*(.*)', res, re.I).group(1).strip() if 'DESC:' in res else "No description.")[:120]
     
-    folder = slugify(' '.join(title.split()[:3])) or "content"
+    folder = slugify(topic.split()[0]) or "content"
     filename = slugify(title)[:80] + ".md"
     path = OUTPUT_CONTENT_DIR / folder / filename
     path.parent.mkdir(parents=True, exist_ok=True)

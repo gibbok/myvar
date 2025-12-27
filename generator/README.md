@@ -1,94 +1,66 @@
-# LangGraph Hello World Application
+# Multi-Agent Content Generation System
 
-A simple Python project demonstrating LangGraph 1.0.5 functionality with a basic state graph workflow.
+A powerful, multi-agent orchestrator powered by Gemini AI and LangGraph to generate, review, and publish high-quality technical documentation.
 
-## Project Setup
+## 🚀 Overview
 
-This project uses `uv` for Python package management and includes:
-- **Python**: 3.13.7
-- **LangGraph**: 1.0.5
+This system utilizes three specialized agents to automate the content lifecycle:
+1.  **🤖 Generator**: Synthesizes raw input into structured technical articles.
+2.  **🔍 Reviewer**: Critiques the content for accuracy and clarity (with up to 4 refinement loops).
+3.  **📤 Publisher**: Extracts SEO metadata and saves the final product with TOML front-matter.
 
-## What This Application Does
+## 🛠️ Setup
 
-This is a simple "Hello World" application that demonstrates LangGraph's core concepts:
+### 1. Requirements
+- Python 3.12+ (managed via `uv`)
+- A Gemini API Key from [Google AI Studio](https://aistudio.google.com/)
 
-1. **State Management**: Uses a `TypedDict` to define the application state with `message` and `count` fields
-2. **Graph Nodes**: Two processing nodes that transform the state:
-   - `hello_node`: Adds a greeting to the message
-   - `world_node`: Adds a welcome message
-3. **Graph Flow**: Defines a linear workflow: `hello → world → END`
-
-## How to Run
-
-### Option 1: Using `uv run` (Recommended)
+### 2. Environment Configuration
+Set your API key as an environment variable:
 ```bash
-cd /Users/gibbok/Documents/repos/myvar/generator
-uv run main.py
+export GEMINI_API_KEY="your-api-key-here"
 ```
 
-### Option 2: Using the virtual environment directly
+### 3. Git Hook Configuration
+To prevent your local drafts from being committed to git, run the setup script:
 ```bash
-cd /Users/gibbok/Documents/repos/myvar/generator
-source .venv/bin/activate
-python main.py
+bash setup_hooks.sh
 ```
+This installs a `post-checkout` hook that applies `git assume-unchanged` to your local draft file.
 
-## Expected Output
+## 📖 How to Use
 
-```
-============================================================
-LangGraph Hello World Application (v1.0.5)
-============================================================
+1.  **Prepare Content**: Edit the draft file at `generator/drafts/content.md`.
+2.  **Run the Generator**:
+    ```bash
+    uv run main.py
+    ```
+3.  **Check Output**: Published files will appear in `website/content/[topic]/`.
 
-Initial State:
-  Message: LangGraph User
-  Count: 0
+## ⚙️ Customization
 
-Executing graph...
+### Modifying Prompts
+The LLM logic is separated from the execution code. You can find and edit the prompts in these files:
+- `generator/prompt_generator.txt`: Instructions for article synthesis.
+- `generator/prompt_reviewer.txt`: Criteria for content evaluation.
+- `generator/prompt_publisher.txt`: Instructions for metadata extraction.
 
-Hello Node: Processing message 'LangGraph User'
-World Node: Processing message 'Hello, LangGraph User!'
+### Metadata Constraints
+The system automatically enforces several quality and SEO constraints:
+- **Titles**: Maximum 100 characters.
+- **Descriptions**: Maximum 120 characters.
+- **Filenames**: Maximum 80 characters (SEO-friendly slugs).
+- **Tags**: Maximum 3 short, hyphenated tags (e.g., `Tree-Shaking`).
+- **Dates**: Automatically set to one day before current execution.
 
-============================================================
-Final Result:
-  Message: Hello, LangGraph User! Welcome to LangGraph!
-  Count: 2
-============================================================
-```
-
-## Project Structure
+## 📁 Project Structure
 
 ```
 generator/
-├── .python-version    # Python version specification
-├── .venv/            # Virtual environment (created by uv)
-├── main.py           # Main application code
-├── pyproject.toml    # Project dependencies and metadata
-├── uv.lock           # Locked dependency versions
-└── README.md         # This file
+├── drafts/
+│   └── content.md      # Your current working draft
+├── prompt_*.txt        # Externalized LLM prompt templates
+├── main.py             # Agent orchestration logic (LangGraph)
+├── setup_hooks.sh      # Git hook configuration script
+└── pyproject.toml      # Project dependencies
 ```
-
-## Key LangGraph Concepts Demonstrated
-
-- **StateGraph**: The main graph structure that manages workflow
-- **Nodes**: Functions that process and transform state
-- **Edges**: Define the flow between nodes
-- **State**: TypedDict-based state management
-- **Compilation**: Converting the graph definition into an executable application
-
-## Dependencies
-
-All dependencies are managed via `uv` and defined in `pyproject.toml`. Main dependencies include:
-- `langgraph==1.0.5` - The main LangGraph library
-- `langchain-core` - Core LangChain functionality
-- `langgraph-checkpoint` - Checkpointing support
-- Plus various supporting libraries
-
-## Modifying the Application
-
-To customize the workflow:
-1. Modify the `State` TypedDict to add/remove state fields
-2. Create new node functions that process the state
-3. Add nodes to the workflow using `workflow.add_node()`
-4. Define the flow using `workflow.add_edge()` or conditional edges
-5. Run with `uv run main.py`

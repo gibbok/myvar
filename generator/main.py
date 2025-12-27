@@ -4,7 +4,7 @@ Orchestrates Generator, Reviewer, and Publisher agents.
 """
 
 import os, re
-from datetime import datetime
+from datetime import datetime, timedelta
 from pathlib import Path
 from typing import TypedDict, Literal
 from langgraph.graph import StateGraph, END
@@ -90,7 +90,7 @@ def publisher_node(state: AgentState):
     path = OUTPUT_CONTENT_DIR / folder / filename
     path.parent.mkdir(parents=True, exist_ok=True)
     
-    frontmatter = f"+++\ntitle = '{title}'\ndate = {datetime.now().isoformat()}\ndraft = false\ntags = {tags}\ndescription = '{desc}'\n+++\n\n"
+    frontmatter = f"+++\ntitle = '{title}'\ndate = {(datetime.now() - timedelta(days=1)).isoformat()}\ndraft = false\ntags = {tags}\ndescription = '{desc}'\n+++\n\n"
     with open(path, 'w') as f: f.write(frontmatter + state['content'])
     
     print(f"✅ Published: {path}")

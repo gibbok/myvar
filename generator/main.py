@@ -76,7 +76,9 @@ def publisher_node(state: AgentState):
     res = ensure_str(llm.invoke(prompt).content)
     
     # Simple extraction
-    title = (re.search(r'TITLE:\s*(.*)', res, re.I).group(1).strip() if 'TITLE:' in res else state['title'])[:100]
+    title_raw = re.search(r'TITLE:\s*(.*)', res, re.I).group(1).strip() if 'TITLE:' in res else state['title']
+    title = re.split(r'\s*[|]\s*|TOPIC:|TAGS:', title_raw, flags=re.I)[0].strip()[:100]
+    
     topic = re.search(r'TOPIC:\s*(.*)', res, re.I).group(1).strip() if 'TOPIC:' in res else "content"
     raw_tags = re.search(r'TAGS:\s*(.*)', res, re.I).group(1).strip().split(',') if 'TAGS:' in res else ['tech']
     tags = [t.strip().replace(' ', '-') for t in raw_tags][:3]

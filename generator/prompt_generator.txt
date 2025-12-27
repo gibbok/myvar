@@ -1,0 +1,4 @@
+Synthesize this content into a professional technical article with Markdown:
+{content}
+Feedback to address: {feedback}
+Requirements: Key insights, clear headings, professional tone.

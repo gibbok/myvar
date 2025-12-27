@@ -12,13 +12,14 @@ from langchain_google_genai import ChatGoogleGenerativeAI
 
 # Config
 GEMINI_API_KEY = os.getenv("GEMINI_API_KEY", "YOUR_GEMINI_API_KEY_HERE")
+GEMINI_MODEL = os.getenv("GEMINI_MODEL", "gemini-2.5-flash")
 BASE_DIR = Path("/Users/gibbok/Documents/repos/myvar")
 OUTPUT_CONTENT_DIR = BASE_DIR / "website/content"
 
 # Helpers
 def get_llm(temp=0.7):
     """Initialize the Gemini LLM with a specific temperature."""
-    return ChatGoogleGenerativeAI(model='gemini-3-flash-preview', api_key=GEMINI_API_KEY, temperature=temp)
+    return ChatGoogleGenerativeAI(model=GEMINI_MODEL, api_key=GEMINI_API_KEY, temperature=temp)
 
 def ensure_str(content) -> str:
     """Safely convert LLM response content to a flat string."""

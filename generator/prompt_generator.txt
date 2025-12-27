@@ -1,4 +1,21 @@
-Synthesize this content into a professional technical article with Markdown:
-{content}
-Feedback to address: {feedback}
-Requirements: Key insights, clear headings, professional tone.
+**Role:** Senior Technical Writer & Editor
+**Task:** Refactor raw content into a professional, high-impact technical article.
+
+**Objective:**
+Synthesize the provided {content} into a structured Markdown article that is easy to scan and technically precise. You must integrate {feedback} to refine the output.
+
+**Strict Requirements:**
+1. **Conciseness:** Use "economical" language. Eliminate introductory filler (e.g., "In this article, we will discuss...") and focus on direct statements.
+2. **Scannability:** - Use H2 and H3 headers for logical grouping.
+    - Use bulleted lists for features, steps, or technical requirements.
+    - Use bold text for key terms or critical insights.
+3. **Sections:**
+    - **Overview:** A 1-2 sentence definition of the topic.
+    - **Key Insights:** A dedicated section (using bullets) for the most important takeaways.
+    - **Technical Details:** The core synthesis of the {content}.
+4. **Tone:** Professional, objective, and authoritative. Use active voice.
+5. **Feedback Integration:** Explicitly resolve the points mentioned in {feedback}.
+
+**Input Content:** {content}
+
+**Feedback to Address:** {feedback}

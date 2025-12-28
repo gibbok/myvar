@@ -1,9 +1,9 @@
 +++
-title = "Effective Management of React's `useEffect` Hook for Robust and Maintainable Code"
+title = "Effective Management of React's useEffect Hook for Robust and Maintainable Code"
 date = 2025-12-27T10:28:30.461911
 draft = false
 tags = ['React-hooks', 'reactjs']
-description = 'Master `useEffect` in React: learn to minimize usage, apply SRP, leverage custom hooks, and manage dependencies for better code.'
+description = 'Master useEffect in React: learn to minimize usage, apply SRP, leverage custom hooks, and manage dependencies for better code.'
 +++
 
 ## Overview
@@ -12,7 +12,7 @@ React's `useEffect` hook enables imperative side effects within functional compo
 
 ## Key Insights
 
-- **Minimize `useEffect` usage:** Opt for alternatives like **`useMemo`**, direct computations, or dedicated data fetching libraries when possible.
+- **Minimize useEffect usage:** Opt for alternatives like **`useMemo`**, direct computations, or dedicated data fetching libraries when possible.
 - **Adhere to Single Responsibility Principle (SRP):** Each `useEffect` should perform one distinct task to prevent unexpected behavior and improve clarity.
 - **Utilize Custom Hooks:** Encapsulate related logic, enhance reusability, improve naming, and simplify testing by abstracting `useEffect` calls into custom hooks.
 - **Name Effect Functions:** Assigning descriptive names to `useEffect` callback functions improves readability, even for single-use effects.
@@ -149,11 +149,7 @@ Always provide an honest and complete **dependency array** to `useEffect`. React
     const payload = usePayload();
     React.useEffect(() => {
       if (payload === null) {
-        performSomeSideEffectThatInitializesPayload(
-          value1,
-          value2,
-          /* ... */ valueN
-        );
+        performSomeSideEffectThatInitializesPayload(value1, value2, ...valueN);
       }
     }); // No dependency array
   };

@@ -20,6 +20,7 @@ GEMINI_MODEL = os.getenv("GEMINI_MODEL", "gemini-2.5-flash")
 BASE_DIR = Path(__file__).parent.parent.absolute()
 OUTPUT_CONTENT_DIR = BASE_DIR / "website/content"
 INPUT_CONTENT_DRAFT= BASE_DIR / "generator/drafts/content.md"
+DEBUG_MODE = os.getenv("DEBUG_MODE", "false").lower() == "true"
 
 # Helpers
 def get_llm(temp=0.7):
@@ -65,8 +66,9 @@ def generator_node(state: AgentState):
     if state['count'] == 1:
         state['title'] = res.strip().split('\n')[0].replace('#', '').strip()[:100]
     
-    print("--- State after Generator ---")
-    pprint.pprint(state)
+    if DEBUG_MODE:
+        print("--- State after Generator ---")
+        pprint.pprint(state)
     return state
 
 def reviewer_node(state: AgentState):
@@ -86,8 +88,9 @@ def reviewer_node(state: AgentState):
     state.update({"approved": decision == 'APPROVE', "feedback": feedback})
     if not state['approved']: state['count'] += 1
     
-    print("--- State after Reviewer ---")
-    pprint.pprint(state)
+    if DEBUG_MODE:
+        print("--- State after Reviewer ---")
+        pprint.pprint(state)
     return state
 
 def publisher_node(state: AgentState):
@@ -116,8 +119,9 @@ def publisher_node(state: AgentState):
     with open(path, 'w') as f: f.write(frontmatter + state['content'])
     
     print(f"✅ Published: {path}")
-    print("--- State after Publisher ---")
-    pprint.pprint(state)
+    if DEBUG_MODE:
+        print("--- State after Publisher ---")
+        pprint.pprint(state)
     return state
 
 def main():

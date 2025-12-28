@@ -1,6 +1,14 @@
 # myvar-dev
 
-myvar.dev
+myvar.dev website
+
+## Development
+
+Run the development server with drafts enabled:
+
+```bash
+make start
+```
 
 ## Setup
 

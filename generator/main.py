@@ -9,16 +9,23 @@ from pathlib import Path
 from typing import TypedDict, Literal
 from langgraph.graph import StateGraph, END
 from langchain_google_genai import ChatGoogleGenerativeAI
+from dotenv import load_dotenv
+import pprint
+
+load_dotenv()
 
 # Config
 GEMINI_API_KEY = os.getenv("GEMINI_API_KEY", "YOUR_GEMINI_API_KEY_HERE")
-BASE_DIR = Path("/Users/gibbok/Documents/repos/myvar")
+GEMINI_MODEL = os.getenv("GEMINI_MODEL", "gemini-2.5-flash")
+BASE_DIR = Path(__file__).parent.parent.absolute()
 OUTPUT_CONTENT_DIR = BASE_DIR / "website/content"
+INPUT_CONTENT_DRAFT= BASE_DIR / "generator/drafts/content.md"
+DEBUG_MODE = os.getenv("DEBUG_MODE", "false").lower() == "true"
 
 # Helpers
 def get_llm(temp=0.7):
     """Initialize the Gemini LLM with a specific temperature."""
-    return ChatGoogleGenerativeAI(model='gemini-3-flash-preview', api_key=GEMINI_API_KEY, temperature=temp)
+    return ChatGoogleGenerativeAI(model=GEMINI_MODEL, api_key=GEMINI_API_KEY, temperature=temp)
 
 def ensure_str(content) -> str:
     """Safely convert LLM response content to a flat string."""
@@ -58,6 +65,10 @@ def generator_node(state: AgentState):
     state['content'] = res
     if state['count'] == 1:
         state['title'] = res.strip().split('\n')[0].replace('#', '').strip()[:100]
+    
+    if DEBUG_MODE:
+        print("--- State after Generator ---")
+        pprint.pprint(state)
     return state
 
 def reviewer_node(state: AgentState):
@@ -68,13 +79,22 @@ def reviewer_node(state: AgentState):
     prompt = read_prompt("reviewer").format(content=state['content'])
     
     res = ensure_str(llm.invoke(prompt).content)
-    decision = 'APPROVE' if 'DECISION: APPROVE' in res.upper() else 'REVISE'
-    feedback = res.split('FEEDBACK:')[-1].strip() if 'FEEDBACK:' in res else ""
+    
+    decision_match = re.search(r'DECISION:\s*(APPROVE|REVISE)', res, re.I)
+    decision = decision_match.group(1).upper() if decision_match else ('APPROVE' if 'APPROVE' in res.upper() else 'REVISE')
+    
+    feedback_match = re.search(r'FEEDBACK:\s*(.*)', res, re.I | re.S)
+    feedback = feedback_match.group(1).strip() if feedback_match else ""
+    print(f"💬 Feedback: {feedback}")
     
     if state['count'] >= 4: decision = 'APPROVE' # Force exit to prevent hanging/loops
     
     state.update({"approved": decision == 'APPROVE', "feedback": feedback})
     if not state['approved']: state['count'] += 1
+    
+    if DEBUG_MODE:
+        print("--- State after Reviewer ---")
+        pprint.pprint(state)
     return state
 
 def publisher_node(state: AgentState):
@@ -103,11 +123,14 @@ def publisher_node(state: AgentState):
     with open(path, 'w') as f: f.write(frontmatter + state['content'])
     
     print(f"✅ Published: {path}")
+    if DEBUG_MODE:
+        print("--- State after Publisher ---")
+        pprint.pprint(state)
     return state
 
 def main():
     """Builds and executes the LangGraph workflow."""
-    input_path = BASE_DIR / "generator/drafts/content.md"
+    input_path = INPUT_CONTENT_DRAFT
     if not input_path.exists():
         print(f"Error: {input_path} not found.")
         return

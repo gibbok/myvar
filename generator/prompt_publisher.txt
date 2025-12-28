@@ -5,5 +5,4 @@ STRICT LIMITS:
 - TOPIC: One SEO keyword. 
 - TAGS: Max 3, short, use hyphens for spaces.
 
-Format: TITLE: ... | TOPIC: ... | TAGS: ... | DESC: ...
 {content}

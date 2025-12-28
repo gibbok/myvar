@@ -6,8 +6,6 @@ tags = ['GLSL', 'WebGL', 'GPU-graphics']
 description = 'Understand GLSL for web graphics. Learn about GPU-executed Vertex and Fragment shaders for advanced visual effects, complementing WebGL.'
 +++
 
-## Understanding GLSL Shaders for Web Graphics
-
 ### Overview
 
 GLSL (OpenGL Shading Language) is a C-like, strongly-typed language executed directly by the GPU's graphics pipeline. It enables advanced visual effects and computations in web-based 3D graphics, complementing JavaScript rendering APIs like WebGL.

@@ -76,16 +76,30 @@ def reviewer_node(state: AgentState):
     print(f"🔍 Reviewer - Iteration {state['count']}")
     llm = get_llm(0.1)
     
-    prompt = read_prompt("reviewer").format(content=state['content'])
+    prompt = read_prompt("reviewer").format(
+        content=state['content'],
+        feedback=state['feedback'] if state['feedback'] else 'None (First run)'
+    )
     
     res = ensure_str(llm.invoke(prompt).content)
+    
+    # Robust parsing
     decision = 'APPROVE' if 'DECISION: APPROVE' in res.upper() else 'REVISE'
     feedback = res.split('FEEDBACK:')[-1].strip() if 'FEEDBACK:' in res else ""
+    # Extract the refined content (everything before DECISION:)
+    refined_content = res.split('DECISION:')[0].strip()
+    
+    print(f"💬 Decision: {decision}")
     print(f"💬 Feedback: {feedback}")
     
     if state['count'] >= 4: decision = 'APPROVE' # Force exit to prevent hanging/loops
     
-    state.update({"approved": decision == 'APPROVE', "feedback": feedback})
+    state.update({
+        "approved": decision == 'APPROVE', 
+        "feedback": feedback,
+        "content": refined_content if refined_content else state['content']
+    })
+    
     if not state['approved']: state['count'] += 1
     
     if DEBUG_MODE:

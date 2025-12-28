@@ -6,7 +6,7 @@ tags = ['web-standards', 'whatwg', 'html5']
 description = 'An analysis of HTML5’s transition from a static recommendation to the WHATWG Living Standard.'
 +++
 
-## Executive Summary
+## Overview
 
 HTML5 (Hypertext Markup Language 5) represents a pivotal shift in the architecture of the World Wide Web. Initially conceived to modernize web content delivery, it has evolved from a static W3C recommendation into a dynamic "Living Standard" maintained by the Web Hypertext Application Technology Working Group (WHATWG). This article explores the origins, strategic objectives, and technical advancements that define HTML5 as the backbone of contemporary web applications.
 

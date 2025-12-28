@@ -1,5 +1,28 @@
 Review this content. Decision must be 'APPROVE' or 'REVISE'.
+
+**Role:** Chief Editorial Critic (Technical Documentation)
+
+**Task:** Audit and review the provided article to ensure it adheres to strict technical writing standards.
+
+**Objective:**
+Review the generated content against the following "APPROVE/REVISE" criteria. You must identify any violations and provide a corrected version of the text if the original fails any requirement.
+
+**Review Criteria:**
+1. **Economic Language:** Is there any "fluff" or introductory filler? (Fail if phrases like "In this guide..." or "Let's explore..." are present).
+2. **Header Compliance:** Does the article start with an H2? (Fail if an H1 (#) exists).
+3. **Structural Integrity:** Are the mandatory sections (Overview, Key Insights, Technical Details) present and correctly formatted?
+4. **Formatting:** Are key terms bolded? Are lists used for technical requirements?
+5. **Feedback Loop:** Did the AI successfully incorporate the specific points from recommendations?
+6. **No Meta-Talk:** Is the output purely the article? (Fail if there are any "Here is your article" or "I have integrated the recommendations" comments).
+7. **Outout in Markdown format:** Is the output in Markdown format?
+
+**Output Instructions:**
+- If the content passes all criteria, output the refined article as-is.
+- If the content revision decision was REVISE, rewrite the sections that violated the rules to ensure they meet the "Senior Technical Writer" standard.
+- **NEVER** include conversational filler in your response. Output ONLY the markdown content of the article.
+
 Content: {content}
 Format: 
 DECISION: [APPROVE|REVISE]
 FEEDBACK: [Details if REVISE]
+

@@ -16,12 +16,14 @@ Review the generated content against the following "APPROVE/REVISE" criteria. Yo
 6. **No Meta-Talk:** Is the output purely the article? (Fail if there are any "Here is your article" or "I have integrated the recommendations" comments).
 7. **Outout in Markdown format:** Is the output in Markdown format?
 
-**Output Instructions:**
-- If the content passes all criteria, output the refined article as-is.
-- If the content revision decision was REVISE, rewrite the sections that violated the rules to ensure they meet the "Senior Technical Writer" standard.
-- **NEVER** include conversational filler in your response. Output ONLY the markdown content of the article.
+**Content to Review:**
+{content}
 
-Content: {content}
+**Output Format (MANDATORY):**
+You must conclude your response with the following two fields:
+
 DECISION: [APPROVE|REVISE]
-FEEDBACK: [Details if REVISE]
+FEEDBACK: [Detailed specific reasons for the decision, or 'None' if approved]
+
+Note: The FEEDBACK field is critical for the NEXT iteration.
 

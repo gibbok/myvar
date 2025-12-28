@@ -79,8 +79,12 @@ def reviewer_node(state: AgentState):
     prompt = read_prompt("reviewer").format(content=state['content'])
     
     res = ensure_str(llm.invoke(prompt).content)
-    decision = 'APPROVE' if 'DECISION: APPROVE' in res.upper() else 'REVISE'
-    feedback = res.split('FEEDBACK:')[-1].strip() if 'FEEDBACK:' in res else ""
+    
+    decision_match = re.search(r'DECISION:\s*(APPROVE|REVISE)', res, re.I)
+    decision = decision_match.group(1).upper() if decision_match else ('APPROVE' if 'APPROVE' in res.upper() else 'REVISE')
+    
+    feedback_match = re.search(r'FEEDBACK:\s*(.*)', res, re.I | re.S)
+    feedback = feedback_match.group(1).strip() if feedback_match else ""
     print(f"💬 Feedback: {feedback}")
     
     if state['count'] >= 4: decision = 'APPROVE' # Force exit to prevent hanging/loops

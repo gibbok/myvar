@@ -113,10 +113,10 @@ import { act, renderHook } from "@testing-library/react-hooks";
 describe("useTitle", () => {
   test("sets the document title", () => {
     const { result } = renderHook(() => useTitle("hello"));
-    expect(document.title).toEqual("hello");
+    expect(document.title).toBe("hello");
 
     act(() => result.current("world"));
-    expect(document.title).toEqual("world");
+    expect(document.title).toBe("world");
   });
 });
 ```

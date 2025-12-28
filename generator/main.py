@@ -10,6 +10,7 @@ from typing import TypedDict, Literal
 from langgraph.graph import StateGraph, END
 from langchain_google_genai import ChatGoogleGenerativeAI
 from dotenv import load_dotenv
+import pprint
 
 load_dotenv()
 
@@ -63,6 +64,9 @@ def generator_node(state: AgentState):
     state['content'] = res
     if state['count'] == 1:
         state['title'] = res.strip().split('\n')[0].replace('#', '').strip()[:100]
+    
+    print("--- State after Generator ---")
+    pprint.pprint(state)
     return state
 
 def reviewer_node(state: AgentState):
@@ -81,6 +85,9 @@ def reviewer_node(state: AgentState):
     
     state.update({"approved": decision == 'APPROVE', "feedback": feedback})
     if not state['approved']: state['count'] += 1
+    
+    print("--- State after Reviewer ---")
+    pprint.pprint(state)
     return state
 
 def publisher_node(state: AgentState):
@@ -109,6 +116,8 @@ def publisher_node(state: AgentState):
     with open(path, 'w') as f: f.write(frontmatter + state['content'])
     
     print(f"✅ Published: {path}")
+    print("--- State after Publisher ---")
+    pprint.pprint(state)
     return state
 
 def main():

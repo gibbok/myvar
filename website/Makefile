@@ -1,3 +1,3 @@
 .PHONY: start
 start:
-	uv run main.py
+	hugo server -D

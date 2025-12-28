@@ -1,5 +1,5 @@
 +++
-title = 'Effective Management of React's `useEffect` Hook for Robust and Maintainable Code'
+title = "Effective Management of React's `useEffect` Hook for Robust and Maintainable Code"
 date = 2025-12-27T10:28:30.461911
 draft = false
 tags = ['React-hooks', 'reactjs']
@@ -65,61 +65,61 @@ Abstracting `useEffect` calls into **custom hooks** offers numerous benefits bey
 
 - **Enhanced Naming:** **Custom hooks** allow descriptive naming, clarifying purpose and acting as self-documenting code. TypeScript interfaces further define their behavior and expected inputs.
 
-  ```javascript
-  const useTitleSync = (title: string) => {
-    React.useEffect(() => {
-      document.title = title;
-    }, [title]);
-  };
+```javascript
+const useTitleSync = (title: string) => {
+  React.useEffect(() => {
+    document.title = title;
+  }, [title]);
+};
 
-  const useTrackVisit = () => {
-    React.useEffect(() => {
-      trackPageVisit();
-    }, []);
-  };
-  ```
+const useTrackVisit = () => {
+  React.useEffect(() => {
+    trackPageVisit();
+  }, []);
+};
+```
 
 - **Logic Encapsulation:** **Custom hooks** encapsulate related state and effects, centralizing logic. This reduces component complexity and exposes a minimal, focused interface.
 
-  ```javascript
-  // Encapsulating state and effect for title management
-  const useTitle = (initialTitle: string) => {
-    const [title, setTitle] = React.useState(initialTitle)
+```javascript
+// Encapsulating state and effect for title management
+const useTitle = (initialTitle: string) => {
+  const [title, setTitle] = React.useState(initialTitle)
 
-    React.useEffect(() => {
-      document.title = title
-    }, [title])
+  React.useEffect(() => {
+    document.title = title
+  }, [title])
 
-    return [title, setTitle] as const
-  }
+  return [title, setTitle] as const
+}
 
-  // Further encapsulation, exposing only the setter if title value is only for the document title
-  const useTitleSetter = (initialTitle: string) => {
-    const [title, setTitle] = React.useState(initialTitle)
+// Further encapsulation, exposing only the setter if title value is only for the document title
+const useTitleSetter = (initialTitle: string) => {
+  const [title, setTitle] = React.useState(initialTitle)
 
-    React.useEffect(() => {
-      document.title = title
-    }, [title])
+  React.useEffect(() => {
+    document.title = title
+  }, [title])
 
-    return setTitle
-  }
-  ```
+  return setTitle
+}
+```
 
 - **Isolated Testing:** **Custom hooks** enable isolated testing of side effect logic, independent of consuming components. This simplifies testing efforts, focusing solely on the hook's behavior.
 
-  ```javascript
-  import { act, renderHook } from "@testing-library/react-hooks";
+```javascript
+import { act, renderHook } from "@testing-library/react-hooks";
 
-  describe("useTitle", () => {
-    test("sets the document title", () => {
-      const { result } = renderHook(() => useTitle("hello"));
-      expect(document.title).toEqual("hello");
+describe("useTitle", () => {
+  test("sets the document title", () => {
+    const { result } = renderHook(() => useTitle("hello"));
+    expect(document.title).toEqual("hello");
 
-      act(() => result.current("world"));
-      expect(document.title).toEqual("world");
-    });
+    act(() => result.current("world"));
+    expect(document.title).toEqual("world");
   });
-  ```
+});
+```
 
 ### 4. Name Your Effects
 
@@ -159,4 +159,4 @@ Always provide an honest and complete **dependency array** to `useEffect`. React
   };
   ```
 
-  In this example, the effect runs on every render, but `performSomeSideEffectThatInitializesPayload` executes only when `payload` is `null`. Explicitly listing all `valueN` dependencies or relying on a single `[payload]` dependency might be less clear or problematic if `valueN` are not stable.
+In this example, the effect runs on every render, but `performSomeSideEffectThatInitializesPayload` executes only when `payload` is `null`. Explicitly listing all `valueN` dependencies or relying on a single `[payload]` dependency might be less clear or problematic if `valueN` are not stable.

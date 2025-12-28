@@ -23,7 +23,7 @@ Set your API key and model in the `.env` file.
 
 ### 3. Git Hook Configuration
 
-To prevent your local drafts from being committed to git, run the setup script:
+To prevent your local drafts from being committed to git, run the setup script situated in the root of the project:
 
 ```bash
 bash setup_hooks.sh

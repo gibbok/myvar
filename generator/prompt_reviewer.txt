@@ -22,7 +22,6 @@ Review the generated content against the following "APPROVE/REVISE" criteria. Yo
 - **NEVER** include conversational filler in your response. Output ONLY the markdown content of the article.
 
 Content: {content}
-Format: 
 DECISION: [APPROVE|REVISE]
 FEEDBACK: [Details if REVISE]
 

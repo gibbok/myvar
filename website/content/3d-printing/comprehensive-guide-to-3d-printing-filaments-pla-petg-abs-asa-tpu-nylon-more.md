@@ -1,5 +1,5 @@
 +++
-title = 'Comprehensive Guide to 3D Printing Filaments: PLA, PETG, ABS, ASA, TPU, Nylon & More'
+title = 'Comprehensive Guide to 3D Printing Filaments'
 date = 2026-01-14T20:24:49.250344
 draft = false
 tags = ['3D-filament', 'PLA', 'PETG', '3d-printing']

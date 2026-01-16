@@ -2,7 +2,7 @@
 title = 'HTML5 Game Engines: 2024-2025 Renaissance & Top Choices'
 date = 2025-12-27T09:08:43.425381
 draft = false
-tags = ['html5-games']
+tags = ['html5-games', 'web']
 description = 'Explore the HTML5 game engine renaissance in 2024-2025, driven by accessibility, performance, and key engines like Phaser, Babylon.js, and Godot.'
 +++
 

@@ -2,7 +2,7 @@
 title = 'A Technical Introduction to Additive Manufacturing: The 3D Printing Workflow'
 date = 2025-12-26T09:33:11.384706
 draft = false
-tags = ['additive-manufacturing', '3d-printing-workflow', 'prototyping']
+tags = ['additive-manufacturing', '3d-printing', 'prototyping']
 description = 'A technical guide to the additive manufacturing process, covering hardware selection between FDM and SLA, digital asset '
 +++
 

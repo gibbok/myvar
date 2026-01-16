@@ -3,7 +3,7 @@ title = 'Understanding HTTP, REST, and the OPTIONS Method'
 date = 2026-01-15T20:23:27.651625
 draft = false
 tags = ['HTTP', 'REST', 'OPTIONS', 'api']
-description = 'Understand HTTP, the web's communication protocol; REST, an architectural style for web services; and the OPTIONS method for querying server capabilities.'
+description = 'REST, an architectural style for web services; and the OPTIONS method for querying server capabilities.'
 +++
 
 ## Overview

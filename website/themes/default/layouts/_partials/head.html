@@ -3,6 +3,9 @@
 <link rel="canonical" href="{{ .Permalink }}" />
 <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
 <meta name="theme-color" content="#cb2a42" />
+{{ with .OutputFormats.Get "rss" -}}
+<link rel="alternate" type="application/rss+xml" title="{{ site.Title }}" href="{{ .Permalink }}" />
+{{ end -}}
 <title>{{ if .IsHome }}{{ site.Title }}{{ else }}{{ printf "%s | %s" .Title site.Title }}{{ end }}</title>
 {{- if .IsHome -}}
 <meta name="description" content="{{ site.Params.Description }}" />

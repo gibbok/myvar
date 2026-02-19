@@ -4,6 +4,9 @@ title = 'MyVar.dev'
 theme = 'default'
 enableRobotsTXT = true
 
+[outputs]
+  home = ['HTML', 'RSS']
+
 [menus]
   [[menus.main]]
     name = 'Home'

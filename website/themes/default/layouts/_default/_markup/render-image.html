@@ -1,0 +1,9 @@
+{{- $img := .Page.Resources.GetMatch .Destination -}}
+{{- if $img -}}
+  {{- $resized := $img.Resize "800x" -}}
+  <a href="{{ $img.RelPermalink }}" target="_blank">
+    <img src="{{ $resized.RelPermalink }}" alt="{{ .Text }}" class="content-img" loading="lazy" />
+  </a>
+{{- else -}}
+  <img src="{{ .Destination }}" alt="{{ .Text }}" class="content-img" loading="lazy" />
+{{- end -}}

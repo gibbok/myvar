@@ -305,3 +305,10 @@ code:not(pre code) {
   min-height: 1rem !important;
   flex-shrink: 0 !important;
 }
+
+.content-img {
+  max-width: 100%;
+  height: auto;
+  display: block;
+  cursor: pointer;
+}

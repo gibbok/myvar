@@ -6,8 +6,6 @@ tags = ['tech', 'ai', 'llm']
 description = 'Learn more about how LLMs use Transformer architecture and mathematical probabilities to predict the next word through efficient parallel processing.'
 +++
 
-## Understanding Large Language Models (LLMs)
-
 ### Overview
 
 Large Language Models (LLMs) are sophisticated mathematical functions designed to predict the next word in a sequence of text by assigning probabilities to all possible outcomes. These models are built upon the **Transformer architecture**, which enables parallel processing of entire text blocks for enhanced efficiency.

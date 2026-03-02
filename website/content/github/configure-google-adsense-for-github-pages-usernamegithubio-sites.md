@@ -3,7 +3,7 @@ title = 'Configure Google AdSense for GitHub Pages `username.github.io` sites'
 date = 2026-03-01T18:32:59.052998
 draft = false
 tags = ['AdSense', 'GitHub-Pages', 'ads.txt']
-description = 'Configure Google AdSense and verify `ads.txt` for GitHub Pages `username.github.io` sites without custom domains. Place `ads.txt` in root.'
+description = 'Configure Google AdSense and verify `ads.txt` for GitHub Pages `username.github.io` sites without custom domains.'
 +++
 
 ### Overview

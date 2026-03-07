@@ -63,6 +63,7 @@ jobs:
           echo "Go: $(go version)"
           echo "Hugo: $(hugo version)"
           echo "Node.js: $(node --version)"
+          echo "HOME: $(HOME)"
       - name: Install Node.js dependencies
         run: |
           [[ -f package-lock.json || -f npm-shrinkwrap.json ]] && npm ci || true

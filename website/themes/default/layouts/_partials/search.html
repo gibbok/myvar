@@ -9,14 +9,14 @@
   </div>
 </div>
 
-<link href="pagefind/pagefind-ui.css" rel="stylesheet" />
-<script src="pagefind/pagefind-ui.js"></script>
+<link href="/myvar/pagefind/pagefind-ui.css" rel="stylesheet" />
+<script src="/myvar/pagefind/pagefind-ui.js"></script>
 {{- with resources.Get "js/search.js" }}
-  {{- if hugo.IsDevelopment }}
-    <script src="{{ .RelPermalink }}"></script>
-  {{- else }}
-    {{- with . | minify | fingerprint }}
-      <script src="{{ .RelPermalink }}"></script>
-    {{- end }}
-  {{- end }}
+{{- if hugo.IsDevelopment }}
+<script src="{{ .RelPermalink }}"></script>
+{{- else }}
+{{- with . | minify | fingerprint }}
+<script src="{{ .RelPermalink }}"></script>
+{{- end }}
+{{- end }}
 {{- end }}

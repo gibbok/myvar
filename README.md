@@ -1,4 +1,4 @@
-# Myvar.dev 
+# Myvar Website
 
 A note-keeping website that transforms brief notes into polished articles using AI agents.
 

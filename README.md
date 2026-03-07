@@ -2,6 +2,8 @@
 
 A note-keeping website that transforms brief notes into polished articles using AI agents.
 
+<https://gibbok.github.io/myvar/>
+
 ## What it does
 
 Send draft notes to the system, and AI agents automatically generate, review, and publish website articles.

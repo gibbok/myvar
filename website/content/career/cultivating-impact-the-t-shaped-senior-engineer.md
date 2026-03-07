@@ -3,7 +3,7 @@ title = 'Cultivating Impact: The T-Shaped Senior Engineer'
 date = 2026-03-06T21:54:28.272558
 draft = false
 tags = ['T-shaped-engineer', 'Senior-engineer', 'Software-leadership']
-description = 'Senior engineers master technical depth and breadth, evolving into 'T-shaped' professionals to multiply team impact through strategic expertise and leadership.'
+description = 'Senior engineers master technical depth and breadth, evolving into T-shaped professionals to multiply team impact through strategic expertise and leadership.'
 +++
 
 ## Cultivating Impact: The T-Shaped Senior Engineer

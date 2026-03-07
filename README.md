@@ -10,7 +10,7 @@ Send draft notes to the system, and AI agents automatically generate, review, an
 
 ## Tech Stack
 
-- **CMS**: JAMstack architecture with Hugo hosted on GitHub Pages
+- **Architecture**: JAMstack with Hugo hosted on GitHub Pages
 - **AI Orchestration**: LangGraph with Google Gemini LLM
 - **Search**: Pagefind - fully static search library
 - **Agents**:

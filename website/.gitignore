@@ -3,6 +3,7 @@
 
 # Hugo
 public/
+resources/_gen/
 static/pagefind/
 
 # Images - exclude all except og-default.png

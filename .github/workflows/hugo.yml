@@ -2,7 +2,7 @@ name: Build and deploy
 on:
   push:
     branches:
-      - main 
+      - main
   workflow_dispatch:
 permissions:
   contents: read
@@ -77,6 +77,10 @@ jobs:
           key: hugo-${{ github.run_id }}
           restore-keys:
             hugo-
+      - name: Generate OG images
+        run: |
+          cd website
+          go run cmd/generate-og-images/main.go
       - name: Build the site
         run: |
           cd website
@@ -85,6 +89,10 @@ jobs:
             --minify \
             --baseURL "${{ steps.pages.outputs.base_url }}/" \
             --cacheDir "${{ runner.temp }}/hugo_cache"
+      - name: Generate search index
+        run: |
+          cd website
+          npx pagefind --site public --output-path public/pagefind
       - name: Cache save
         id: cache-save
         uses: actions/cache/save@v5

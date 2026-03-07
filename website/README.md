@@ -1,6 +1,6 @@
 # myvar-dev
 
-myvar.dev website
+myvar.dev website.
 
 ## Development
 

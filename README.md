@@ -20,7 +20,7 @@ Send draft notes to the system, and AI agents automatically generate, review, an
 
 ## How it works
 
-1. Write brief notes in `generator/drafts/content.md`
+1. Write any notes in `generator/drafts/content.md`
 2. Run the generator: `cd generator && make start`
 3. Agents collaborate to refine and publish the article
 4. Output appears in `website/content/` ready for Hugo to build

@@ -16,8 +16,7 @@ concurrency:
 
 defaults:
   run:
-    shell: bash                   # ← No working-directory here anymore
-
+    shell: bash
 jobs:
   build:
     runs-on: ubuntu-latest
@@ -41,7 +40,6 @@ jobs:
         working-directory: web    # ← Set here, after checkout
         run: "[[ -f package-lock.json || -f npm-shrinkwrap.json ]] && npm ci || true"
       - name: Build with Hugo
-        working-directory: web    # ← Set here, after checkout
         env:
           HUGO_CACHEDIR: ${{ runner.temp }}/hugo_cache
           HUGO_ENVIRONMENT: production

@@ -17,7 +17,7 @@ concurrency:
 defaults:
   run:
     shell: bash
-    working-directory: web        # ← All run steps now default to ./web
+    working-directory: web
 
 jobs:
   build:
@@ -51,7 +51,7 @@ jobs:
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
         with:
-          path: ./web/public        # ← Points to web/public
+          path: ./web/public
 
   deploy:
     environment:

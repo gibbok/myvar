@@ -2,7 +2,7 @@ name: Build and deploy
 on:
   push:
     branches:
-      - fix-search 
+      - main
   workflow_dispatch:
 permissions:
   contents: read

@@ -2,6 +2,7 @@
 
 A note-keeping website that transforms brief notes into polished articles using AI agents.
 
+I use this project to create content about technologies and software engineering for my website.\
 <https://gibbok.github.io/myvar/>
 
 ## What it does

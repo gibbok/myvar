@@ -62,3 +62,4 @@ The site will be automatically deployed to GitHub Pages when the PR is merged
 - `GEMINI_API_KEY`: Your Google Gemini API key
 - `GEMINI_MODEL`: Model to use (default: gemini-2.5-flash)
 - `DEBUG_MODE`: Enable debug output (default: false)
+

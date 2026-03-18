@@ -9,7 +9,7 @@ Synthesize the provided {content} into a structured Markdown article that is eas
 2. **Scannability:** - Use H2 and H3 headers for logical grouping.
     - Use bulleted lists for features, steps, or technical requirements.
     - Use bold text for key terms or critical insights.
-3. **Header Hierarchy:** NEVER introduce an H1 header (#). The content must ALWAYS start with an H2 header (##) when a header is necessary.
+3. **Header Hierarchy:** NEVER introduce an H1 header (#). NEVER EVER use an H2 header (##) that duplicates or repeats the article title. The title is already rendered as an H1 tag by the website, so the content body must start directly with the Overview section or other H2 sections, but NEVER with a title-like H2 header.
 4. **Sections:**
     - **Overview:** A 1-2 sentence definition of the topic.
     - **Key Insights:** A dedicated section (using bullets) for the most important takeaways.

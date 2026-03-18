@@ -6,8 +6,6 @@ tags = ['NemoClaw', 'AI-security', 'OpenClaw']
 description = 'NVIDIA NemoClaw is an open-source software stack for making autonomous AI agents safe, secure, and enterprise-ready, enhancing OpenClaw.'
 +++
 
-## NVIDIA NemoClaw: Securing and Managing Autonomous AI Agents
-
 ### Overview
 
 NVIDIA NemoClaw, announced at GTC 2026, is an open-source software stack. It makes autonomous AI agents—referred to as "claws"—safe, secure, and enterprise-ready by providing a management and security layer for the OpenClaw framework.

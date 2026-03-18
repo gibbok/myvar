@@ -6,8 +6,6 @@ tags = ['sandbox-exec', 'macOS-security', 'command-line']
 description = 'A built-in macOS command-line utility for executing applications within a secure, isolated sandboxed environment, restricting resource access.'
 +++
 
-## macOS's Command-Line Sandboxing Tool: `sandbox-exec`
-
 ### Overview
 
 `sandbox-exec` is a built-in macOS command-line utility that enables users to execute applications within a secure, isolated sandboxed environment. It restricts an application's access to system resources to only what is explicitly permitted, minimizing potential damage from malicious code or unintended behavior.

@@ -1,5 +1,5 @@
 +++
-title = '** macOS's Command-Line Sandboxing Tool: `sandbox-exec`'
+title = "macOS's Command-Line Sandboxing Tool: sandbox-exec"
 date = 2026-03-17T20:42:51.038039
 draft = false
 tags = ['sandbox-exec', 'macOS-security', 'command-line']

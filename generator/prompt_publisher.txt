@@ -1,8 +1,8 @@
 Extract metadata from the following content. 
 STRICT LIMITS:
-- TITLE: Max 100 characters. 
-- DESC: Max 120 characters. 
-- TOPIC: One SEO keyword. 
-- TAGS: Max 3, short, use hyphens for spaces.
+- TITLE: Max 100 characters. NEVER use special characters like quotes, apostrophes, colons, or any punctuation that could cause parsing issues. Use only alphanumeric characters, spaces, and hyphens.
+- DESC: Max 120 characters. NEVER use special characters like quotes, apostrophes, colons, or any punctuation that could cause parsing issues. Use only alphanumeric characters, spaces, hyphens, and periods.
+- TOPIC: One SEO keyword. NEVER use special characters like quotes, apostrophes, colons, or any punctuation that could cause parsing issues. Use only alphanumeric characters, spaces, hyphens, and periods.
+- TAGS: Max 3, short, use hyphens for spaces. NEVER use special characters like quotes, apostrophes, colons, or any punctuation that could cause parsing issues. Use only alphanumeric characters, spaces, hyphens, and periods.
 
 {content}

@@ -114,7 +114,7 @@ def publisher_node(state: AgentState):
     tags = [t.strip().replace(' ', '-') for t in tags_clean.split(',') if t.strip()][:3]
     desc = re.search(r'DESC:\s*(.*)', res, re.I).group(1).strip() if 'DESC:' in res else "No description."
     
-    folder = slugify(topic.split()[0]) or "content"
+    folder = slugify(topic) or "content"
     filename = slugify(title)[:80] + ".md"
     path = OUTPUT_CONTENT_DIR / folder / filename
     path.parent.mkdir(parents=True, exist_ok=True)

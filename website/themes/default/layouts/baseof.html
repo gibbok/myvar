@@ -1,10 +1,12 @@
 <!DOCTYPE html>
 <html lang="{{ site.Language.LanguageCode }}" dir="{{ or site.Language.LanguageDirection `ltr` }}">
+
 <head>
   {{ partial "head.html" . }}
   {{ partial "typography.html" . }}
   {{ partial "opengraph.html" . }}
 </head>
+
 <body>
   <header class="header">
     {{ partial "header.html" . }}
@@ -16,5 +18,8 @@
     {{ partial "footer.html" . }}
   </footer>
   {{ partial "search.html" . }}
+  <script defer src='https://static.cloudflareinsights.com/beacon.min.js'
+    data-cf-beacon='{"token": "2f440f08611242ab95667338c1ad0ac9"}'></script>
 </body>
+
 </html>

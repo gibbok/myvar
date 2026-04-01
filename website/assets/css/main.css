@@ -312,3 +312,28 @@ code:not(pre code) {
   display: block;
   cursor: pointer;
 }
+
+.pagination {
+  display: flex;
+  gap: 0.5rem;
+  align-items: center;
+  margin: 2rem 0;
+}
+
+.pagination a,
+.pagination .current {
+  padding: 0.5rem 0.75rem;
+  border: 0.0625rem solid hsl(220, 13%, 91%);
+  border-radius: 0.25rem;
+}
+
+.pagination .current {
+  background-color: hsl(351, 66%, 48%);
+  color: white;
+  font-weight: 600;
+}
+
+.pagination a:hover {
+  background-color: hsl(120, 20%, 96%);
+  text-decoration: none;
+}

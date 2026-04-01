@@ -4,6 +4,9 @@ title = 'MyVar.dev'
 theme = 'default'
 enableRobotsTXT = true
 
+[pagination]
+  pagerSize = 20
+
 [outputs]
   home = ['HTML', 'RSS']
 

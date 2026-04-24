@@ -1,4 +1,4 @@
-baseURL = 'https://myvar.dev/'
+baseURL = 'https://gibbok.github.io/myvar/'
 languageCode = 'en-US'
 title = 'MyVar.dev'
 theme = 'default'

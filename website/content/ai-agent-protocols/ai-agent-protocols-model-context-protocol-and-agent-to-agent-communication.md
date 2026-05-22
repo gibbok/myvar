@@ -2,8 +2,8 @@
 title = 'AI Agent Protocols Model Context Protocol and Agent to Agent Communication'
 date = 2026-05-21T18:55:48.473506
 draft = false
-tags = ['AI-agents', 'MCP', 'A2A', 'Model Context Protocol', 'Agent-to-Agent]
-description = 'Model Context Protocol enables single AI agents to use external tools. Agent to Agent communication facilitates multi agent collaboration. They are complementary.'
+tags = ['AI-agents', 'MCP', 'A2A', 'Model Context Protocol', 'Agent-to-Agent']
+description = 'Model Context Protocol enables single AI agents to use external tools and Agent to Agent communication facilitates multi agent collaboration. They are complementary.'
 +++
 
 ## Overview

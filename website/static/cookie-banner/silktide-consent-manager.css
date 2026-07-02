@@ -14,6 +14,7 @@
               --boxShadow: -5px 5px 10px 0px #00000012, 0px 0px 50px 0px #0000001a;
               --fontFamily: Helvetica Neue, Segoe UI, Arial, sans-serif;
               --primaryColor: #533BE2;
+              --accentColor: hsl(351, 66%, 48%);
               --backgroundColor: #FFFFFF;
               --textColor: #4B494B;
               --backdropBackgroundColor: #00000033;
@@ -51,7 +52,7 @@
 #silktide-wrapper a {
   all: unset;
   display: inline-block;
-  color: hsl(351, 66%, 48%);
+  color: var(--accentColor);
   text-decoration: underline;
 }
 
@@ -82,8 +83,8 @@
 
 #silktide-wrapper .st-button {
   color: var(--backgroundColor);
-  background-color: hsl(351, 66%, 48%);
-  border: 2px solid hsl(351, 66%, 48%);
+  background-color: var(--accentColor);
+  border: 2px solid var(--accentColor);
   padding: 10px 20px;
   text-decoration: none;
   text-align: center;
@@ -99,7 +100,7 @@
 
 #silktide-wrapper .st-button--primary:hover {
   background-color: var(--backgroundColor);
-  color: hsl(351, 66%, 48%);
+  color: var(--accentColor);
 }
 
 #silktide-wrapper .st-button--secondary {
@@ -172,7 +173,7 @@
   border: none;
   padding: 15px 0px;
   background-color: transparent;
-  color: hsl(351, 66%, 48%);
+  color: var(--accentColor);
   cursor: pointer;
   font-size: 16px;
 }
@@ -201,7 +202,7 @@
 
 #silktide-banner a {
   display: inline-block;
-  color: hsl(351, 66%, 48%);
+  color: var(--accentColor);
   text-decoration: underline;
   background-color: var(--backgroundColor);
 }
@@ -281,7 +282,7 @@
 
 #silktide-modal h1 {
   font-family: var(--fontFamily);
-  color: hsl(351, 66%, 48%);
+  color: var(--accentColor);
   font-size: 24px;
   font-weight: 500;
   margin: 0px;
@@ -294,11 +295,11 @@
   border: 0px;
   cursor: pointer;
   background: var(--backgroundColor);
-  color: hsl(351, 66%, 48%);
+  color: var(--accentColor);
 }
 
 #silktide-modal .modal-close svg {
-  fill: hsl(351, 66%, 48%);
+  fill: var(--accentColor);
 }
 
 /* --------------------------------
@@ -423,7 +424,7 @@
 
 /* Checked Switch Styles */
 #silktide-modal .switch input:checked + .switch__pill {
-  background: hsl(351, 66%, 48%);
+  background: var(--accentColor);
 }
 
 #silktide-modal .switch input:checked ~ .switch__dot {

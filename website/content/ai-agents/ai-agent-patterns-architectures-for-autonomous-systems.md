@@ -142,3 +142,30 @@ The **Ralph Loop** (also known as the Ralph Wiggum Loop) is a software engineeri
     *   ⭐⭐⭐⭐☆ **Reflection**: Improves code quality by identifying and correcting issues before committing.
     *   ⭐⭐⭐⭐☆ **Tool Calling**: Essential for integrating with the development environment (Git commands, `npm test`, `tsc`, `eslint`).
     *   ⭐⭐⭐⭐☆ **RAG**: Enables the agent to consult project documentation for informed decision-making.
+ 
+## Choosing the Right AI Agent Pattern
+
+There is no single "best" AI agent pattern. The right choice depends on the complexity of the task, the need for planning, external tools, memory, and collaboration. In practice, production AI systems often combine multiple patterns—for example, using **RAG** for knowledge retrieval, **tool calling** for external actions, **reflection** for quality improvement, and **plan-and-execute** for complex workflows.
+
+The table below summarizes the main characteristics of the most common AI agent patterns.
+
+| Pattern | Planning | Tools | Memory | Multi-Agent | Typical Use Case | Complexity |
+|----------|:--------:|:-----:|:------:|:-----------:|------------------|:----------:|
+| Simple Agent | ❌ | ❌ | ❌ | ❌ | Question answering, chatbots | ⭐ |
+| Tool-Calling Agent | ❌ | ✅ | ❌ | ❌ | APIs, automation, assistants | ⭐⭐ |
+| ReAct | Limited | ✅ | ❌ | ❌ | Interactive reasoning and tool use | ⭐⭐⭐ |
+| RAG | ❌ | ✅ | External | ❌ | Knowledge retrieval, documentation search | ⭐⭐⭐ |
+| Workflow Agent | Predefined | Optional | Optional | ❌ | Business processes, pipelines | ⭐⭐⭐ |
+| Router Agent | Limited | Optional | Optional | Optional | Task routing and orchestration | ⭐⭐⭐ |
+| Plan-and-Execute | ✅ | ✅ | Optional | ❌ | Long-running, multi-step tasks | ⭐⭐⭐⭐ |
+| Reflection Agent | Optional | Optional | ❌ | ❌ | Self-review and quality improvement | ⭐⭐⭐⭐ |
+| Memory Agent | Optional | Optional | ✅ | ❌ | Personalized assistants, long-term interactions | ⭐⭐⭐⭐ |
+| Human-in-the-Loop | Optional | Optional | Optional | ❌ | High-risk or regulated workflows | ⭐⭐⭐⭐ |
+| Autonomous Agent | ✅ | ✅ | ✅ | ❌ | Independent task execution | ⭐⭐⭐⭐⭐ |
+| Tree of Thoughts (ToT) | ✅ | Optional | ❌ | ❌ | Complex reasoning and search | ⭐⭐⭐⭐⭐ |
+| Graph of Thoughts (GoT) | ✅ | Optional | ❌ | ❌ | Advanced reasoning and optimization | ⭐⭐⭐⭐⭐ |
+| Self-Consistency | Multiple Plans | ❌ | ❌ | ❌ | Improving reasoning reliability | ⭐⭐⭐⭐ |
+| Supervisor / Worker | ✅ | ✅ | Optional | ✅ | Coordinating specialized agents | ⭐⭐⭐⭐⭐ |
+| Swarm Agent | Optional | Optional | Optional | ✅ | Parallel task execution | ⭐⭐⭐⭐⭐ |
+| Multi-Agent System | Optional | ✅ | Optional | ✅ | Large collaborative systems | ⭐⭐⭐⭐⭐ |
+| Ralph Loop | Incremental | ✅ | External | Optional | Autonomous software development | ⭐⭐⭐⭐⭐ |

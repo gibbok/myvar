@@ -48,6 +48,8 @@ cd generator && make start
 Make a pull request to deploy\
 The site will be automatically deployed to GitHub Pages when the PR is merged
 
+You can also run **Actions → Generate content** in GitHub, paste content into the `content` field, and let the workflow open a draft PR.
+
 ## Makefile Commands
 
 **Generator (generator/)**
@@ -62,4 +64,3 @@ The site will be automatically deployed to GitHub Pages when the PR is merged
 - `GEMINI_API_KEY`: Your Google Gemini API key
 - `GEMINI_MODEL`: Model to use (default: gemini-2.5-flash)
 - `DEBUG_MODE`: Enable debug output (default: false)
-

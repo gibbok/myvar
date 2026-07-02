@@ -26,6 +26,7 @@ jobs:
     runs-on: ubuntu-latest
     env:
       GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
+      CONTENT_PR_TOKEN: ${{ secrets.CONTENT_PR_TOKEN }}
     steps:
       - name: Checkout
         uses: actions/checkout@v6
@@ -74,14 +75,22 @@ jobs:
             exit 1
           fi
 
+      - name: Verify pull request token
+        run: |
+          if [[ -z "${CONTENT_PR_TOKEN}" ]]; then
+            echo "::error::Set repository secret CONTENT_PR_TOKEN to a fine-grained token with Contents and Pull requests read/write access for this repository."
+            exit 1
+          fi
+
       - name: Create pull request
         uses: peter-evans/create-pull-request@v8
         with:
-          token: ${{ secrets.GITHUB_TOKEN }}
+          token: ${{ secrets.CONTENT_PR_TOKEN }}
           add-paths: |
             website/content/**
           branch: content/generated-${{ github.run_id }}
           delete-branch: true
+          draft: true
           commit-message: "Content: generated article"
           title: "Content: generated article ${{ github.run_id }}"
           body: |

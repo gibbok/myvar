@@ -1,5 +1,5 @@
 +++
-title = 'AI Agent Patterns Architectures for Autonomous Systems'
+title = 'AI Agent Patterns: Architectures for Autonomous Systems'
 date = 2026-07-01T12:30:15.407549
 draft = false
 tags = ['AI-Agents', 'Autonomous-Systems', 'Agent-Architecture']
@@ -74,7 +74,7 @@ These patterns introduce more sophisticated control flow and self-improvement me
 These patterns involve more intricate decision-making or coordination among multiple agents.
 
 *   **Tree of Thoughts (ToT)**: Explores multiple possible reasoning paths or solutions in parallel before selecting the optimal one.
-    *   *Best for:* Hard reasoning, puzzles, optimization.
+    *   *Best for:* Hard reasoning, optimization.
 
 *   **Graph of Thoughts (GoT)**: An advanced variant where thoughts form a graph structure, allowing for more complex, non-linear reasoning.
     *   *Best for:* Very complex reasoning problems.

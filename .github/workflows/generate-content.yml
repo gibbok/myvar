@@ -1,0 +1,90 @@
+name: Generate content
+
+on:
+  workflow_dispatch:
+    inputs:
+      content:
+        description: Content to generate from. Supports notes, prompts, or larger multi-line drafts.
+        required: true
+        type: string
+
+permissions:
+  contents: write
+  pull-requests: write
+
+concurrency:
+  group: generate-content-${{ github.ref }}
+  cancel-in-progress: false
+
+defaults:
+  run:
+    shell: bash
+
+jobs:
+  generate:
+    name: Generate content
+    runs-on: ubuntu-latest
+    env:
+      GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v6
+        with:
+          fetch-depth: 0
+
+      - name: Set up Python
+        uses: actions/setup-python@v6
+        with:
+          python-version: "3.12"
+
+      - name: Install uv
+        uses: astral-sh/setup-uv@v7
+        with:
+          enable-cache: true
+
+      - name: Write submitted draft
+        env:
+          CONTENT: ${{ inputs.content }}
+        run: |
+          mkdir -p generator/drafts
+          python - <<'PY'
+          import os
+          from pathlib import Path
+
+          Path("generator/drafts/content.md").write_text(os.environ["CONTENT"], encoding="utf-8")
+          PY
+
+      - name: Run generator
+        run: |
+          cd generator
+          uv run main.py
+
+      - name: Verify generated content
+        run: |
+          if git diff --quiet -- website/content; then
+            echo "::error::Generator completed, but no website/content changes were produced."
+            exit 1
+          fi
+
+      - name: Verify drafts are not tracked
+        run: |
+          if [[ -n "$(git status --porcelain=v1 --untracked-files=all -- generator/drafts)" ]]; then
+            echo "::error::Draft files must remain ignored and must not be committed."
+            git status --short --untracked-files=all -- generator/drafts
+            exit 1
+          fi
+
+      - name: Create pull request
+        uses: peter-evans/create-pull-request@v8
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+          add-paths: |
+            website/content/**
+          branch: content/generated-${{ github.run_id }}
+          delete-branch: true
+          commit-message: "Content: generated article"
+          title: "Content: generated article ${{ github.run_id }}"
+          body: |
+            Generated content from the manual generator workflow.
+
+            Workflow run: ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}

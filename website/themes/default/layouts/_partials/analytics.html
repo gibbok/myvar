@@ -1,0 +1,53 @@
+{{- $googleAnalyticsID := "G-SSE6Y3CR7T" -}}
+<script async src="https://www.googletagmanager.com/gtag/js?id={{ $googleAnalyticsID }}"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('consent', 'default', {
+    analytics_storage: 'denied',
+    ad_storage: 'denied',
+    ad_user_data: 'denied',
+    ad_personalization: 'denied'
+  });
+  gtag('js', new Date());
+  gtag('config', '{{ $googleAnalyticsID }}');
+</script>
+<link rel="stylesheet" href="{{ "cookie-banner/silktide-consent-manager.css" | relURL }}" />
+<script src="{{ "cookie-banner/silktide-consent-manager.js" | relURL }}"></script>
+<script>
+  window.silktideCookieBannerManager.updateCookieBannerConfig({
+    cookieIcon: {
+      position: 'bottomLeft'
+    },
+    cookieTypes: [
+      {
+        id: 'necessary',
+        name: 'Necessary',
+        description: '<p>These cookies are required for the website to work and cannot be disabled.</p>',
+        required: true
+      },
+      {
+        id: 'analytics',
+        name: 'Analytics',
+        description: '<p>These cookies help us understand how visitors use the website.</p>',
+        defaultValue: false,
+        onAccept: function() {
+          gtag('consent', 'update', {
+            analytics_storage: 'granted'
+          });
+          gtag('config', '{{ $googleAnalyticsID }}');
+        },
+        onReject: function() {
+          gtag('consent', 'update', {
+            analytics_storage: 'denied'
+          });
+        }
+      }
+    ],
+    text: {
+      banner: {
+        description: '<p>We use cookies to measure website traffic and improve the site. Read our <a href="{{ "cookie_policy.html" | relURL }}">Cookie Policy</a>.</p>'
+      }
+    }
+  });
+</script>

@@ -61,7 +61,7 @@ jobs:
 
       - name: Verify generated content
         run: |
-          if git diff --quiet -- website/content; then
+          if [[ -z "$(git status --porcelain=v1 --untracked-files=all -- website/content)" ]]; then
             echo "::error::Generator completed, but no website/content changes were produced."
             exit 1
           fi

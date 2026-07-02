@@ -2,6 +2,7 @@
 <html lang="{{ site.Language.LanguageCode }}" dir="{{ or site.Language.LanguageDirection `ltr` }}">
 
 <head>
+  {{ partial "analytics.html" . }}
   {{ partial "head.html" . }}
   {{ partial "typography.html" . }}
   {{ partial "opengraph.html" . }}

@@ -3,6 +3,7 @@ languageCode = 'en-US'
 title = 'MyVar.dev'
 theme = 'default'
 enableRobotsTXT = true
+disableHugoGeneratorInject = true
 
 [pagination]
   pagerSize = 20

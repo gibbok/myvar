@@ -51,7 +51,7 @@
 #silktide-wrapper a {
   all: unset;
   display: inline-block;
-  color: var(--primaryColor);
+  color: hsl(351, 66%, 48%);
   text-decoration: underline;
 }
 
@@ -82,8 +82,8 @@
 
 #silktide-wrapper .st-button {
   color: var(--backgroundColor);
-  background-color: var(--primaryColor);
-  border: 2px solid var(--primaryColor);
+  background-color: hsl(351, 66%, 48%);
+  border: 2px solid hsl(351, 66%, 48%);
   padding: 10px 20px;
   text-decoration: none;
   text-align: center;
@@ -99,7 +99,7 @@
 
 #silktide-wrapper .st-button--primary:hover {
   background-color: var(--backgroundColor);
-  color: var(--primaryColor);
+  color: hsl(351, 66%, 48%);
 }
 
 #silktide-wrapper .st-button--secondary {
@@ -172,7 +172,7 @@
   border: none;
   padding: 15px 0px;
   background-color: transparent;
-  color: var(--primaryColor);
+  color: hsl(351, 66%, 48%);
   cursor: pointer;
   font-size: 16px;
 }
@@ -201,7 +201,7 @@
 
 #silktide-banner a {
   display: inline-block;
-  color: var(--primaryColor);
+  color: hsl(351, 66%, 48%);
   text-decoration: underline;
   background-color: var(--backgroundColor);
 }
@@ -281,7 +281,7 @@
 
 #silktide-modal h1 {
   font-family: var(--fontFamily);
-  color: var(--textColor);
+  color: hsl(351, 66%, 48%);
   font-size: 24px;
   font-weight: 500;
   margin: 0px;
@@ -294,11 +294,11 @@
   border: 0px;
   cursor: pointer;
   background: var(--backgroundColor);
-  color: var(--primaryColor);
+  color: hsl(351, 66%, 48%);
 }
 
 #silktide-modal .modal-close svg {
-  fill: var(--primaryColor);
+  fill: hsl(351, 66%, 48%);
 }
 
 /* --------------------------------
@@ -423,7 +423,7 @@
 
 /* Checked Switch Styles */
 #silktide-modal .switch input:checked + .switch__pill {
-  background: var(--primaryColor);
+  background: hsl(351, 66%, 48%);
 }
 
 #silktide-modal .switch input:checked ~ .switch__dot {

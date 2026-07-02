@@ -134,24 +134,11 @@ The **Ralph Loop** (also known as the Ralph Wiggum Loop) is a software engineeri
     *   **Prerequisites**: Requires robust automated tests and a well-defined Product Requirements Document (PRD) or task list.
     *   **Limitations**: Not ideal for tasks requiring continuous reasoning or deep contextual understanding across many iterations.
 
-#### Practical Application: AI for Game Development
-
-For developing a TypeScript + Phaser puzzle game, specific patterns offer significant advantages:
+#### Practical Application:
 
 *   **Recommended Patterns**:
-    *   ⭐⭐⭐⭐⭐ **Ralph Loop**: Excellent for incremental feature development (e.g., "add player movement," "implement collision").
-    *   ⭐⭐⭐⭐⭐ **Plan-and-Execute**: Keeps the development organized around clear milestones (e.g., "create project," "implement levels").
+    *   ⭐⭐⭐⭐⭐ **Ralph Loop**: Excellent for incremental feature development.
+    *   ⭐⭐⭐⭐⭐ **Plan-and-Execute**: Keeps the development organized around clear milestones.
     *   ⭐⭐⭐⭐☆ **Reflection**: Improves code quality by identifying and correcting issues before committing.
     *   ⭐⭐⭐⭐☆ **Tool Calling**: Essential for integrating with the development environment (Git commands, `npm test`, `tsc`, `eslint`).
-    *   ⭐⭐⭐⭐☆ **RAG**: Enables the agent to consult project documentation (PRD, Phaser API references, architectural docs) for informed decision-making.
-
-*   **Integrated Architecture Example**:
-    A practical architecture for game development often combines these patterns:
-
-    **Ralph Loop**
-    *   Incorporates **Plan-and-Execute** for overall project structure.
-    *   Utilizes **Tool Calling** for development tasks (Git operations, running tests/linters, build commands).
-    *   Employs **Reflection** to enhance code quality and fix issues.
-    *   Integrates **RAG** to access relevant documentation (PRD, Phaser docs, existing project files).
-
-    This combined approach facilitates small, verifiable iterations with clear planning, robust tool integration, self-review capabilities, and comprehensive access to project knowledge, mirroring effective modern AI coding workflows.
+    *   ⭐⭐⭐⭐☆ **RAG**: Enables the agent to consult project documentation for informed decision-making.

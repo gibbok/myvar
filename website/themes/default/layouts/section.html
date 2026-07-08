@@ -1,10 +1,18 @@
 {{ define "main" }}
-  <h1>{{ .Title }}</h1>
-  {{ .Content }}
-  {{ range .Pages }}
-    <section>
-      <h2><a href="{{ .RelPermalink }}">{{ .LinkTitle }}</a></h2>
-      {{ .Summary }}
-    </section>
-  {{ end }}
+  <header class="listing-header">
+    <p class="listing-header__eyebrow">Topic</p>
+    <h1>{{ .Title }}</h1>
+    {{ with .Content }}<div class="listing-header__content">{{ . }}</div>{{ end }}
+  </header>
+  <section class="post-list" aria-label="{{ .Title }}">
+    {{ range .Pages }}
+      <article class="post-card">
+        <div class="post-card__meta">
+          <time datetime="{{ .Date | time.Format "2006-01-02" }}">{{ .Date | time.Format "Jan 2, 2006" }}</time>
+        </div>
+        <h2 class="post-card__title"><a href="{{ .RelPermalink }}">{{ .LinkTitle }}</a></h2>
+        <p class="post-card__summary">{{ .Plain | replaceRE "\\*\\*([^*]+)\\*\\*" "$1" | replaceRE "`([^`]+)`" "$1" | truncate 180 }}</p>
+      </article>
+    {{ end }}
+  </section>
 {{ end }}

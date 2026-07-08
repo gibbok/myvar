@@ -1,17 +1,45 @@
 {{ define "main" }}
-<h1>Sitemap</h1>
+<header class="listing-header">
+  <p class="listing-header__eyebrow">Directory</p>
+  <h1>Sitemap</h1>
+  <p class="listing-header__content">A structured index of every article and tag published on MyVar.dev.</p>
+</header>
 
-<h2>Content</h2>
-<ul>
-  {{- range .Site.RegularPages }} {{- if ne .Type "sitemap" }}
-  <li><a href="{{ .Permalink }}">{{ .Title }}</a></li>
-  {{- end }} {{- end }}
-</ul>
+{{ $pages := where .Site.RegularPages "Type" "!=" "sitemap" }}
+<section class="sitemap-section" aria-labelledby="sitemap-content">
+  <div class="sitemap-section__header">
+    <h2 id="sitemap-content">Content</h2>
+    <span>{{ len $pages }} articles</span>
+  </div>
+  <div class="sitemap-list">
+    {{- range $pages.GroupBy "Section" }}
+      <section class="sitemap-group">
+        <h3>{{ or .Key "Pages" }}</h3>
+        <ul>
+          {{- range .Pages.ByDate.Reverse }}
+            <li>
+              <a href="{{ .RelPermalink }}">{{ .Title }}</a>
+              <time datetime="{{ .Date | time.Format "2006-01-02" }}">{{ .Date | time.Format "Jan 2, 2006" }}</time>
+            </li>
+          {{- end }}
+        </ul>
+      </section>
+    {{- end }}
+  </div>
+</section>
 
-<h2>Tags</h2>
-<ul>
-  {{- range .Site.Taxonomies.tags }}
-  <li><a href="{{ .Page.Permalink }}">{{ .Page.Title }}</a></li>
-  {{- end }}
-</ul>
+<section class="sitemap-section" aria-labelledby="sitemap-tags">
+  <div class="sitemap-section__header">
+    <h2 id="sitemap-tags">Tags</h2>
+    <span>{{ len .Site.Taxonomies.tags }} topics</span>
+  </div>
+  <div class="term-grid">
+    {{- range .Site.Taxonomies.tags.Alphabetical }}
+      <a class="term-card" href="{{ .Page.RelPermalink }}">
+        <span>{{ .Page.Title }}</span>
+        <small>{{ .Count }} articles</small>
+      </a>
+    {{- end }}
+  </div>
+</section>
 {{ end }}

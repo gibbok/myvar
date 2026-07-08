@@ -1,7 +1,7 @@
 {{ define "main" }}
   <section class="hero">
     <p class="hero__eyebrow">Technical blog</p>
-    <h1 class="hero__title">Practical notes for engineers who build, ship, and maintain software.</h1>
+    <h1 class="hero__title">Practical notes for engineers building reliable software.</h1>
     <p class="hero__description">{{ site.Params.Description }}</p>
   </section>
   {{ $paginator := .Paginate (where site.RegularPages "Type" "!=" "sitemap") }}

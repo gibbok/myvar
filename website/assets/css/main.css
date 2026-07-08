@@ -75,7 +75,7 @@ a:hover {
 .site-main {
   width: min(100% - 2rem, var(--container));
   margin: 0 auto;
-  padding: 4rem 0 5rem;
+  padding: 1.25rem 0 5rem;
 }
 
 .header {
@@ -161,7 +161,7 @@ a:hover {
 .hero {
   max-width: 56rem;
   margin-bottom: 3.5rem;
-  padding: 2.5rem 0 1rem;
+  padding: 1rem 0 1rem;
 }
 
 .hero__eyebrow,

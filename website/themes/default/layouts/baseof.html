@@ -8,11 +8,11 @@
   {{ partial "opengraph.html" . }}
 </head>
 
-<body>
+<body class="site">
   <header class="header">
     {{ partial "header.html" . }}
   </header>
-  <main>
+  <main class="site-main">
     {{ block "main" . }}{{ end }}
   </main>
   <footer class="footer">

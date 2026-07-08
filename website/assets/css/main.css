@@ -804,13 +804,14 @@ tbody tr:hover {
 .pagefind-ui__result-excerpt {
   color: var(--color-text-soft) !important;
   font-family: var(--font-sans) !important;
-  line-height: 1.55 !important;
+  font-size: 0.96rem !important;
+  line-height: 1.65 !important;
 }
 
 .pagefind-ui__result {
   border-bottom: 0 !important;
   font-family: var(--font-sans) !important;
-  padding: 1rem 0 !important;
+  padding: 1.05rem 0 !important;
   box-shadow: inset 0 -0.0625rem 0 var(--color-border-soft) !important;
 }
 
@@ -819,11 +820,26 @@ tbody tr:hover {
 }
 
 .pagefind-ui__result-title {
-  margin-bottom: 0.25rem !important;
+  margin-bottom: 0.35rem !important;
   color: var(--color-text) !important;
-  font-size: 1rem !important;
+  font-size: 1.08rem !important;
   font-weight: 800 !important;
-  line-height: 1.35 !important;
+  letter-spacing: 0 !important;
+  line-height: 1.25 !important;
+}
+
+.pagefind-ui__result-excerpt {
+  margin-top: 0.35rem !important;
+}
+
+.pagefind-ui__result-nested,
+.pagefind-ui__result-url {
+  color: var(--color-muted) !important;
+  font-family: var(--font-sans) !important;
+  font-size: 0.82rem !important;
+  font-weight: 700 !important;
+  letter-spacing: 0.02em !important;
+  line-height: 1.4 !important;
 }
 
 .pagefind-ui__result-link {

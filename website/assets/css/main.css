@@ -41,7 +41,7 @@ body {
   margin: 0;
   background:
     linear-gradient(180deg, hsla(220, 100%, 98%, 0.92), transparent 24rem),
-    radial-gradient(circle at 18% 0, hsla(351, 100%, 96%, 0.88), transparent 18rem),
+    radial-gradient(ellipse at 50% 9rem, hsla(351, 100%, 96%, 0.78), transparent 28rem),
     var(--color-bg);
   color: var(--color-text);
   font-family: var(--font-sans);
@@ -90,7 +90,14 @@ a:hover {
   margin: 0 auto;
   padding: 1.15rem 0;
   border-bottom: 0.0625rem solid hsla(220, 18%, 88%, 0.86);
-  background: hsla(210, 33%, 99%, 0.84);
+  background: linear-gradient(
+    90deg,
+    hsla(210, 33%, 99%, 0) 0%,
+    hsla(210, 33%, 99%, 0.72) 16%,
+    hsla(210, 33%, 99%, 0.9) 50%,
+    hsla(210, 33%, 99%, 0.72) 84%,
+    hsla(210, 33%, 99%, 0) 100%
+  );
   backdrop-filter: blur(1rem);
 }
 

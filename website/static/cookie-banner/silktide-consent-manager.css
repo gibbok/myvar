@@ -19,8 +19,8 @@
               --textColor: #4B494B;
               --backdropBackgroundColor: #00000033;
               --backdropBackgroundBlur: 0px;
-              --cookieIconColor: var(--accentColor);
-              --cookieIconBackgroundColor: #FFFFFF;
+              --cookieIconColor: #FFFFFF;
+              --cookieIconBackgroundColor: hsl(220, 9%, 46%);
               position: fixed;
   bottom: 0;
   right: 0;
@@ -74,7 +74,7 @@
 }
 
 #silktide-wrapper #silktide-cookie-icon:focus {
-  border-radius: 50%;
+  border-radius: 14px;
 }
 
 /* --------------------------------
@@ -477,14 +477,14 @@
   left: 10px;
   justify-content: center;
   align-items: center;
-  width: 60px;
-  height: 60px;
-  border-radius: 50%;
+  width: 54px;
+  height: 54px;
+  border-radius: 14px;
   padding: 0px;
-  border: none;
+  border: 1px solid hsl(220, 24%, 93%);
   background-color: var(--cookieIconColor);
   cursor: pointer;
-  box-shadow: 0px 0px 6px 0px #0000001a;
+  box-shadow: 0 0.5rem 1.5rem hsla(222, 47%, 11%, 0.07);
   pointer-events: auto;
   animation: silktide-fadeIn 0.3s ease-in-out forwards;
   transform: scale(0.7);
@@ -497,6 +497,7 @@
 
 #silktide-cookie-icon svg {
   fill: var(--cookieIconBackgroundColor);
+  opacity: 0.82;
 }
 
 /* --------------------------------

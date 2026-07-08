@@ -684,13 +684,13 @@ tbody tr:hover {
 
 .search-modal__content {
   position: relative;
-  width: min(100%, 52rem);
+  width: min(100%, 48rem);
   max-height: min(78vh, 48rem);
   overflow: hidden;
   border: 0.0625rem solid var(--color-border-soft);
   border-radius: var(--radius-lg);
-  background: var(--color-surface);
-  box-shadow: 0 2rem 5rem hsla(222, 47%, 11%, 0.24);
+  background: hsla(0, 0%, 100%, 0.96);
+  box-shadow: var(--shadow-card), 0 2rem 5rem hsla(222, 47%, 11%, 0.18);
 }
 
 .search-modal__header {
@@ -700,11 +700,25 @@ tbody tr:hover {
   gap: 1rem;
   padding: 1rem 1.1rem;
   border-bottom: 0.0625rem solid var(--color-border-soft);
+  background: var(--color-surface-strong);
+}
+
+.search-modal__eyebrow {
+  margin: 0 0 0.25rem;
+  color: var(--color-accent);
+  font-size: 0.72rem;
+  font-weight: 800;
+  letter-spacing: 0.08em;
+  line-height: 1.2;
+  text-transform: uppercase;
 }
 
 .search-modal__header h2 {
   margin: 0;
-  font-size: 1.1rem;
+  color: var(--color-text);
+  font-size: 1.15rem;
+  font-weight: 850;
+  letter-spacing: 0;
   line-height: 1.2;
 }
 
@@ -731,7 +745,31 @@ tbody tr:hover {
 #search {
   max-height: 66vh;
   overflow-y: auto;
-  padding: 1rem;
+  padding: 1.1rem;
+}
+
+.pagefind-ui__form {
+  border: 0.0625rem solid var(--color-border-soft) !important;
+  border-radius: var(--radius-lg) !important;
+  background: var(--color-surface) !important;
+  box-shadow: inset 0 0.0625rem 0 hsla(222, 47%, 11%, 0.03) !important;
+}
+
+.pagefind-ui__search-input {
+  min-height: 3.25rem !important;
+  color: var(--color-text) !important;
+  font-family: var(--font-sans) !important;
+  font-size: 1rem !important;
+  font-weight: 500 !important;
+}
+
+.pagefind-ui__search-input:focus {
+  outline: 0 !important;
+}
+
+.pagefind-ui__form:focus-within {
+  border-color: var(--color-border-soft) !important;
+  box-shadow: none !important;
 }
 
 .pagefind-ui__search-clear,
@@ -772,7 +810,7 @@ tbody tr:hover {
 .pagefind-ui__result {
   border-bottom: 0.0625rem solid var(--color-border-soft) !important;
   font-family: var(--font-sans) !important;
-  padding: 0.9rem 0 !important;
+  padding: 1rem 0 !important;
 }
 
 .pagefind-ui__result-title {

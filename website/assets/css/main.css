@@ -492,6 +492,102 @@ tbody tr:hover {
   gap: 0.8rem;
 }
 
+.sitemap-section + .sitemap-section {
+  margin-top: 3rem;
+}
+
+.sitemap-section__header {
+  display: flex;
+  align-items: end;
+  justify-content: space-between;
+  gap: 1rem;
+  margin-bottom: 1rem;
+  padding-bottom: 0.75rem;
+  border-bottom: 0.0625rem solid var(--color-border-soft);
+}
+
+.sitemap-section__header h2 {
+  margin: 0;
+  color: var(--color-text);
+  font-size: clamp(1.45rem, 3vw, 2rem);
+  font-weight: 850;
+  letter-spacing: 0;
+  line-height: 1.1;
+}
+
+.sitemap-section__header span {
+  color: var(--color-muted);
+  font-size: 0.85rem;
+  font-weight: 800;
+  line-height: 1.2;
+  text-transform: uppercase;
+  white-space: nowrap;
+}
+
+.sitemap-list {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 1rem;
+}
+
+.sitemap-group {
+  border: 0.0625rem solid var(--color-border-soft);
+  border-radius: var(--radius-lg);
+  background: hsla(0, 0%, 100%, 0.86);
+  overflow: hidden;
+}
+
+.sitemap-group h3 {
+  margin: 0;
+  padding: 0.95rem 1rem;
+  border-bottom: 0.0625rem solid var(--color-border-soft);
+  background: var(--color-surface-strong);
+  color: var(--color-accent);
+  font-size: 0.82rem;
+  font-weight: 850;
+  letter-spacing: 0.08em;
+  line-height: 1.2;
+  text-transform: uppercase;
+}
+
+.sitemap-group ul {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.sitemap-group li {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  gap: 1rem;
+  align-items: baseline;
+  padding: 0.85rem 1rem;
+  border-bottom: 0.0625rem solid var(--color-border-soft);
+}
+
+.sitemap-group li:last-child {
+  border-bottom: 0;
+}
+
+.sitemap-group a {
+  color: var(--color-text);
+  font-weight: 750;
+  line-height: 1.35;
+  text-decoration: none;
+  overflow-wrap: anywhere;
+}
+
+.sitemap-group a:hover {
+  color: var(--color-accent);
+}
+
+.sitemap-group time {
+  color: var(--color-muted);
+  font-size: 0.8rem;
+  font-weight: 700;
+  white-space: nowrap;
+}
+
 .term-card {
   display: flex;
   min-height: 6rem;
@@ -739,6 +835,7 @@ tbody tr:hover {
   }
 
   .post-list,
+  .sitemap-list,
   .term-grid {
     grid-template-columns: 1fr;
   }
@@ -778,6 +875,16 @@ tbody tr:hover {
   th,
   td {
     padding: 0.65rem;
+  }
+
+  .sitemap-section__header {
+    align-items: flex-start;
+    flex-direction: column;
+  }
+
+  .sitemap-group li {
+    grid-template-columns: 1fr;
+    gap: 0.35rem;
   }
 
   .search-modal {

@@ -21,10 +21,10 @@ Send draft notes to the system, and AI agents automatically generate, review, an
 
 ## How it works
 
-1. Write any notes in `generator/drafts/content.md`
+1. For local generation, write notes in `generator/drafts/content.md`
 2. Run the generator: `cd generator && make start`
-3. Agents collaborate to refine and publish the article
-4. Output appears in `website/content/` ready for Hugo to build
+3. Agents generate, review, and publish the article
+4. Output is written to `website/content/`
 5. OG images for social sharing are created automatically at build time
 
 ## Setup
@@ -41,14 +41,20 @@ cp .env.example .env
 ## Usage
 
 ```bash
-# Run the generator
+# Generate content locally
 cd generator && make start
 
 ```
-Make a pull request to deploy\
-The site will be automatically deployed to GitHub Pages when the PR is merged
+The `generator/drafts/` folder is only for local content creation and should not be committed.
 
-You can also run **Actions → Generate content** in GitHub, paste content into the `content` field, and let the workflow open a draft PR.
+You can also generate content in GitHub:
+
+1. Open **Actions**.
+2. Run **Generate content**.
+3. Paste your notes into the `content` input.
+4. The workflow generates the article and opens a draft PR with changes in `website/content/`.
+
+Merge the PR to deploy the site to GitHub Pages.
 
 ## Makefile Commands
 

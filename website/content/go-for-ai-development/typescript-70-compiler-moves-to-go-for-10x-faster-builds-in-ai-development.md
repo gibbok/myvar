@@ -3,7 +3,7 @@ title = 'TypeScript 7.0 Compiler Moves to Go for 10x Faster Builds in AI Develop
 date = 2026-07-14T12:21:51.144643
 draft = false
 tags = ['TypeScript-7-0', 'Go-language', 'AI-development']
-description = 'TypeScript 7.0 compiler rewrite in Go delivers 10x faster build times. Go's design boosts AI agent development efficiency.'
+description = 'TypeScript 7.0 compiler rewrite in Go delivers 10x faster build times.'
 +++
 
 ## Overview

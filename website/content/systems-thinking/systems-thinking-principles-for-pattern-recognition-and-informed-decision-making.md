@@ -30,7 +30,7 @@ Effective systems thinking moves beyond individual parts to observe their connec
 Several factors contribute to difficulty in applying systems thinking:
 
 *   **System Misidentification:** Lack of awareness regarding the specific type of system (**Clear**, **Complicated**, **Complex**, **Chaotic**) leads to applying incorrect problem-solving approaches.
-*   **The Cobra Effect (Incentive Problem):** Policies or rewards designed to achieve a goal can inadvertently optimize for the reward itself, leading to outcomes opposite to the original intention. Human behavior often introduces unforeseen complexities.
+*   **The Incentive Problem:** Policies or rewards designed to achieve a goal can inadvertently optimize for the reward itself, leading to outcomes opposite to the original intention. Human behavior often introduces unforeseen complexities.
 *   **Delayed Feedback Loops:** The consequences of actions may not manifest for an extended period, making it difficult to link cause and effect in real-time. This delay obscures the impact of interventions.
 
 ### The Four System Archetypes
@@ -95,7 +95,7 @@ In a **Chaotic System**, the link between cause and effect is broken or impossib
 
 ### The DART Framework for System Diagnosis
 
-The **DART** framework provides a systematic approach to identify the system type and determine the appropriate response.
+The **DART** framework from Swadia provides a systematic approach to identify the system type and determine the appropriate response.
 
 *   **D - Deconstruct:** Break down the problem into its constituent parts. Assess whether these parts are stable or constantly shifting. Understanding the system's composition is a prerequisite for any decision.
 *   **A - Analyze:** Determine the connection between cause and effect. This is the most critical diagnostic step:

@@ -13,7 +13,7 @@ Modal Sandboxes offer a platform for dynamically creating containers and executi
 
 ## Key Insights
 
-*   **Northflank** provides the most comprehensive solution with **microVM isolation (Kata Containers/CLH) and gVisor**, accepts **any OCI container image**, offers **unlimited sandbox duration**, **BYOC deployment**, and complete platform capabilities. It processes over 2 million workloads monthly.
+*   **Northflank** provides a comprehensive solution with **microVM isolation (Kata Containers/CLH) and gVisor**, accepts **any OCI container image**, offers **unlimited sandbox duration**, **BYOC deployment**, and complete platform capabilities. It processes over 2 million workloads monthly.
 *   **Modal** relies on **gVisor containers** and persistent storage but **requires SDK-defined images** and is primarily **Python-centric**.
 *   **E2B.dev** uses **Firecracker microVMs** with strong AI agent SDKs but limits sessions to **24 hours** and lacks self-hosting.
 *   **Daytona.io** is a newer entrant, focusing on **sub-90ms provisioning** for AI workflows, using Docker/Kata, but has limited persistence.
@@ -50,7 +50,7 @@ Modal excels at secure code execution, but teams often require additional capabi
 
 | Platform            | Isolation                     | Images             | Persistence  | Deploy Options  | Best for                                |
 | :------------------ | :---------------------------- | :----------------- | :----------- | :-------------- | :-------------------------------------- |
-| **Northflank**      | **microVM (Kata/CLH) & gVisor** | **Any OCI image**  | **Unlimited**| **Managed or BYOC** | Complete platform + sandboxes           |
+| Northflank     | microVM (Kata/CLH) & gVisor | Any OCI image  | Unlimited| Managed or BYOC | Complete platform + sandboxes           |
 | E2B.dev             | microVM (Firecracker)         | Pre-built + custom | 24hr max     | Managed only    | AI agent tools                          |
 | Modal               | gVisor                        | SDK-defined only   | Yes (network FS) | Managed only    | ML/AI workloads                         |
 | Daytona.io          | Docker/Kata                   | Docker images      | Limited      | Managed only    | Quick AI demos                          |

@@ -8,7 +8,14 @@ enableRobotsTXT = true
   pagerSize = 20
 
 [outputs]
-  home = ['HTML', 'RSS']
+  home = ['HTML', 'RSS', 'LLMS']
+  page = ['HTML', 'Markdown']
+
+[outputFormats]
+  [outputFormats.LLMS]
+    baseName = 'llms'
+    isPlainText = true
+    mediaType = 'text/plain'
 
 [menus]
   [[menus.main]]

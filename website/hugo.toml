@@ -8,7 +8,7 @@ enableRobotsTXT = true
   pagerSize = 20
 
 [outputs]
-  home = ['HTML', 'RSS', 'LLMS']
+  home = ['HTML', 'RSS', 'Sitemap', 'LLMS']
   page = ['HTML', 'Markdown']
 
 [outputFormats]

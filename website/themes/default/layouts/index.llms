@@ -1,0 +1,14 @@
+# {{ .Site.Title }}
+
+{{ .Site.Params.Description }}
+
+## Articles
+
+{{- $pages := where .Site.RegularPages "Type" "ne" "sitemap" }}
+{{- range $pages.ByTitle }}
+  {{- $description := .Description }}
+  {{- if not $description }}
+    {{- $description = .Summary | plainify | strings.TrimSpace }}
+  {{- end }}
+- [{{ .Title }}]({{ printf "%sindex.md" .Permalink }}): {{ $description | plainify | strings.TrimSpace }}
+{{- end }}

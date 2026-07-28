@@ -22,7 +22,7 @@ Spec-driven development is a software construction methodology prioritizing a co
 
 ### The Spec-Driven Development Workflow
 
-The following six-step workflow, as practiced by Larridin, details a structured approach to spec-driven development with AI.
+The following six-step workflow, details a structured approach to spec-driven development with AI.
 
 #### 1. Start with a Spike
 

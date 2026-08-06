@@ -45,7 +45,8 @@ cp .env.example .env
 cd generator && make start
 
 ```
-The `generator/drafts/` folder is only for local content creation and should not be committed.
+
+The `generator/drafts/content.md` folder is only for local content creation and should not be committed.
 
 You can also generate content in GitHub:
 
@@ -59,14 +60,16 @@ Merge the PR to deploy the site to GitHub Pages.
 ## Makefile Commands
 
 **Generator (generator/)**
+
 - `make start` - Run the AI agent pipeline to generate articles
 
 **Website (website/)**
+
 - `make serve` - Start Hugo development server
 - `make build` - Build the static site
 
 ## Environment Variables
 
 - `GEMINI_API_KEY`: Your Google Gemini API key
-- `GEMINI_MODEL`: Model to use (default: gemini-2.5-flash)
+- `GEMINI_MODEL`: Model to use (default: gemini-3.6-flash)
 - `DEBUG_MODE`: Enable debug output (default: false)

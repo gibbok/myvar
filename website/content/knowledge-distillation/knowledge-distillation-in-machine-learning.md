@@ -2,7 +2,7 @@
 title = 'Knowledge Distillation in Machine Learning'
 date = 2026-08-05T17:27:25.045649
 draft = false
-tags = ['machine-learning-knowledge-distillation-artificial-intelligence']
+tags = ['machine-learning', 'knowledge-distillation', 'artificial-intelligence']
 description = 'Learn how knowledge distillation transfers capabilities from teacher models to smaller student models.'
 +++
 

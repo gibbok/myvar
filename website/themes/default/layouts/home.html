@@ -1,10 +1,27 @@
 {{ define "main" }}
+  {{ $articles := where site.RegularPages "Type" "!=" "sitemap" }}
+  {{ $latest := first 1 $articles }}
   <section class="hero">
-    <p class="hero__eyebrow">Technical blog</p>
-    <h1 class="hero__title">Practical notes for engineers building reliable software</h1>
-    <p class="hero__description">{{ site.Params.Description }}</p>
+    <div class="hero__content">
+      <p class="hero__eyebrow">Technical blog</p>
+      <h1 class="hero__title">Notes for building reliable software.</h1>
+      <p class="hero__description">{{ site.Params.Description }}</p>
+    </div>
+    <aside class="hero__explore" aria-label="Explore the blog">
+      <p class="hero__explore-label">Find your next read</p>
+      <a class="hero__explore-link" href="{{ `tags/` | relURL }}">
+        <span>Browse by topic</span>
+        <span aria-hidden="true">→</span>
+      </a>
+      {{ range $latest }}
+        <a class="hero__latest" href="{{ .RelPermalink }}">
+          <span class="hero__latest-label">Latest article</span>
+          <span class="hero__latest-title">{{ .LinkTitle }}</span>
+        </a>
+      {{ end }}
+    </aside>
   </section>
-  {{ $paginator := .Paginate (where site.RegularPages "Type" "!=" "sitemap") }}
+  {{ $paginator := .Paginate $articles }}
   <section class="post-list" aria-label="Articles">
     {{ range $paginator.Pages }}
       <article class="post-card">

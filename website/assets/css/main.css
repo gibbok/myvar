@@ -881,6 +881,10 @@ tbody tr:hover {
   line-height: 1.65 !important;
 }
 
+.pagefind-ui__message {
+  margin-left: 0.25rem !important;
+}
+
 .pagefind-ui__result {
   border-bottom: 0 !important;
   font-family: var(--font-sans) !important;

@@ -170,8 +170,8 @@ a:hover {
   grid-template-columns: minmax(0, 1.45fr) minmax(17rem, 0.8fr);
   gap: clamp(2rem, 6vw, 6rem);
   align-items: end;
-  margin-bottom: 3rem;
-  padding: clamp(1.5rem, 4vw, 3.5rem) 0 1.25rem;
+  margin-top: 0.8rem;
+  margin-bottom: 2.25rem;
 }
 
 .hero__eyebrow,
@@ -199,6 +199,10 @@ a:hover {
 .hero__title {
   max-width: 43rem;
   font-size: clamp(2.5rem, 5vw, 4.15rem);
+}
+
+.hero__content {
+  align-self: center;
 }
 
 .hero__description,
@@ -967,8 +971,8 @@ tbody tr:hover {
   .hero {
     grid-template-columns: 1fr;
     gap: 1.5rem;
-    margin-bottom: 2.4rem;
-    padding-top: 1rem;
+    margin-top: 0.8rem;
+    margin-bottom: 1.8rem;
   }
 
   .post-list,

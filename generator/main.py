@@ -11,11 +11,12 @@ from langgraph.graph import StateGraph, END
 from langchain_google_genai import ChatGoogleGenerativeAI
 from dotenv import load_dotenv
 import pprint
+from config import get_gemini_api_key
 
 load_dotenv()
 
 # Config
-GEMINI_API_KEY = os.getenv("GEMINI_API_KEY", "YOUR_GEMINI_API_KEY_HERE")
+GEMINI_API_KEY = get_gemini_api_key()
 GEMINI_MODEL = os.getenv("GEMINI_MODEL", "gemini-3.6-flash")
 BASE_DIR = Path(__file__).parent.parent.absolute()
 OUTPUT_CONTENT_DIR = BASE_DIR / "website/content"

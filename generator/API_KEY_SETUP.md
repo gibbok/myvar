@@ -12,6 +12,10 @@ Set the `GEMINI_API_KEY` environment variable:
 export GEMINI_API_KEY="your-actual-gemini-api-key-here"
 ```
 
+For GitHub Actions, create the repository secret `GEMINI_API_KEY`. You may paste
+either the key alone or the corresponding `.env` assignment; the generator
+normalizes both formats without printing the secret.
+
 ## Getting a Gemini API Key
 
 1. Visit [Google AI Studio](https://aistudio.google.com/app/apikey)

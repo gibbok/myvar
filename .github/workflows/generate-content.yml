@@ -24,9 +24,6 @@ jobs:
   generate:
     name: Generate content
     runs-on: ubuntu-latest
-    env:
-      GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
-      CONTENT_PR_TOKEN: ${{ secrets.CONTENT_PR_TOKEN }}
     steps:
       - name: Checkout
         uses: actions/checkout@v6
@@ -44,6 +41,8 @@ jobs:
           enable-cache: true
 
       - name: Validate Gemini credentials
+        env:
+          GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
         run: |
           cd generator
           uv run check_gemini_credentials.py
@@ -61,6 +60,8 @@ jobs:
           PY
 
       - name: Run generator
+        env:
+          GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
         run: |
           cd generator
           uv run main.py
@@ -81,6 +82,8 @@ jobs:
           fi
 
       - name: Verify pull request token
+        env:
+          CONTENT_PR_TOKEN: ${{ secrets.CONTENT_PR_TOKEN }}
         run: |
           if [[ -z "${CONTENT_PR_TOKEN}" ]]; then
             echo "::error::Set repository secret CONTENT_PR_TOKEN to a fine-grained token with Contents and Pull requests read/write access for this repository."

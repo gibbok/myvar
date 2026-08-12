@@ -43,6 +43,11 @@ jobs:
         with:
           enable-cache: true
 
+      - name: Validate Gemini credentials
+        run: |
+          cd generator
+          uv run check_gemini_credentials.py
+
       - name: Write submitted draft
         env:
           CONTENT: ${{ inputs.content }}

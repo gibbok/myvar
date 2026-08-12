@@ -2,7 +2,7 @@
 title = 'Dark Factories and Lights Out Manufacturing'
 date = 2026-08-11T20:02:05.599549
 draft = false
-tags = ['dark-factories-industrial-automation-robotics']
+tags = ['dark-factories', 'industrial-automation-robotics']
 description = 'Learn how dark factories use robotics and AI to enable fully automated lights out manufacturing processes.'
 +++
 

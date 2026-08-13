@@ -2,7 +2,7 @@
 title = 'Model Context Protocol Overview and Architecture'
 date = 2026-08-12T11:29:51.057912
 draft = false
-tags = ['model-context-protocol-ai-architecture-json-rpc']
+tags = ['model-context-protocol', 'mcp']
 description = 'Learn about the Model Context Protocol architecture for coordinating context between AI models and data sources.'
 +++
 

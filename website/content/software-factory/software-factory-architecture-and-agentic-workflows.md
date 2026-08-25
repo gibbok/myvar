@@ -2,7 +2,7 @@
 title = 'Software Factory Architecture and Agentic Workflows'
 date = 2026-08-24T13:23:37.267176
 draft = false
-tags = ['software-factory-agentic-ai-code-automation']
+tags = ['ai','software-factory']
 description = 'Software factories automate code generation and verification using event driven workflows and quality gates.'
 +++
 

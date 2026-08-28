@@ -2,7 +2,7 @@
 title = 'Understanding Change Risk Anti-Patterns CRAP Metric'
 date = 2026-08-27T19:24:11.023227
 draft = false
-tags = ['crap-metric-software-testing-code-complexity']
+tags = ['crap-metric-software-testing-code-complexity','CRAP']
 description = 'The CRAP metric evaluates software risk by combining cyclomatic complexity with automated test coverage.'
 +++
 

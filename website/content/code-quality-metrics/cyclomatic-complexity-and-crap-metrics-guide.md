@@ -2,7 +2,7 @@
 title = 'Cyclomatic Complexity and CRAP Metrics Guide'
 date = 2026-08-30T07:29:36.787017
 draft = false
-tags = ['code-quality-software-metrics-refactoring', 'crap']
+tags = ['code-quality-software-metrics-refactoring', 'crap', 'Change Risk Anti-Patterns']
 description = 'Learn how Cyclomatic Complexity and CRAP metrics evaluate code maintainability execution paths and change risk.'
 +++
 

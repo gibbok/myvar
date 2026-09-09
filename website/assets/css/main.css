@@ -78,6 +78,57 @@ a:hover {
   padding: 1.25rem 0 5rem;
 }
 
+.book-banner {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.75rem 1.5rem;
+  margin-bottom: 2rem;
+  padding: 1rem 1.25rem;
+  border: 0.0625rem solid var(--color-border);
+  border-left: 0.25rem solid var(--color-accent);
+  border-radius: var(--radius-md);
+  background: var(--color-surface);
+}
+
+.book-banner__copy {
+  min-width: 0;
+}
+
+.book-banner__title {
+  margin: 0;
+  font-size: 1rem;
+  font-weight: 700;
+  line-height: 1.5;
+}
+
+.book-banner__title span {
+  color: var(--color-accent);
+}
+
+.book-banner__description {
+  margin: 0.2rem 0 0;
+  color: var(--color-text-soft);
+  font-size: 0.875rem;
+}
+
+.book-banner__link {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  min-height: 2.75rem;
+  padding: 0.5rem 0;
+  font-size: 0.875rem;
+  font-weight: 700;
+}
+
+.book-banner__link:focus-visible {
+  outline: 0.125rem solid var(--color-accent);
+  outline-offset: 0.25rem;
+  border-radius: var(--radius-sm);
+}
+
 .header {
   position: sticky;
   top: 0;

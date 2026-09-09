@@ -2,7 +2,7 @@
 title = 'Context Engineering Overview and Key Architecture Patterns'
 date = 2026-09-08T11:48:50.193623
 draft = false
-tags = ['context-engineering-ai-agents-prompt-engineering']
+tags = ['context-engineering','ai-agents','prompt-engineering']
 description = 'Learn how context engineering manages dynamic context windows for AI agents beyond simple prompt engineering.'
 +++
 

@@ -2,7 +2,7 @@
 title = 'Managing AI Generated Pull Requests and Code Review Workflows'
 date = 2026-09-08T07:39:10.765728
 draft = false
-tags = ['code-review-ai-pull-requests-software-engineering']
+tags = ['code-review','software-engineering','ai']
 description = 'Learn how engineering teams manage AI PR volume with automated triage meta review and noise mitigation.'
 +++
 

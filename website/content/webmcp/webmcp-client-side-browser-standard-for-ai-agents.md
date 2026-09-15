@@ -2,7 +2,7 @@
 title = 'WebMCP Client Side Browser Standard for AI Agents'
 date = 2026-09-14T06:12:04.294223
 draft = false
-tags = ['webmcp-ai-agents-browser-standards']
+tags = ['webmcp-ai-agents-browser-standards','WebMCP','ai','agents']
 description = 'WebMCP exposes client side JavaScript to AI agents directly within the browser session context.'
 +++
 

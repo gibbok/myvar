@@ -2,7 +2,7 @@
 title = 'Self Driving Product Architecture with Autonomous Agents'
 date = 2026-09-19T06:40:56.376017
 draft = false
-tags = ['autonomous-agents-self-driving-architecture-continuous-optimization']
+tags = ['autonomous-agents','ai','softare-factory']
 description = 'Autonomous software agents optimize product architecture using continuous feedback loops.'
 +++
 

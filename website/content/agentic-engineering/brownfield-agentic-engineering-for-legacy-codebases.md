@@ -1,5 +1,5 @@
 +++
-title = 'Brownfield Agentic Engineering for Legacy Codebases'
+title = 'Agentic Engineering for Legacy Codebases'
 date = 2026-09-19T06:44:12.562405
 draft = false
 tags = ['ai-agents', 'legacy-code', 'software-engineering']

@@ -2,7 +2,7 @@
 title = 'Ollama vs OpenRouter Comparison Local Engine vs Cloud Gateway'
 date = 2026-09-23T16:01:20.473027
 draft = false
-tags = ['ollama-openrouter-llm-integration']
+tags = ['ollama','openrouter-llm','integration']
 description = 'Compare Ollama local runtime and OpenRouter cloud API gateway for LLM integration privacy and cost.'
 +++
 

@@ -1,8 +1,8 @@
 +++
-title = 'Overview'
+title = 'Codex Best Practices'
 date = 2026-09-23T16:24:37.879337
 draft = false
-tags = ['tech']
+tags = ['codex','ai']
 description = 'No description.'
 +++
 

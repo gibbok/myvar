@@ -3,7 +3,7 @@ title = 'Codex Best Practices'
 date = 2026-09-23T16:24:37.879337
 draft = false
 tags = ['codex','ai']
-description = 'No description.'
+description = 'Codex Best Practices and common pitfalls to avoid'
 +++
 
 ## Overview

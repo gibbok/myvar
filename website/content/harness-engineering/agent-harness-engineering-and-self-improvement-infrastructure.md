@@ -2,7 +2,7 @@
 title = 'Agent Harness Engineering and Self Improvement Infrastructure'
 date = 2026-09-29T07:41:20.523256
 draft = false
-tags = ['agent-harness', 'ai-orchestration', 'self-improvement']
+tags = ['agent-harness', 'ai-orchestration', 'self-improvement', 'ai']
 description = 'Learn how agent harnesses manage runtime execution and orchestration to drive recursive AI self improvement.'
 +++
 

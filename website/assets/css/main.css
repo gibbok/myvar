@@ -79,6 +79,8 @@ a:hover {
 }
 
 .book-banner {
+  color: inherit;
+  text-decoration: none;
   display: flex;
   flex-wrap: wrap;
   align-items: center;
@@ -123,7 +125,7 @@ a:hover {
   font-weight: 700;
 }
 
-.book-banner__link:focus-visible {
+.book-banner:focus-visible {
   outline: 0.125rem solid var(--color-accent);
   outline-offset: 0.25rem;
   border-radius: var(--radius-sm);

@@ -107,6 +107,15 @@ a:hover {
   color: var(--color-accent);
 }
 
+.book-banner__title a {
+  color: inherit;
+  text-decoration: none;
+}
+
+.book-banner__title a:hover {
+  color: var(--color-accent);
+}
+
 .book-banner__description {
   margin: 0.2rem 0 0;
   color: var(--color-text-soft);
@@ -123,7 +132,8 @@ a:hover {
   font-weight: 700;
 }
 
-.book-banner__link:focus-visible {
+.book-banner__link:focus-visible,
+.book-banner__title a:focus-visible {
   outline: 0.125rem solid var(--color-accent);
   outline-offset: 0.25rem;
   border-radius: var(--radius-sm);

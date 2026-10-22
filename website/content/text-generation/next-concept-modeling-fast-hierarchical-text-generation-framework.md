@@ -2,7 +2,7 @@
 title = 'Next-Concept Modeling Fast Hierarchical Text Generation Framework'
 date = 2026-10-21T19:33:18.246715
 draft = false
-tags = ['language-modeling-text-generation-stanford-ai']
+tags = ['ai','language-model']
 description = 'Stanford researchers created Next-Concept Modeling to accelerate text generation and improve training efficiency.'
 +++
 

@@ -2,7 +2,7 @@
 title = 'Guide to Machine Learning Classification Metrics'
 date = 2026-11-01T15:30:45.066352
 draft = false
-tags = ['machine-learning-classification-metrics-f1-score']
+tags = ['machine-learning']
 description = 'Evaluate model performance using accuracy precision recall and f1 score. Learn key machine learning concepts.'
 +++
 

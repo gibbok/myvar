@@ -2,7 +2,7 @@
 title = 'Software Factory Autonomous AI Agent Framework'
 date = 2026-11-08T09:19:44.539405
 draft = false
-tags = ['software-factory-ai-agents-automation']
+tags = ['software-factory-ai-agents-automation', 'software-factory']
 description = 'An automated software engineering framework leveraging autonomous AI agents for end to end development.'
 +++
 

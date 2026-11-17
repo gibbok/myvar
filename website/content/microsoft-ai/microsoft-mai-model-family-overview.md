@@ -2,7 +2,7 @@
 title = 'Microsoft MAI Model Family Overview'
 date = 2026-11-16T19:51:15.524113
 draft = false
-tags = ['microsoft-ai', 'mai-models', 'azure-ai']
+tags = ['microsoft-ai', 'mai-models', 'azure-ai', 'ai']
 description = 'Explore Microsoft MAI models for reasoning coding image synthesis transcription and voice generation.'
 +++
 

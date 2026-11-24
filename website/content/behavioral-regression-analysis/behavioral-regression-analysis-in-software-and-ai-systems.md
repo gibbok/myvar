@@ -2,7 +2,7 @@
 title = 'Behavioral Regression Analysis in Software and AI Systems'
 date = 2026-11-23T08:15:42.319782
 draft = false
-tags = ['behavioral-regression-software-testing-ai-systems']
+tags = ['behavioral-regression-software-testing-ai-systems', 'ai']
 description = 'Learn how behavioral regression analysis detects unwanted shifts in system performance.'
 +++
 
